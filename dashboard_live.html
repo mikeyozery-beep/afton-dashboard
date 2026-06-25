@@ -1,0 +1,630 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Afton Properties - Executive Portfolio Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .dashboard {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid #1D9E75;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 600;
+      color: #1D9E75;
+    }
+    .header .period {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .metric-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-left: 4px solid #1D9E75;
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .metric-label {
+      font-size: 10px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .metric-value {
+      font-size: 32px;
+      font-weight: 600;
+      color: #1D9E75;
+      margin-bottom: 6px;
+    }
+
+    .metric-value.red {
+      color: #D9534F;
+    }
+
+    .metric-change {
+      font-size: 11px;
+      color: #1D9E75;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .metric-change.red {
+      color: #D9534F;
+    }
+
+    .metric-detail {
+      font-size: 10px;
+      color: #999;
+      line-height: 1.5;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+      background: #1D4D39;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      border-radius: 2px;
+    }
+
+    .marketing-section {
+      margin-bottom: 24px;
+    }
+
+    .marketing-row{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .marketing-card{
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .marketing-label{
+      font-size: 10px;
+      color: #999;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    .marketing-value{
+      font-size: 20px;
+      font-weight: 600;
+      color: #1D9E75;
+      margin-bottom: 4px;
+    }
+
+    .marketing-detail{
+      font-size: 10px;
+      color: #999;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card-box {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .list-item {
+      font-size: 12px;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      color: #333;
+    }
+
+    .list-item:before {
+      content: "• ";
+      color: #1D9E75;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    .focus-box {
+      background: #FFF4E6;
+      border-left: 4px solid #EF9F27;
+      padding: 12px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .focus-box .icon {
+      display: inline-flex;
+      width: 20px;
+      height: 20px;
+      background: #EF9F27;
+      color: white;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      font-size: 12px;
+    }
+
+    .focus-box-text {
+      flex: 1;
+    }
+
+    .table-box {
+      margin-bottom: 24px;
+    }
+
+    table {
+      width: 100%;
+      font-size: 12px;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    table th {
+      font-weight: 600;
+      background: #f8f8f8;
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e8e8e8;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: #666;
+    }
+
+    table td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .negative {
+      color: #D9534F;
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .chart-box {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .chart-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .pie-container {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    canvas {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .legend {
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-box {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .priority-box {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .priority-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+      font-size: 12px;
+    }
+
+    .priority-num {
+      width: 24px;
+      height: 24px;
+      background: #1D9E75;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="dashboard">
+
+  <div class="header">
+    <h1>Afton Properties - Executive Portfolio Dashboard</h1>
+    <div class="period">As of: June 15, 2026</div>
+  </div>
+
+  <!-- METRICS (8 CARDS - TWO ROWS OF 4) -->
+  <div class="metric-row">
+    <div class="metric-card">
+      <div class="metric-label">Portfolio Occupancy</div>
+      <div class="metric-value">94.8%</div>
+      <div class="metric-change">▲ +50 bps</div>
+      <div class="metric-detail">Prior Week (06/08/26): 94.3%<br>Budget: 95.0%</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-label">Leased Occupancy</div>
+      <div class="metric-value">96.1%</div>
+      <div class="metric-change">▲ +40 bps</div>
+      <div class="metric-detail">Prior Week (06/08/26): 95.7%<br>Budget: 96.0%</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-label">% Collected</div>
+      <div class="metric-value">99.1%</div>
+      <div class="metric-change">▲ +30 bps</div>
+      <div class="metric-detail">As of: 06/15/26<br>Prior Month to Date: 98.8%<br>Budget: 99.0%</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-label">Annualized Rent Growth</div>
+      <div class="metric-value">4.7%</div>
+      <div class="metric-change">▲ +40 bps</div>
+      <div class="metric-detail">Prior YTD: 4.3%<br>Budget: 4.0%</div>
+    </div>
+  </div>
+
+  <div class="metric-row">
+    <div class="metric-card">
+      <div class="metric-label">Trend Occupancy 30-Day</div>
+      <div class="metric-value">95.5%</div>
+      <div class="metric-change">▲ +40 bps</div>
+      <div class="metric-detail">Budget: 95.0%</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-label"># Staffing Vacancies</div>
+      <div class="metric-value">12</div>
+      <div class="metric-change">▼ 2 Open</div>
+      <div class="metric-detail">Prior Month: 14</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-label">NOI Var. to Budget (Thru June)</div>
+      <div class="metric-value">+2.8%</div>
+      <div class="metric-detail">Prior YTD (Thru June): +1.9%<br>Budget: 0.0%</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-label">CapEx vs Budget</div>
+      <div class="metric-value red">+2.8%</div>
+      <div class="metric-change red">$0.3M over budget</div>
+      <div class="metric-detail">YTD: $1.9M Actual<br>vs. $1.8M Budget</div>
+    </div>
+  </div>
+
+  <!-- MARKETING SECTION -->
+  <div class="marketing-section">
+    <div class="section-title">Marketing Performance</div>
+    <div class="marketing-row">
+      <div class="marketing-card">
+        <div class="marketing-label">Traffic</div>
+        <div class="marketing-value">12.4K</div>
+        <div class="marketing-detail">+8% vs Prior Month to Date</div>
+      </div>
+      <div class="marketing-card">
+        <div class="marketing-label">Leads</div>
+        <div class="marketing-value">342</div>
+        <div class="marketing-detail">+12% vs Prior Month to Date</div>
+      </div>
+      <div class="marketing-card">
+        <div class="marketing-label">Applications</div>
+        <div class="marketing-value">28</div>
+        <div class="marketing-detail">+5% vs Prior Month to Date</div>
+      </div>
+      <div class="marketing-card">
+        <div class="marketing-label">Tours over Leads</div>
+        <div class="marketing-value">3.8%</div>
+        <div class="marketing-detail">Prior Month to Date: 4%</div>
+      </div>
+      <div class="marketing-card">
+        <div class="marketing-label">Conversions</div>
+        <div class="marketing-value">8.2%</div>
+        <div class="marketing-detail">(Apps/Tours)<br>Prior Month to Date: 8.1%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY HIGHLIGHTS & AREAS OF FOCUS -->
+  <div class="content-grid">
+    <div class="card-box">
+      <div class="section-title">Key Highlights</div>
+      <div class="list-item">Occupancy increased 50 bps to 94.8%</div>
+      <div class="list-item">Leased occupancy remains strong at 96.1%</div>
+      <div class="list-item">Collections exceeded budget at 99.1%</div>
+      <div class="list-item">NOI outperformed budget by 2.8%</div>
+      <div class="list-item">Vacancies improved from 14 to 12</div>
+      <div class="list-item">Trade outs and renewals on track</div>
+    </div>
+
+    <div class="card-box">
+      <div class="section-title">Areas of Focus</div>
+      <div class="focus-box">
+        <div class="icon">!</div>
+        <div class="focus-box-text">Lancaster Village drives 75% of vacancies</div>
+      </div>
+      <div class="focus-box">
+        <div class="icon">!</div>
+        <div class="focus-box-text">Maintenance technician roles remain challenging in 2 markets</div>
+      </div>
+      <div class="focus-box">
+        <div class="icon">!</div>
+        <div class="focus-box-text">Renewal conversion rate down to 58%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM PERFORMING COMMUNITIES TABLE -->
+  <div class="table-box">
+    <div class="section-title">Bottom Performing Communities</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Community</th>
+          <th>Occupancy</th>
+          <th>Leased Occ.</th>
+          <th>% Collected</th>
+          <th>Rent Growth (Ann.)</th>
+          <th>NOI Var. to Budget</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sienna Heights</td>
+          <td>90.4% <span class="negative">▼ -150 bps</span></td>
+          <td>92.1% <span class="negative">▼ -100 bps</span></td>
+          <td>96.7% <span class="negative">▼ -150 bps</span></td>
+          <td>1.6% <span class="negative">▼ -120 bps</span></td>
+          <td><span class="negative">-3.5% ▼ -330 bps</span></td>
+        </tr>
+        <tr>
+          <td>Cassia Apartments</td>
+          <td>88.6% <span class="negative">▼ -120 bps</span></td>
+          <td>90.3% <span class="negative">▼ -80 bps</span></td>
+          <td>96.2% <span class="negative">▼ -140 bps</span></td>
+          <td>0.9% <span class="negative">▼ -110 bps</span></td>
+          <td><span class="negative">-2.9% ▼ -280 bps</span></td>
+        </tr>
+        <tr>
+          <td>Hills of Corona</td>
+          <td>89.1% <span class="negative">▼ -100 bps</span></td>
+          <td>89.6% <span class="negative">▼ -70 bps</span></td>
+          <td>97.1% <span class="negative">▼ -120 bps</span></td>
+          <td>1.2% <span class="negative">▼ -100 bps</span></td>
+          <td><span class="negative">-2.3% ▼ -220 bps</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CHARTS (2 COLUMNS) -->
+  <div class="charts-grid">
+    <div class="chart-box">
+      <div class="chart-title">Performance vs Budget (NOI)</div>
+      <div class="pie-container">
+        <canvas id="noi-chart" role="img" aria-label="NOI performance vs budget pie chart">NOI Chart</canvas>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-box" style="background: #1D9E75;"></div>Above Budget (> +1%) — 53%</div>
+        <div class="legend-item"><div class="legend-box" style="background: #C9E4D8;"></div>On Line (-1% to +1%) — 27%</div>
+        <div class="legend-item"><div class="legend-box" style="background: #D9534F;"></div>Below Budget (< -1%) — 20%</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Net Income Excl. Interest Expense</div>
+      <div class="pie-container">
+        <canvas id="net-income-chart" role="img" aria-label="Net income excluding interest expense pie chart">Net Income Chart</canvas>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-box" style="background: #1D9E75;"></div>Above Target (> +2%) — 58%</div>
+        <div class="legend-item"><div class="legend-box" style="background: #C9E4D8;"></div>At Target (-2% to +2%) — 24%</div>
+        <div class="legend-item"><div class="legend-box" style="background: #D9534F;"></div>Below Target (< -2%) — 18%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKLY MEETING TAKEAWAYS -->
+  <div class="priority-box">
+    <div class="section-title">Weekly Meeting Takeaways</div>
+    <div class="priority-item">
+      <span class="priority-num">1</span>
+      <span>Fill 4 open maintenance positions across portfolio</span>
+    </div>
+    <div class="priority-item">
+      <span class="priority-num">2</span>
+      <span>Increase occupancy at Lancaster Village from 91% to 93%</span>
+    </div>
+    <div class="priority-item">
+      <span class="priority-num">3</span>
+      <span>Push June renewals to achieve 5% annualized rent growth</span>
+    </div>
+    <div class="priority-item">
+      <span class="priority-num">4</span>
+      <span>Complete roof replacement at Property X on schedule and budget</span>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+  // GitHub raw content URL
+  const METRICS_URL = 'https://raw.githubusercontent.com/mikeyozery-beep/afton-dashboard/main/data/metrics.json';
+
+  async function loadMetrics() {
+    try {
+      const response = await fetch(METRICS_URL);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      populateMetrics(data);
+    } catch (error) {
+      console.error('Failed to load metrics:', error);
+      document.querySelector('.period').textContent += ' (using cached data)';
+    }
+  }
+
+  function populateMetrics(data) {
+    // Update the metrics from the fetched JSON
+    if (data && data.metrics) {
+      const metrics = data.metrics.reduce((acc, m) => {
+        acc[m.name] = m.value;
+        return acc;
+      }, {});
+
+      // Update metric cards with fetched data
+      document.querySelectorAll('.metric-card').forEach(card => {
+        const label = card.querySelector('.metric-label');
+        if (label) {
+          const metricName = label.textContent;
+          if (metrics[metricName]) {
+            const valueEl = card.querySelector('.metric-value');
+            if (valueEl) valueEl.textContent = metrics[metricName];
+          }
+        }
+      });
+    }
+
+    // Update timestamp
+    if (data && data.timestamp) {
+      const date = new Date(data.timestamp);
+      document.querySelector('.period').textContent = `Last updated: ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    }
+  }
+
+  // Load metrics on page load and refresh every 30 seconds
+  loadMetrics();
+  setInterval(loadMetrics, 30000);
+
+  setTimeout(() => {
+    const chartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } }
+    };
+
+    new Chart(document.getElementById('noi-chart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Above Budget', 'On Line', 'Below Budget'],
+        datasets: [{
+          data: [53, 27, 20],
+          backgroundColor: ['#1D9E75', '#C9E4D8', '#D9534F'],
+          borderColor: '#fff',
+          borderWidth: 2
+        }]
+      },
+      options: chartOptions
+    });
+
+    new Chart(document.getElementById('net-income-chart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Above Target', 'At Target', 'Below Target'],
+        datasets: [{
+          data: [58, 24, 18],
+          backgroundColor: ['#1D9E75', '#C9E4D8', '#D9534F'],
+          borderColor: '#fff',
+          borderWidth: 2
+        }]
+      },
+      options: chartOptions
+    });
+  }, 100);
+</script>
+
+</body>
+</html>
