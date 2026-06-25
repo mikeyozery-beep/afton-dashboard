@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-06-25T13:19:35.197888",
+  "metrics": [
+    {
+      "name": "Portfolio Occupancy",
+      "value": "96.08%",
+      "updated": "2026-06-25",
+      "source": "Occupancy Analysis.xlsx"
+    },
+    {
+      "name": "Leased Occupancy",
+      "value": "97.50%",
+      "updated": "2026-06-25",
+      "source": "Occupancy Analysis.xlsx"
+    },
+    {
+      "name": "Percent Collected",
+      "value": "98.05%",
+      "updated": "2026-06-25",
+      "source": "DQ Reports.xlsm"
+    },
+    {
+      "name": "Annualized Rent Growth",
+      "value": "2.42%",
+      "updated": "2026-06-25",
+      "source": "Effective Rent Analysis.xlsx"
+    },
+    {
+      "name": "Annualized Rent Growth (Prior Year)",
+      "value": "2.48%",
+      "updated": "2026-06-25",
+      "source": "Effective Rent Analysis.xlsx"
+    }
+  ],
+  "count": 5,
+  "success": true
+}
