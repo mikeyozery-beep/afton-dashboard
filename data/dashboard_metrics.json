@@ -1,0 +1,81 @@
+{
+  "timestamp": "2026-06-26T17:25:54.141747",
+  "metrics": {
+    "traffic": {
+      "value": "12.4K",
+      "source": "Box Score Summary",
+      "timestamp": "2026-06-26T17:25:54.097042"
+    },
+    "leads": {
+      "value": "342",
+      "source": "Box Score Summary",
+      "timestamp": "2026-06-26T17:25:54.097047"
+    },
+    "applications": {
+      "value": "28",
+      "source": "Box Score Summary",
+      "timestamp": "2026-06-26T17:25:54.097049"
+    }
+  },
+  "analysis": {
+    "anomalies": [
+      {
+        "rank": 1,
+        "property": "Sienna Heights",
+        "anomaly_count": 1,
+        "detected_issues": [
+          {
+            "property": "Sienna Heights",
+            "metric": "occupancy",
+            "value": 90.4,
+            "type": "absolute_outlier"
+          }
+        ],
+        "timestamp": "2026-06-26T17:25:54.130054"
+      },
+      {
+        "rank": 2,
+        "property": "Cassia Apartments",
+        "anomaly_count": 1,
+        "detected_issues": [
+          {
+            "property": "Cassia Apartments",
+            "metric": "occupancy",
+            "value": 88.6,
+            "type": "absolute_outlier"
+          }
+        ],
+        "timestamp": "2026-06-26T17:25:54.130059"
+      },
+      {
+        "rank": 3,
+        "property": "Hills of Corona",
+        "anomaly_count": 1,
+        "detected_issues": [
+          {
+            "property": "Hills of Corona",
+            "metric": "occupancy",
+            "value": 89.1,
+            "type": "absolute_outlier"
+          }
+        ],
+        "timestamp": "2026-06-26T17:25:54.130061"
+      }
+    ],
+    "focus_areas": [
+      {
+        "rank": 2,
+        "title": "Operational Challenge",
+        "summary": "Maintenance technician roles remain challenging in key markets",
+        "severity": "Medium"
+      },
+      {
+        "rank": 3,
+        "title": "Financial/Conversion Metric",
+        "summary": "Renewal conversion rate tracking below target",
+        "severity": "Medium"
+      }
+    ]
+  },
+  "status": "complete"
+}
