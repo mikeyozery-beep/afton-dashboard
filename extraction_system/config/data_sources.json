@@ -1,0 +1,58 @@
+{
+  "data_sources": {
+    "occupancy_analysis": {
+      "path": "C:\\Users\\MichaelOzery\\OneDrive - Afton Properties\\Old Dropbox\\My PC (DESKTOP-5D77V89)\\Mike Ozery\\Greenbooks\\Occupancy Analysis.xlsx",
+      "cells": {
+        "portfolio_occupancy_current": "G30",
+        "portfolio_occupancy_prior_week": "S30",
+        "leased_occupancy_current": "H30",
+        "leased_occupancy_prior_week": "T30"
+      },
+      "frequency": "daily"
+    },
+    "dq_reports": {
+      "path": "C:\\Users\\MichaelOzery\\OneDrive - Afton Properties\\Documents\\DQ Reports & Occupancy Summary.xlsx",
+      "cells": {
+        "percent_collected": "H29"
+      },
+      "frequency": "daily"
+    },
+    "effective_rent_analysis": {
+      "path": "C:\\Users\\MichaelOzery\\OneDrive - Afton Properties\\Old Dropbox\\My PC (DESKTOP-5D77V89)\\Mike Ozery\\Greenbooks\\Effective Rent Analysis.xlsx",
+      "cells": {
+        "annualized_rent_growth": "O109"
+      },
+      "frequency": "monthly",
+      "day_of_month": 16
+    },
+    "box_score_summary": {
+      "path": "C:/Users/MichaelOzery/OneDrive - Afton Properties/Old Dropbox/My PC (DESKTOP-5D77V89)/Mike Ozery/Dashboard Data/BoxScore Summary",
+      "frequency": "daily"
+    },
+    "financial_reviews": {
+      "path": "C:/Users/MichaelOzery/OneDrive - Afton Properties/Old Dropbox/My PC (DESKTOP-5D77V89)/Mike Ozery/5. Monthly Financial Reviews",
+      "frequency": "monthly",
+      "day_of_month": 26
+    },
+    "staffing_vacancies": {
+      "path": "C:/Users/MichaelOzery/OneDrive - Afton Properties/Old Dropbox/My PC (DESKTOP-5D77V89)/Mike Ozery/Dashboard Data/Open_Positions.xlsx",
+      "frequency": "daily"
+    },
+    "budgets": {
+      "portfolio_index_path": "C:\\Users\\MichaelOzery\\OneDrive - Afton Properties\\Old Dropbox\\My PC (DESKTOP-5D77V89)\\Mike Ozery\\Portfolio Index.xlsx",
+      "budgets_folder_path": "C:\\Users\\MichaelOzery\\OneDrive - Afton Properties\\Old Dropbox\\My PC (DESKTOP-5D77V89)\\Mike Ozery\\2026 Budgets\\2026 Budgets Final - Broken Links",
+      "frequency": "daily"
+    }
+  },
+  "analysis_settings": {
+    "bottom_performers": {
+      "count": 3,
+      "metrics": ["occupancy", "leased_occupancy", "percent_collected", "rent_growth", "noi_variance"],
+      "weighting": "normalize_and_average"
+    },
+    "anomaly_detection": {
+      "count": 3,
+      "analysis_types": ["variance_from_previous", "variance_from_budget", "absolute_outliers"]
+    }
+  }
+}
