@@ -251,6 +251,15 @@
       color: #D9534F;
     }
 
+    .up { color: #1D9E75; font-weight: 600; }
+    .down { color: #D9534F; font-weight: 600; }
+
+    table td.concern {
+      background: #FDECEA;
+      color: #D9534F;
+      font-weight: 700;
+    }
+
     .charts-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -576,7 +585,8 @@
     set('rent-value', pct(rg.value, 1));
     applyChange('rent-change', bps(rg.value, rg.budget), 'vs budget', true);
     setHTML('rent-detail', (rg.budget != null ? `Budget: ${pct(rg.budget)}` : '') +
-                           (rg.yoy_effective != null ? `<br>YoY effective: ${pct(rg.yoy_effective)}` : ''));
+                           (rg.yoy_effective != null ? `<br>YoY effective: ${pct(rg.yoy_effective)}` : '') +
+                           (rg.as_of ? `<br>As of ${escapeHTML(rg.as_of)}` : ''));
 
     const tr = k.trend_occupancy_30d || {};
     set('trend-value', pct(tr.value, 1));
@@ -593,8 +603,14 @@
 
     const noi = k.noi_variance || {};
     setSigned('noi-value', noi.value, 1);            // negative = red
-    set('noi-change', '');
-    setHTML('noi-detail', noi.as_of ? `vs budget · ${noi.as_of} YTD` : 'vs budget');
+    if (noi.actual != null && noi.budget != null) {
+      const overM = (noi.actual - noi.budget) / 1e6;
+      applyChangeRaw('noi-change', `${overM >= 0 ? '+' : ''}$${overM.toFixed(1)}M vs budget`, overM < 0);
+      setHTML('noi-detail', `YTD: $${(noi.actual/1e6).toFixed(1)}M actual<br>vs. $${(noi.budget/1e6).toFixed(1)}M budget${noi.as_of ? ' · ' + escapeHTML(noi.as_of) : ''}`);
+    } else {
+      set('noi-change', '');
+      setHTML('noi-detail', noi.as_of ? `vs budget · ${noi.as_of} YTD` : 'vs budget');
+    }
 
     const cx = k.capex_vs_budget || {};
     setSignedCapex('capex-value', cx.value, 1);      // positive (over budget) = red
@@ -614,13 +630,16 @@
     const vs = (key) => {
       const x = bench[key];
       if (x == null || !wk) return '';
-      return `${x >= 0 ? '▲' : '▼'} ${(x * 100).toFixed(0)}% vs ${wk}-wk avg`;
+      const up = x >= 0;
+      return `<span class="${up ? 'up' : 'down'}">${up ? '▲' : '▼'} ${(x * 100).toFixed(0)}% vs ${wk}-wk avg</span>`;
     };
-    set('mk-traffic', m.traffic == null ? '–' : num(m.traffic)); set('mk-traffic-detail', vs('traffic'));
-    set('mk-tours', m.tours == null ? '–' : num(m.tours)); set('mk-tours-detail', vs('tours'));
-    set('mk-apps', m.applications == null ? '–' : num(m.applications)); set('mk-apps-detail', vs('applications'));
-    set('mk-tot', m.tours_over_traffic == null ? '–' : pct(m.tours_over_traffic, 1)); set('mk-tot-detail', vs('tours_over_traffic') || 'Tour rate');
-    set('mk-conv', m.conversions == null ? '–' : pct(m.conversions, 1)); set('mk-conv-detail', vs('conversions') || '(Apps / Tours)');
+    set('mk-traffic', m.traffic == null ? '–' : num(m.traffic)); setHTML('mk-traffic-detail', vs('traffic'));
+    set('mk-tours', m.tours == null ? '–' : num(m.tours)); setHTML('mk-tours-detail', vs('tours'));
+    set('mk-apps', m.applications == null ? '–' : num(m.applications)); setHTML('mk-apps-detail', vs('applications'));
+    set('mk-tot', m.tours_over_traffic == null ? '–' : pct(m.tours_over_traffic, 1)); setHTML('mk-tot-detail', vs('tours_over_traffic') || 'Tour rate');
+    set('mk-conv', m.conversions == null ? '–' : pct(m.conversions, 1)); setHTML('mk-conv-detail', vs('conversions') || '(Apps / Tours)');
+
+    renderCharts(v.charts);   // pies follow the toggle (portfolio vs single property)
   }
 
   // Rows 4+ (portfolio-level; not affected by the toggle)
@@ -636,16 +655,15 @@
       : '<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">No focus items.</div></div>');
 
     const bp = d.bottom_performers || [];
+    const cc = (p, m) => p.concern === m ? 'concern' : '';
     setHTML('bottom-performers', bp.map(p => `
       <tr>
         <td>${escapeHTML(p.name)}</td>
-        <td>${pct(p.occupancy)}</td>
-        <td>${pct(p.leased)}</td>
-        <td>${pct(p.collected)}</td>
-        <td class="${(p.noi_variance ?? 0) < 0 ? 'negative' : ''}">${signedPct(p.noi_variance)}</td>
+        <td class="${cc(p, 'occupancy')}">${pct(p.occupancy)}</td>
+        <td class="${cc(p, 'leased')}">${pct(p.leased)}</td>
+        <td class="${cc(p, 'collected')}">${pct(p.collected)}</td>
+        <td class="${cc(p, 'noi_variance') || ((p.noi_variance ?? 0) < 0 ? 'negative' : '')}">${signedPct(p.noi_variance)}</td>
       </tr>`).join(''));
-
-    renderCharts(d);
   }
 
   function applyChange(id, b, basis, goodIsUp) {
@@ -684,37 +702,49 @@
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
-  function renderCharts(d) {
-    const opts = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } };
-    const noi = d.noi_distribution || { above: 0, online: 0, below: 0 };
-    const ni  = d.net_income_distribution || { above: 0, at: 0, below: 0 };
+  // Pies show the selected view's Actual vs Budget ($ + variance %); toggle-aware.
+  const fmtM = (v) => (v == null) ? '–' : `${v < 0 ? '-' : ''}$${Math.abs(v / 1e6).toFixed(1)}M`;
 
-    const plur = (n) => `${n} ${n === 1 ? 'property' : 'properties'}`;
-    setHTML('noi-legend', `
-      <div class="legend-item"><div class="legend-box" style="background:#1D9E75;"></div>Above Budget (&gt; +1%) — ${plur(noi.above)}</div>
-      <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>On Line (-1% to +1%) — ${plur(noi.online)}</div>
-      <div class="legend-item"><div class="legend-box" style="background:#D9534F;"></div>Below Budget (&lt; -1%) — ${plur(noi.below)}</div>`);
-    setHTML('net-income-legend', `
-      <div class="legend-item"><div class="legend-box" style="background:#1D9E75;"></div>Above Target (&gt; +5%) — ${plur(ni.above)}</div>
-      <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>At Target (-5% to +5%) — ${plur(ni.at)}</div>
-      <div class="legend-item"><div class="legend-box" style="background:#D9534F;"></div>Below Target (&lt; -5%) — ${plur(ni.below)}</div>`);
+  function renderCharts(charts) {
+    charts = charts || {};
+    drawActualVsBudget('noi-chart', 'noi-legend', charts.noi || {}, charts.as_of, 'noi');
+    drawActualVsBudget('net-income-chart', 'net-income-legend', charts.net_income || {}, charts.as_of, 'ni');
+  }
 
-    if (noiChart) noiChart.destroy();
-    if (niChart) niChart.destroy();
-    noiChart = new Chart(document.getElementById('noi-chart'), {
-      type: 'doughnut',
-      data: { labels: ['Above Budget', 'On Line', 'Below Budget'],
-        datasets: [{ data: [noi.above, noi.online, noi.below],
-          backgroundColor: ['#1D9E75', '#C9E4D8', '#D9534F'], borderColor: '#fff', borderWidth: 2 }] },
-      options: opts
-    });
-    niChart = new Chart(document.getElementById('net-income-chart'), {
-      type: 'doughnut',
-      data: { labels: ['Above Target', 'At Target', 'Below Target'],
-        datasets: [{ data: [ni.above, ni.at, ni.below],
-          backgroundColor: ['#1D9E75', '#C9E4D8', '#D9534F'], borderColor: '#fff', borderWidth: 2 }] },
-      options: opts
-    });
+  function drawActualVsBudget(canvasId, legendId, c, asof, which) {
+    const a = c.actual, b = c.budget;
+    let v = c.variance;
+    if (v == null && a != null && b) v = a / b - 1;
+    const vtxt = (v == null) ? '–' : (v >= 0 ? '+' : '') + (v * 100).toFixed(1) + '%';
+    const vcls = (v == null) ? '' : (v >= 0 ? 'up' : 'down');
+    const diffM = (a != null && b != null) ? (a - b) / 1e6 : null;
+    const diffTxt = (diffM == null) ? '' : ` (${diffM >= 0 ? '+' : '-'}$${Math.abs(diffM).toFixed(1)}M)`;
+
+    setHTML(legendId, `
+      <div class="legend-item"><div class="legend-box" style="background:#1D9E75;"></div>Actual: ${fmtM(a)}</div>
+      <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>Budget: ${fmtM(b)}</div>
+      <div class="legend-item">Variance: <span class="${vcls}">&nbsp;${vtxt}${diffTxt}</span></div>
+      ${asof ? `<div class="legend-item" style="color:#999;">YTD · ${escapeHTML(asof)}</div>` : ''}`);
+
+    const canvas = document.getElementById(canvasId);
+    const existing = which === 'noi' ? noiChart : niChart;
+    if (existing) existing.destroy();
+
+    // A proportional Actual-vs-Budget doughnut only reads cleanly when both are positive.
+    if (a != null && b != null && a > 0 && b > 0) {
+      canvas.style.display = '';
+      const chart = new Chart(canvas, {
+        type: 'doughnut',
+        data: { labels: ['Actual', 'Budget'],
+          datasets: [{ data: [a, b], backgroundColor: ['#1D9E75', '#C9E4D8'],
+                       borderColor: '#fff', borderWidth: 2 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+      });
+      if (which === 'noi') noiChart = chart; else niChart = chart;
+    } else {
+      canvas.style.display = 'none';
+      if (which === 'noi') noiChart = null; else niChart = null;
+    }
   }
 
   loadMetrics();

@@ -323,6 +323,7 @@ def get_financials(units):
     month_label = folder.name.split(" Financial Reviews")[0].split(". ")[-1]
 
     noi_ytd = noi_bud = capex_act = capex_bud = 0.0
+    ni_act = ni_bud = 0.0
     noi_buckets = {"above": 0, "online": 0, "below": 0}
     ni_buckets  = {"above": 0, "at": 0, "below": 0}
     per = {}                      # code -> {noi_var, capex_var, rent_actual, rent_budget}
@@ -333,7 +334,7 @@ def get_financials(units):
         try:
             wb = load(fp); fs = wb["Financial Snapshot"]
             nj, nk, nl = num(fs.cell(83, 10).value), num(fs.cell(83, 11).value), num(fs.cell(83, 12).value)
-            il = num(fs.cell(104, 12).value)
+            ij, ik, il = num(fs.cell(104, 10).value), num(fs.cell(104, 11).value), num(fs.cell(104, 12).value)
             u_j, u_k = num(fs.cell(88, 10).value), num(fs.cell(88, 11).value)
             b_j, b_k = num(fs.cell(94, 10).value), num(fs.cell(94, 11).value)
             prow = _find_row(fs, "4212-0000", 40)            # Total Potential Rent (actual)
@@ -354,6 +355,8 @@ def get_financials(units):
         n += 1
         if nj is not None: noi_ytd += nj
         if nk is not None: noi_bud += nk
+        if ij is not None: ni_act += ij
+        if ik is not None: ni_bud += ik
         cx_a = (u_j or 0) + (b_j or 0)
         cx_b = (u_k or 0) + (b_k or 0)
         capex_act += cx_a; capex_bud += cx_b
@@ -361,6 +364,8 @@ def get_financials(units):
         rb = ((rb_recent / rb_prior) ** 12 - 1) if (rb_recent and rb_prior and rb_prior > 0) else None
         per[code] = {
             "noi_var": nl,
+            "noi_actual": nj, "noi_budget": nk,
+            "ni_actual": ij, "ni_budget": ik, "ni_var": il,
             "capex_var": (cx_a / cx_b - 1) if cx_b else None,
             "rent_actual": ra, "rent_budget": rb,
         }
@@ -376,6 +381,11 @@ def get_financials(units):
         "month_label": month_label,
         "properties_counted": n,
         "noi_variance_to_budget_ytd": (noi_ytd / noi_bud - 1) if noi_bud else None,
+        "noi_actual_ytd": noi_ytd,
+        "noi_budget_ytd": noi_bud,
+        "ni_actual_ytd": ni_act,
+        "ni_budget_ytd": ni_bud,
+        "ni_variance_to_budget_ytd": (ni_act / ni_bud - 1) if ni_bud else None,
         "capex_actual_ytd": capex_act,
         "capex_budget_ytd": capex_bud,
         "capex_vs_budget_ytd": (capex_act / capex_bud - 1) if capex_bud else None,
@@ -695,11 +705,33 @@ def build_analysis(occ, coll, fin):
     # Occupancy-led: rank primarily by occupancy (lowest = worst); composite breaks ties.
     bottom = sorted(rows, key=lambda r: (r["occupancy"] if r["occupancy"] is not None else 1.0,
                                          r["score"]))[:3]
+
+    # Most-concerning column = the metric furthest BELOW its portfolio benchmark.
+    # occ/leased/collected benchmark = portfolio current; NOI variance benchmark = 0 (budget).
+    bench = {
+        "occupancy":    occ.get("portfolio_occupancy_current"),
+        "leased":       occ.get("leased_occupancy_current"),
+        "collected":    coll.get("percent_collected_current"),
+        "noi_variance": 0.0,
+    }
+    def worst_col(r):
+        gaps = {}
+        for m, b in bench.items():
+            v = r.get(m)
+            if v is None or b is None:
+                continue
+            gaps[m] = b - v          # positive => below benchmark => worse
+        if not gaps:
+            return None
+        m = max(gaps, key=gaps.get)
+        return m if gaps[m] > 0 else None
+
     bottom_out = [{
         "name": r["name"],
         "occupancy": r["occupancy"], "leased": r["leased"],
         "collected": r["collected"], "noi_variance": r["noi_variance"],
         "rent_growth": None,  # not available per-property in a single cell
+        "concern": worst_col(r),
     } for r in bottom]
 
     # Focus areas = occupancy anomalies (lowest occupancy properties)
@@ -743,17 +775,27 @@ def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
                                       "prior_month": coll.get("percent_collected_prior_month"),
                                       "budget": bud.get("collected_budget")},
                 "rent_growth": {"value": fin.get("rent_actual_portfolio"),
-                                "budget": fin.get("rent_budget_portfolio")},
+                                "budget": fin.get("rent_budget_portfolio"),
+                                "as_of": fin.get("month_label")},
                 "trend_occupancy_30d": {"value": occ.get("trend_occupancy_30d"),
                                         "budget": bud.get("occupancy_budget")},
                 "staffing_vacancies": {"value": staff.get("value"),
                                        "prior_month": prior.get("staffing_open")},
                 "noi_variance": {"value": fin.get("noi_variance_to_budget_ytd"),
+                                 "actual": fin.get("noi_actual_ytd"),
+                                 "budget": fin.get("noi_budget_ytd"),
                                  "as_of": fin.get("month_label")},
                 "capex_vs_budget": {"value": fin.get("capex_vs_budget_ytd"),
                                     "actual": fin.get("capex_actual_ytd"),
                                     "budget": fin.get("capex_budget_ytd"),
                                     "as_of": fin.get("month_label")},
+            },
+            "charts": {
+                "noi": {"actual": fin.get("noi_actual_ytd"), "budget": fin.get("noi_budget_ytd"),
+                        "variance": fin.get("noi_variance_to_budget_ytd")},
+                "net_income": {"actual": fin.get("ni_actual_ytd"), "budget": fin.get("ni_budget_ytd"),
+                               "variance": fin.get("ni_variance_to_budget_ytd")},
+                "as_of": fin.get("month_label"),
             },
             "marketing": mkt_view(mkt),
         }
@@ -771,12 +813,23 @@ def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
                 "percent_collected": {"value": c.get("collected"),
                                       "prior_month": c.get("prior_month"),
                                       "budget": b.get("coll_budget")},
-                "rent_growth": {"value": f.get("rent_actual"), "budget": f.get("rent_budget")},
+                "rent_growth": {"value": f.get("rent_actual"), "budget": f.get("rent_budget"),
+                                "as_of": fin.get("month_label")},
                 "trend_occupancy_30d": {"value": o.get("trend"), "budget": b.get("occ_budget")},
                 "staffing_vacancies": {"value": staff_pp.get(code, 0), "prior_month": None},
-                "noi_variance": {"value": f.get("noi_var"), "as_of": fin.get("month_label")},
+                "noi_variance": {"value": f.get("noi_var"),
+                                 "actual": f.get("noi_actual"), "budget": f.get("noi_budget"),
+                                 "as_of": fin.get("month_label")},
                 "capex_vs_budget": {"value": f.get("capex_var"), "actual": None,
                                     "budget": None, "as_of": fin.get("month_label")},
+            },
+            "charts": {
+                "noi": {"actual": f.get("noi_actual"), "budget": f.get("noi_budget"),
+                        "variance": f.get("noi_var")},
+                "net_income": {"actual": f.get("ni_actual"), "budget": f.get("ni_budget"),
+                               "variance": ((f["ni_actual"] / f["ni_budget"] - 1)
+                                            if f.get("ni_actual") is not None and f.get("ni_budget") else None)},
+                "as_of": fin.get("month_label"),
             },
             "marketing": mkt_view(mkt_pp.get(code)),
         }
