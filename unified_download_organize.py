@@ -31,6 +31,10 @@ logger = logging.getLogger(__name__)
 
 DASHBOARD_DATA_DIR = Path(r"C:\Users\MichaelOzery\OneDrive - Afton Properties\Old Dropbox\My PC (DESKTOP-5D77V89)\Mike Ozery\Dashboard Data")
 
+# Files that live in the Dashboard Data ROOT and must NOT be filed into report
+# folders - build_metrics.py reads them from the root by exact name.
+ORGANIZE_EXCLUDE = {"open positions.xlsx"}
+
 def sanitize_foldername(name):
     invalid_chars = '<>:"/\\|?*'
     for char in invalid_chars:
@@ -131,8 +135,8 @@ def organize_data_dir(data_dir):
     """
     data_dir = Path(data_dir)
     files = sorted(
-        [f for f in data_dir.glob("*.xlsx") if f.is_file()]
-        + [f for f in data_dir.glob("*.xls") if f.is_file()]
+        f for f in (list(data_dir.glob("*.xlsx")) + list(data_dir.glob("*.xls")))
+        if f.is_file() and f.name.lower() not in ORGANIZE_EXCLUDE
     )
     if not files:
         logger.info("No files to organize")
