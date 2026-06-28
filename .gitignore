@@ -1,5 +1,9 @@
 ﻿credentials.json
 token.json
+graph_token_cache.json
+graph_config.json
+metrics_history.json
+marketing_prospects_log.json
 logs/
 *.pyc
 __pycache__/

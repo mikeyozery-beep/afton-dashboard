@@ -414,7 +414,7 @@
       <div class="marketing-card">
         <div class="marketing-label">Conversions</div>
         <div class="marketing-value" id="mk-conv">–</div>
-        <div class="marketing-detail">(Apps / Tours)</div>
+        <div class="marketing-detail" id="mk-conv-detail">(Apps / Tours)</div>
       </div>
     </div>
   </div>
@@ -509,7 +509,7 @@
     const k = d.kpis || {};
     const a = d.as_of || {};
 
-    set('period', `As of: ${a.occupancy || '—'}  ·  Collections ${a.collections || '—'}  ·  Financials ${a.financials || '—'}  ·  updated ${new Date(d.generated_at).toLocaleString()}`);
+    set('period', `As of: ${a.occupancy || '—'}  ·  Collections ${a.collections || '—'}  ·  Financials ${a.financials || '—'}  ·  Marketing ${a.boxscore || '—'}  ·  updated ${new Date(d.generated_at).toLocaleString()}`);
 
     // Portfolio Occupancy
     const po = k.portfolio_occupancy || {};
@@ -517,22 +517,27 @@
     applyChange('occ-change', bps(po.value, po.prior_week), true);
     setHTML('occ-detail', `Prior Week: ${pct(po.prior_week)}` + (po.budget != null ? `<br>Budget: ${pct(po.budget)}` : ''));
 
-    // Leased
+    // Leased (no clean prior-week source -> show current only)
     const lo = k.leased_occupancy || {};
     set('leased-value', pct(lo.value, 1));
-    applyChange('leased-change', bps(lo.value, lo.prior_week), true);
-    setHTML('leased-detail', `Prior Week: ${pct(lo.prior_week)}`);
+    set('leased-change', '');
+    setHTML('leased-detail', '');
 
-    // % Collected
+    // % Collected (prior-month auto-snapshot appears once a new month rolls over)
     const pc = k.percent_collected || {};
     set('collected-value', pct(pc.value, 1));
-    setHTML('collected-detail', pc.budget != null ? `Budget: ${pct(pc.budget)}` : '');
+    applyChange('collected-change', bps(pc.value, pc.prior_month), true);
+    setHTML('collected-detail',
+      (pc.prior_month != null ? `Prior Month: ${pct(pc.prior_month)}<br>` : '') +
+      (pc.budget != null ? `Budget: ${pct(pc.budget)}` : ''));
 
-    // Rent growth
+    // Rent growth (actual & budget both annualized month-over-month, so comparable)
     const rg = k.rent_growth || {};
     set('rent-value', pct(rg.value, 1));
-    applyChange('rent-change', bps(rg.value, rg.prior), true);
-    setHTML('rent-detail', `Prior: ${pct(rg.prior)}` + (rg.budget != null ? `<br>Budget: ${pct(rg.budget)}` : ''));
+    applyChange('rent-change', bps(rg.value, rg.budget), true);
+    setHTML('rent-detail',
+      (rg.budget != null ? `Budget: ${pct(rg.budget)}` : '') +
+      (rg.yoy_effective != null ? `<br>YoY effective: ${pct(rg.yoy_effective)}` : ''));
 
     // Trend occupancy 30-day (K30 = forecasted/trend occupancy level)
     const tr = k.trend_occupancy_30d || {};
@@ -563,16 +568,25 @@
       setHTML('capex-detail', `YTD: $${(cx.actual/1e6).toFixed(1)}M actual<br>vs. $${(cx.budget/1e6).toFixed(1)}M budget${cx.as_of ? ' · ' + cx.as_of : ''}`);
     }
 
-    // Marketing
+    // Marketing — past 7 days, benchmarked vs prior-N-week weekly average
     const m = d.marketing || {};
+    const bench = m.benchmark_pct || {};
+    const wk = m.benchmark_weeks || 0;
+    const vs = (key) => {
+      const v = bench[key];
+      if (v == null || !wk) return '';
+      return `${v >= 0 ? '▲' : '▼'} ${(v * 100).toFixed(0)}% vs ${wk}-wk avg`;
+    };
     set('mk-traffic', m.traffic == null ? '–' : num(m.traffic));
-    set('mk-traffic-detail', m.period || '');
+    set('mk-traffic-detail', vs('traffic'));
     set('mk-tours', m.tours == null ? '–' : num(m.tours));
-    set('mk-tours-detail', 'Shows');
+    set('mk-tours-detail', vs('tours'));
     set('mk-apps', m.applications == null ? '–' : num(m.applications));
+    set('mk-apps-detail', vs('applications'));
     set('mk-tot', m.tours_over_traffic == null ? '–' : pct(m.tours_over_traffic, 1));
-    set('mk-tot-detail', 'Tour rate');
+    set('mk-tot-detail', vs('tours_over_traffic') || 'Tour rate');
     set('mk-conv', m.conversions == null ? '–' : pct(m.conversions, 1));
+    set('mk-conv-detail', vs('conversions') || '(Apps / Tours)');
 
     // Weekly takeaways
     const tks = d.takeaways || [];
@@ -639,9 +653,9 @@
       <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>On Line (-1% to +1%) — ${noi.online}%</div>
       <div class="legend-item"><div class="legend-box" style="background:#D9534F;"></div>Below Budget (&lt; -1%) — ${noi.below}%</div>`);
     setHTML('net-income-legend', `
-      <div class="legend-item"><div class="legend-box" style="background:#1D9E75;"></div>Above Target (&gt; +2%) — ${ni.above}%</div>
-      <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>At Target (-2% to +2%) — ${ni.at}%</div>
-      <div class="legend-item"><div class="legend-box" style="background:#D9534F;"></div>Below Target (&lt; -2%) — ${ni.below}%</div>`);
+      <div class="legend-item"><div class="legend-box" style="background:#1D9E75;"></div>Above Target (&gt; +5%) — ${ni.above}%</div>
+      <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>At Target (-5% to +5%) — ${ni.at}%</div>
+      <div class="legend-item"><div class="legend-box" style="background:#D9534F;"></div>Below Target (&lt; -5%) — ${ni.below}%</div>`);
 
     if (noiChart) noiChart.destroy();
     if (niChart) niChart.destroy();

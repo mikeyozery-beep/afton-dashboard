@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-28T01:53:41.568309",
+  "generated_at": "2026-06-28T15:31:52.777622",
   "as_of": {
     "occupancy": "06/26/2026",
     "collections": "06/25/2026",
     "financials": "April 2026",
-    "boxscore": "06/21/2026-06/28/2026"
+    "boxscore": "06/22-06/28/2026"
   },
   "kpis": {
     "portfolio_occupancy": {
@@ -14,24 +14,25 @@
     },
     "leased_occupancy": {
       "value": 0.9753434782608695,
-      "prior_week": 0.952908695652174,
+      "prior_week": null,
       "budget": null
     },
     "percent_collected": {
       "value": 0.9874501186574848,
+      "prior_month": 0.9873007130534452,
       "budget": 0.987692536749083
     },
     "rent_growth": {
-      "value": 0.024159403128736656,
-      "prior": 0.03040497081928084,
-      "budget": 0.030240698437694242
+      "value": 0.02186269611635738,
+      "budget": 0.030240698437694242,
+      "yoy_effective": 0.024159403128736656
     },
     "trend_occupancy_30d": {
       "value": 0.9501186584123786,
       "budget": 0.9532503414240382
     },
     "staffing_vacancies": {
-      "value": null,
+      "value": 7,
       "prior_month": null
     },
     "noi_variance": {
@@ -46,14 +47,30 @@
     }
   },
   "marketing": {
-    "traffic": 821,
-    "tours": 252,
-    "applications": 75,
-    "tours_over_traffic": 0.30694275274056027,
-    "conversions": 0.2976190476190476,
-    "period": "06/21/2026-06/28/2026"
+    "traffic": 841,
+    "tours": 248,
+    "applications": 73,
+    "tours_over_traffic": 0.29488703923900117,
+    "conversions": 0.29435483870967744,
+    "period": "06/22-06/28/2026",
+    "benchmark_pct": {
+      "traffic": 0.01877649909145972,
+      "tours": 0.19518072289156627,
+      "applications": 0.07352941176470588,
+      "tours_over_traffic": 0.1752992864061221,
+      "conversions": -0.09130172281445524
+    },
+    "benchmark_weeks": 4
   },
   "bottom_performers": [
+    {
+      "name": "Dylan Apartments",
+      "occupancy": 0.9227,
+      "leased": 0.9469,
+      "collected": 0.9990116195628921,
+      "noi_variance": 0.008723196550113332,
+      "rent_growth": null
+    },
     {
       "name": "Cordova Park",
       "occupancy": 0.9255,
@@ -63,43 +80,26 @@
       "rent_growth": null
     },
     {
-      "name": "Lancaster Village",
-      "occupancy": 0.9697,
-      "leased": 0.9773000000000001,
-      "collected": 0.9661786174763835,
-      "noi_variance": -0.061733207738913,
-      "rent_growth": null
-    },
-    {
-      "name": "Sunset Ridge",
-      "occupancy": 0.9613,
-      "leased": 0.9813,
-      "collected": 0.96947329114565,
-      "noi_variance": -0.036069549918356425,
+      "name": "Sienna Heights",
+      "occupancy": 0.9268,
+      "leased": 0.9490000000000001,
+      "collected": 0.9935247744159478,
+      "noi_variance": 0.026698975427732696,
       "rent_growth": null
     }
   ],
   "focus_areas": [
     {
-      "rank": 1,
-      "title": "Occupancy Concern",
-      "summary": "Dylan Apartments occupancy at 92.3%",
-      "property": "Dylan Apartments",
-      "severity": "High"
+      "theme": "Tradeouts",
+      "summary": "Tradeouts averaging +2.1% (as of Jun 2026)"
     },
     {
-      "rank": 2,
-      "title": "Occupancy Concern",
-      "summary": "Cordova Park occupancy at 92.5%",
-      "property": "Cordova Park",
-      "severity": "Medium"
+      "theme": "Renewals",
+      "summary": "Renewals averaging +3.3% (as of Jun 2026)"
     },
     {
-      "rank": 3,
-      "title": "Occupancy Concern",
-      "summary": "Sienna Heights occupancy at 92.7%",
-      "property": "Sienna Heights",
-      "severity": "Medium"
+      "theme": "Effective Rent",
+      "summary": "Effective rent +0.20% MoM - portfolio rising (as of Jun 2026)"
     }
   ],
   "noi_distribution": {
@@ -108,9 +108,9 @@
     "below": 43
   },
   "net_income_distribution": {
-    "above": 43,
-    "at": 13,
-    "below": 43
+    "above": 35,
+    "at": 30,
+    "below": 35
   },
   "takeaways": [
     "Schedule a meeting with Minna to discuss approval and handling of checks over $100,000.",

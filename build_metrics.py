@@ -9,9 +9,9 @@ writes ONE rich JSON the dashboard consumes: data/dashboard.json
 Run daily; financial sections are month-stamped (currently April 2026, the
 latest completed Financial Review).
 """
-import json, shutil, tempfile, time, traceback
+import json, os, shutil, tempfile, time, traceback, re
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, date, timedelta
 
 import openpyxl
 from openpyxl.utils import get_column_letter
@@ -30,11 +30,15 @@ IDX  = MO / "Portfolio Index.xlsx"
 OCC_FILE  = GB / "Occupancy Analysis.xlsx"
 DQ_FILE   = GB / "DQ Reports.xlsm"
 RENT_FILE = GB / "Effective Rent Analysis.xlsx"
-OPEN_POS  = DD / "Open Positions.xlsx"
+POS_DIR   = DD / "Position"               # auto-exported timestamped Position_*.xlsx land here
+OPEN_POS  = DD / "Open Positions.xlsx"     # legacy fixed-name fallback
 NOTES_DIR = DD / "Weekly Meeting Notes"
+PROSPECTS_DIR = DD / "rs_sql_prospects_w_reasons_muvan"   # marketing funnel source
 
 SCRIPT_DIR = Path(__file__).parent
 OUT_FILE   = SCRIPT_DIR / "data" / "dashboard.json"
+HISTORY    = SCRIPT_DIR / "metrics_history.json"   # monthly snapshots (local, gitignored)
+MKT_LOG    = SCRIPT_DIR / "marketing_prospects_log.json"   # running prospect log (local, gitignored)
 
 # Which Financial Review month folder to use (latest completed). Auto-detect newest "NN. Month YYYY".
 FIN_PRIOR_MONTH_STAFFING = 12   # prior-month staffing vacancy count for the delta (stored, per spec)
@@ -47,7 +51,7 @@ def load(path):
     try:
         return openpyxl.load_workbook(path, read_only=True, data_only=True)
     except PermissionError:
-        tmp = Path(tempfile.gettempdir()) / ("aftonlock_" + path.name)
+        tmp = Path(tempfile.gettempdir()) / (f"aftonlock_{os.getpid()}_" + path.name)
         last = None
         for attempt in range(4):
             try:
@@ -102,7 +106,8 @@ def get_occupancy():
         "portfolio_occupancy_current":    num(ws["G30"].value),
         "portfolio_occupancy_prior_week": num(ws["S30"].value),
         "leased_occupancy_current":       num(ws["H30"].value),
-        "leased_occupancy_prior_week":    num(ws["T30"].value),
+        "leased_occupancy_prior_week":    None,  # T30 is 'Net Occ After Leases', NOT prior-week leased; no clean source
+
         "trend_occupancy_30d":            num(ws["K30"].value),  # K = Forecasted/Trend Occupancy (level)
         "as_of": as_of,
         "_per_property": per_property,
@@ -127,6 +132,7 @@ def get_collections():
         per_property[code] = num(ws.cell(r, 8).value)  # H = % rent collected
     res = {
         "percent_collected_current": num(ws["H29"].value),
+        "percent_collected_prior_month": num(ws["AZ29"].value),  # 'T1 Average Rent Collected %'
         "as_of": as_of,
         "_per_property": per_property,
     }
@@ -143,42 +149,131 @@ def get_rent_growth():
     wb.close()
     return res
 
-def get_box_score():
-    """Latest Box Score Summary -> Report sheet, 'Conversion Ratios' block."""
-    files = sorted(BOX.glob("*.xlsx"), key=lambda p: p.stat().st_mtime)
+def _mkt_date(v):
+    """Parse a prospect date cell ('6/19/2026 11:58:..' / '6/19/2026' / datetime) -> date."""
+    if v in (None, ""):
+        return None
+    if isinstance(v, datetime):
+        return v.date()
+    if isinstance(v, date):
+        return v
+    s = str(v).strip().split()[0]
+    for fmt in ("%m/%d/%Y", "%Y-%m-%d", "%m/%d/%y"):
+        try:
+            return datetime.strptime(s, fmt).date()
+        except ValueError:
+            continue
+    return None
+
+def _ingest_prospects():
+    """Upsert the latest prospects export into the running log (keyed by prospect_code).
+    Report header row 3, data from row 7: F=prospect_code, K=first_contact, L=show, M=application.
+    Dates fill in over time, so we keep earliest first-contact and latest non-null show/app."""
+    log = {}
+    if MKT_LOG.exists():
+        try:
+            log = json.loads(MKT_LOG.read_text())
+        except Exception:
+            log = {}
+    files = sorted(PROSPECTS_DIR.glob("*.xlsx"), key=lambda p: p.stat().st_mtime) if PROSPECTS_DIR.exists() else []
     if not files:
-        return {"error": "no box score files"}
-    wb = load(files[-1]); ws = wb["Report"]
-    period = None
-    a3 = ws["A3"].value
-    if isinstance(a3, str):
-        period = a3.replace("Date =", "").strip()
-
-    # Conversion Ratios block: header row 73, total row 101, data rows 74-100.
-    def col_total(col):
-        v = ws.cell(101, col).value
-        n = num(v)
-        if n is not None:
-            return n
-        return sum(num(ws.cell(r, col).value) or 0 for r in range(74, 101))
-
-    # Columns: C=Calls D=Walk-in E=Email F=Other G=SMS H=Web I=Chat
-    #          J=Unq First Contact  K=Show(tours)  L=Applied(apps)
-    contact_cols = [3, 4, 5, 6, 7, 8, 9]
-    traffic = int(sum(col_total(c) for c in contact_cols))
-    tours   = int(col_total(11))   # Show
-    apps    = int(col_total(12))   # Applied
-    res = {
-        "traffic": traffic,
-        "tours": tours,
-        "applications": apps,
-        "tours_over_traffic": (tours / traffic) if traffic else None,
-        "conversions_apps_over_tours": (apps / tours) if tours else None,
-        "period": period,
-        "source_file": files[-1].name,
-    }
+        return log
+    wb = load(files[-1]); ws = wb.active
+    # stream rows (read-only random ws.cell() access is O(n) per call -> far too slow here)
+    for row in ws.iter_rows(min_row=7, values_only=True):
+        if len(row) < 13:
+            continue
+        pcode = row[5]                       # F prospect_code
+        if not pcode:
+            continue
+        key = str(pcode).strip()
+        fc   = _mkt_date(row[10])            # K first_contact_date
+        show = _mkt_date(row[11])            # L show_date
+        app  = _mkt_date(row[12])            # M application_date
+        e = log.get(key, {})
+        fci = fc.isoformat() if fc else None
+        if fci and (not e.get("fc") or fci < e["fc"]):
+            e["fc"] = fci
+        elif "fc" not in e:
+            e["fc"] = fci
+        if show:
+            e["show"] = show.isoformat()
+        elif "show" not in e:
+            e["show"] = None
+        if app:
+            e["app"] = app.isoformat()
+        elif "app" not in e:
+            e["app"] = None
+        e["prop"] = row[2]                   # C property_code
+        log[key] = e
     wb.close()
-    return res
+    try:
+        MKT_LOG.write_text(json.dumps(log))
+    except Exception:
+        pass
+    return log
+
+def get_marketing(now):
+    """Marketing funnel from the prospects running log: unique prospects, counted BY EVENT DATE
+    (Traffic=first_contact, Tours=show, Applications=application). Past 7 days vs prior-4-week avg."""
+    log = _ingest_prospects()
+    if not log:
+        return {"error": "no prospect data"}
+    today = now.date()
+
+    fcs = [date.fromisoformat(e["fc"]) for e in log.values() if e.get("fc")]
+    earliest = min(fcs) if fcs else None
+
+    def week_counts(w):
+        """Counts for week offset w (0 = last 7 days, 1 = the week before, ...)."""
+        hi = today - timedelta(days=7 * w)
+        lo = hi - timedelta(days=7)
+        t = s = a = 0
+        for e in log.values():
+            for fld, hit in (("fc", "t"), ("show", "s"), ("app", "a")):
+                ds = e.get(fld)
+                if ds:
+                    d = date.fromisoformat(ds)
+                    if lo < d <= hi:
+                        if fld == "fc": t += 1
+                        elif fld == "show": s += 1
+                        else: a += 1
+        return {"traffic": t, "tours": s, "applications": a, "lo": lo, "hi": hi}
+
+    wk = {w: week_counts(w) for w in range(5)}
+    cur = wk[0]
+    current = {
+        "traffic": cur["traffic"], "tours": cur["tours"], "applications": cur["applications"],
+        "tours_over_traffic": (cur["tours"] / cur["traffic"]) if cur["traffic"] else None,
+        "conversions": (cur["applications"] / cur["tours"]) if cur["tours"] else None,
+    }
+    # prior weeks fully inside the data coverage
+    prior = [wk[w] for w in range(1, 5) if earliest and wk[w]["lo"] >= earliest]
+
+    def ratio(w, kind):
+        if kind == "tours_over_traffic":
+            return (w["tours"] / w["traffic"]) if w["traffic"] else None
+        return (w["applications"] / w["tours"]) if w["tours"] else None
+
+    bench_pct = {}
+    for k in ("traffic", "tours", "applications"):
+        vals = [w[k] for w in prior]
+        avg = (sum(vals) / len(vals)) if vals else None
+        bench_pct[k] = ((current[k] - avg) / avg) if avg else None
+    for kind in ("tours_over_traffic", "conversions"):
+        rs = [ratio(w, kind) for w in prior if ratio(w, kind) is not None]
+        avg = (sum(rs) / len(rs)) if rs else None
+        cv = current[kind]
+        bench_pct[kind] = ((cv - avg) / avg) if (avg and cv is not None) else None
+
+    current.update({
+        "period": f"{(cur['lo'] + timedelta(days=1)).strftime('%m/%d')}-{today.strftime('%m/%d/%Y')}",
+        "benchmark_pct": bench_pct,
+        "benchmark_weeks": len(prior),
+        "log_size": len(log),
+        "data_since": earliest.isoformat() if earliest else None,
+    })
+    return current
 
 def latest_fin_folder():
     cands = []
@@ -230,8 +325,8 @@ def get_financials():
             else:            noi_buckets["online"] += 1
         if il is not None:
             ni_var_by_code[code] = il
-            if   il >  0.02: ni_buckets["above"] += 1
-            elif il < -0.02: ni_buckets["below"] += 1
+            if   il >  0.05: ni_buckets["above"] += 1   # widened At-Target band to +/-5%
+            elif il < -0.05: ni_buckets["below"] += 1
             else:            ni_buckets["at"]    += 1
 
     def pct(d):
@@ -300,6 +395,34 @@ def get_budget_targets(month_num, units):
         "collected_budget": wavg("collected"),
     }
 
+def get_rent_growth_actual(units):
+    """ACTUAL annualized rent growth on the SAME basis as the budget: per property,
+    take ACTUAL Total Potential Rent (GL 4212-0000) from the Financial Snapshot for the
+    current month (col C) vs prior month (col F), annualize the MoM change, weight by units."""
+    folder = latest_fin_folder()
+    if folder is None:
+        return None
+    wsum = wunits = 0.0
+    for fp in sorted(folder.glob("RG* Final.xlsx")):
+        code = code_from(fp.name)
+        w = units.get(code, 0)
+        if w == 0:
+            continue
+        try:
+            wb = load(fp); ws = wb["Financial Snapshot"]
+            row = None
+            for r in range(1, min(ws.max_row, 120) + 1):
+                if str(ws.cell(r, 1).value).strip() == "4212-0000":
+                    row = r; break
+            recent = num(ws.cell(row, 3).value) if row else None   # C = Current Month
+            prior  = num(ws.cell(row, 6).value) if row else None   # F = Prior Month
+            wb.close()
+        except Exception:
+            continue
+        if recent and prior and prior > 0:
+            wsum += ((recent / prior) ** 12 - 1) * w; wunits += w
+    return (wsum / wunits) if wunits else None
+
 def get_rent_growth_budget(units):
     """Annualized budgeted rent growth: per property, take Total Potential Rent
     (GL 4212-0000) from the Budget tab of each financial-review file for the most
@@ -341,10 +464,30 @@ def get_rent_growth_budget(units):
     return (wsum / wunits) if wunits else None
 
 def get_staffing():
-    """Open Positions.xlsx (SharePoint export) -> count Status == Open."""
-    if not OPEN_POS.exists():
+    """Live count of Status==Open in the SharePoint 'Open Positions' list.
+    Tries Microsoft Graph (delegated) first; falls back to the latest local export."""
+    # 1) live via Graph (requires one-time `python graph_staffing.py login`)
+    try:
+        import graph_staffing
+        g = graph_staffing.open_positions_count()
+        if g and g.get("value") is not None:
+            return {"value": g["value"], "prior_month": FIN_PRIOR_MONTH_STAFFING,
+                    "source": g.get("source", "SharePoint (Graph)")}
+    except Exception as e:
+        log_graph = f"graph staffing unavailable ({e}); using local export"
+        print(log_graph)
+
+    # 2) fallback: latest Position_*.xlsx export
+    src = None
+    if POS_DIR.exists():
+        files = sorted(POS_DIR.glob("*.xlsx"), key=lambda p: p.stat().st_mtime)
+        if files:
+            src = files[-1]
+    if src is None and OPEN_POS.exists():
+        src = OPEN_POS
+    if src is None:
         return {"value": None, "status": "FILE_NOT_FOUND"}
-    wb = load(OPEN_POS); ws = wb.active
+    wb = load(src); ws = wb.active
     # find Status column from header row
     status_col = None
     for c in range(1, ws.max_column + 1):
@@ -358,7 +501,7 @@ def get_staffing():
                 open_count += 1
     wb.close()
     return {"value": open_count, "prior_month": FIN_PRIOR_MONTH_STAFFING,
-            "source": "Open Positions.xlsx (SharePoint export)"}
+            "source": f"{src.name} (SharePoint export)"}
 
 def get_takeaways():
     """Latest .docx in Weekly Meeting Notes -> list-paragraph bullets."""
@@ -380,6 +523,63 @@ def get_takeaways():
             bullets.append(t.lstrip("•-* ").strip())
     return {"items": bullets, "source_file": docs[-1].name}
 
+def get_areas_of_focus():
+    """Three portfolio-average focus themes from Effective Rent Analysis -> Summary:
+    Tradeouts (block from row 4), Renewals (block from row 30), Effective-rent MoM (O108).
+    Each is a unit-weighted portfolio average of the latest month; labeled as-of."""
+    wb = load(RENT_FILE); ws = wb["Summary"]
+
+    def last_month_col(hdr_row):
+        last = None
+        for c in range(4, 32):
+            if isinstance(ws.cell(hdr_row, c).value, datetime):
+                last = c
+        return last
+
+    def weighted_avg(data_start, hdr_row):
+        col = last_month_col(hdr_row)
+        if not col:
+            return None, None
+        wsum = wunits = 0.0
+        for r in range(data_start, data_start + 30):
+            code = ws.cell(r, 3).value
+            if not code or not str(code).strip().upper().startswith("RG"):
+                break
+            val = num(ws.cell(r, col).value)
+            u   = num(ws.cell(r, 1).value)
+            if val is not None and u:
+                wsum += val * u; wunits += u
+        asof = ws.cell(hdr_row, col).value
+        return (wsum / wunits if wunits else None), asof
+
+    trade, trade_asof = weighted_avg(4, 3)     # Tradeouts block (header row 3)
+    renew, renew_asof = weighted_avg(30, 29)   # Renewals block (header row 29)
+    eff_mom = num(ws["O108"].value)            # Effective Rents 'MoM %' (latest month)
+    wb.close()
+
+    def mon(d):
+        try:
+            return d.strftime("%b %Y")
+        except Exception:
+            return ""
+    asof = mon(trade_asof or renew_asof)
+
+    focus = []
+    focus.append({"theme": "Tradeouts",
+                  "summary": (f"Tradeouts averaging {trade*100:+.1f}% (as of {asof})"
+                              if trade is not None else "Tradeouts: no current data")})
+    focus.append({"theme": "Renewals",
+                  "summary": (f"Renewals averaging {renew*100:+.1f}% (as of {asof})"
+                              if renew is not None else "Renewals: no current data")})
+    if eff_mom is None:
+        eff_txt = "Effective rent: no current data"
+    else:
+        trend = "declining" if eff_mom < 0 else "rising"
+        eff_txt = f"Effective rent {eff_mom*100:+.2f}% MoM - portfolio {trend} (as of {asof})"
+    focus.append({"theme": "Effective Rent", "summary": eff_txt})
+    return focus
+
+
 # ----------------------------------------------------------------------------
 # Analysis: bottom performers + focus areas (anomalies)
 # ----------------------------------------------------------------------------
@@ -400,7 +600,7 @@ def build_analysis(occ, coll, fin):
             "noi_variance": noi_pp.get(code),
         })
 
-    # composite score across available metrics (lower = worse). Normalize each metric 0..1.
+    # composite score (tiebreaker) across available metrics. Normalize each metric 0..1.
     metrics = ["occupancy", "leased", "collected", "noi_variance"]
     ranges = {}
     for m in metrics:
@@ -415,7 +615,9 @@ def build_analysis(occ, coll, fin):
             parts.append((r[m] - lo) / (hi - lo))
         r["score"] = sum(parts) / len(parts) if parts else 1.0
 
-    bottom = sorted(rows, key=lambda r: r["score"])[:3]
+    # Occupancy-led: rank primarily by occupancy (lowest = worst); composite breaks ties.
+    bottom = sorted(rows, key=lambda r: (r["occupancy"] if r["occupancy"] is not None else 1.0,
+                                         r["score"]))[:3]
     bottom_out = [{
         "name": r["name"],
         "occupancy": r["occupancy"], "leased": r["leased"],
@@ -440,6 +642,27 @@ def build_analysis(occ, coll, fin):
 # ----------------------------------------------------------------------------
 # Main
 # ----------------------------------------------------------------------------
+def update_history(now, current):
+    """Persist this month's metric snapshot; return the most-recent PRIOR month's snapshot.
+    Builds month-over-month comparisons going forward (no reliable historical source exists)."""
+    key = f"{now.year:04d}-{now.month:02d}"
+    hist = {}
+    if HISTORY.exists():
+        try:
+            hist = json.loads(HISTORY.read_text())
+        except Exception:
+            hist = {}
+    prior_keys = sorted(k for k in hist if k < key)
+    prior = hist.get(prior_keys[-1], {}) if prior_keys else {}
+    hist.setdefault(key, {})
+    hist[key].update({k: v for k, v in current.items() if v is not None})
+    try:
+        HISTORY.write_text(json.dumps(hist, indent=2))
+    except Exception:
+        pass
+    return prior
+
+
 def safe(fn, label, errors):
     try:
         return fn()
@@ -455,20 +678,27 @@ def main():
     occ  = safe(get_occupancy,    "occupancy",   errors)
     coll = safe(get_collections,  "collections", errors)
     rent = safe(get_rent_growth,  "rent_growth", errors)
-    box  = safe(get_box_score,    "box_score",   errors)
+    box  = safe(lambda: get_marketing(now), "marketing", errors)
     fin  = safe(get_financials,   "financials",  errors)
     units = safe(get_units,       "units",       errors) or {}
     bud  = safe(lambda: get_budget_targets(now.month, units), "budgets", errors)
     rent_budget = safe(lambda: get_rent_growth_budget(units), "rent_budget", errors)
+    rent_actual = safe(lambda: get_rent_growth_actual(units), "rent_actual", errors)
     staff= safe(get_staffing,     "staffing",    errors)
     take = safe(get_takeaways,    "takeaways",   errors)
 
-    bottom, focus = [], []
+    # Month-over-month comparisons (auto-snapshot; appears once a new month rolls over)
+    prior = update_history(now, {
+        "staffing_open": staff.get("value"),
+    })
+
+    bottom = []
     if occ and coll:
         try:
-            bottom, focus = build_analysis(occ, coll, fin or {})
+            bottom, _ = build_analysis(occ, coll, fin or {})
         except Exception as e:
             errors.append(f"analysis: {e}"); traceback.print_exc()
+    focus = safe(get_areas_of_focus, "focus_areas", errors) or []
 
     out = {
         "generated_at": now.isoformat(),
@@ -491,12 +721,13 @@ def main():
             },
             "percent_collected": {
                 "value": coll.get("percent_collected_current"),
+                "prior_month": coll.get("percent_collected_prior_month"),  # DQ AZ29
                 "budget": bud.get("collected_budget"),
             },
             "rent_growth": {
-                "value": rent.get("rent_growth_current"),
-                "prior": rent.get("rent_growth_prior"),
-                "budget": rent_budget,
+                "value": rent_actual,                       # annualized MoM actual (same basis as budget)
+                "budget": rent_budget,                      # annualized MoM budgeted
+                "yoy_effective": rent.get("rent_growth_current"),  # kept for reference (O109)
             },
             "trend_occupancy_30d": {
                 "value": occ.get("trend_occupancy_30d"),
@@ -504,7 +735,7 @@ def main():
             },
             "staffing_vacancies": {
                 "value": staff.get("value"),
-                "prior_month": staff.get("prior_month"),
+                "prior_month": prior.get("staffing_open"),
             },
             "noi_variance": {
                 "value": fin.get("noi_variance_to_budget_ytd"),
@@ -522,8 +753,10 @@ def main():
             "tours": box.get("tours"),
             "applications": box.get("applications"),
             "tours_over_traffic": box.get("tours_over_traffic"),
-            "conversions": box.get("conversions_apps_over_tours"),
+            "conversions": box.get("conversions"),
             "period": box.get("period"),
+            "benchmark_pct": box.get("benchmark_pct"),
+            "benchmark_weeks": box.get("benchmark_weeks"),
         },
         "bottom_performers": bottom,
         "focus_areas": focus,
