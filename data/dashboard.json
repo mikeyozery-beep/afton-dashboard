@@ -1,0 +1,124 @@
+{
+  "generated_at": "2026-06-28T01:53:41.568309",
+  "as_of": {
+    "occupancy": "06/26/2026",
+    "collections": "06/25/2026",
+    "financials": "April 2026",
+    "boxscore": "06/21/2026-06/28/2026"
+  },
+  "kpis": {
+    "portfolio_occupancy": {
+      "value": 0.9602565217391306,
+      "prior_week": 0.9603391304347825,
+      "budget": 0.9532503414240382
+    },
+    "leased_occupancy": {
+      "value": 0.9753434782608695,
+      "prior_week": 0.952908695652174,
+      "budget": null
+    },
+    "percent_collected": {
+      "value": 0.9874501186574848,
+      "budget": 0.987692536749083
+    },
+    "rent_growth": {
+      "value": 0.024159403128736656,
+      "prior": 0.03040497081928084,
+      "budget": 0.030240698437694242
+    },
+    "trend_occupancy_30d": {
+      "value": 0.9501186584123786,
+      "budget": 0.9532503414240382
+    },
+    "staffing_vacancies": {
+      "value": null,
+      "prior_month": null
+    },
+    "noi_variance": {
+      "value": -0.004371412156539134,
+      "as_of": "April 2026"
+    },
+    "capex_vs_budget": {
+      "value": 0.060429320114474105,
+      "actual": 5110767.039999999,
+      "budget": 4819526.34,
+      "as_of": "April 2026"
+    }
+  },
+  "marketing": {
+    "traffic": 821,
+    "tours": 252,
+    "applications": 75,
+    "tours_over_traffic": 0.30694275274056027,
+    "conversions": 0.2976190476190476,
+    "period": "06/21/2026-06/28/2026"
+  },
+  "bottom_performers": [
+    {
+      "name": "Cordova Park",
+      "occupancy": 0.9255,
+      "leased": 0.9470999999999999,
+      "collected": 0.9815842562288225,
+      "noi_variance": -0.029426248352208417,
+      "rent_growth": null
+    },
+    {
+      "name": "Lancaster Village",
+      "occupancy": 0.9697,
+      "leased": 0.9773000000000001,
+      "collected": 0.9661786174763835,
+      "noi_variance": -0.061733207738913,
+      "rent_growth": null
+    },
+    {
+      "name": "Sunset Ridge",
+      "occupancy": 0.9613,
+      "leased": 0.9813,
+      "collected": 0.96947329114565,
+      "noi_variance": -0.036069549918356425,
+      "rent_growth": null
+    }
+  ],
+  "focus_areas": [
+    {
+      "rank": 1,
+      "title": "Occupancy Concern",
+      "summary": "Dylan Apartments occupancy at 92.3%",
+      "property": "Dylan Apartments",
+      "severity": "High"
+    },
+    {
+      "rank": 2,
+      "title": "Occupancy Concern",
+      "summary": "Cordova Park occupancy at 92.5%",
+      "property": "Cordova Park",
+      "severity": "Medium"
+    },
+    {
+      "rank": 3,
+      "title": "Occupancy Concern",
+      "summary": "Sienna Heights occupancy at 92.7%",
+      "property": "Sienna Heights",
+      "severity": "Medium"
+    }
+  ],
+  "noi_distribution": {
+    "above": 39,
+    "online": 17,
+    "below": 43
+  },
+  "net_income_distribution": {
+    "above": 43,
+    "at": 13,
+    "below": 43
+  },
+  "takeaways": [
+    "Schedule a meeting with Minna to discuss approval and handling of checks over $100,000.",
+    "Mike is speaking with Newtech; follow up on status and next steps.",
+    "RGCW is working on obtaining new bids for the required work and is currently in process with the attorney.",
+    "Gather specific details on regional bonus structures, including salary, maximum earnings, and actual T4 bonuses.",
+    "Review how Chris\u2019s bonus changes under the new tier structure."
+  ],
+  "errors": [],
+  "status": "complete"
+}

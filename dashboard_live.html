@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -323,66 +323,67 @@
 
   <div class="header">
     <h1>Afton Properties - Executive Portfolio Dashboard</h1>
-    <div class="period">As of: June 15, 2026</div>
+    <div class="period" id="period">Loading live data…</div>
   </div>
 
   <!-- METRICS (8 CARDS - TWO ROWS OF 4) -->
   <div class="metric-row">
     <div class="metric-card">
       <div class="metric-label">Portfolio Occupancy</div>
-      <div class="metric-value">94.8%</div>
-      <div class="metric-change">▲ +50 bps</div>
-      <div class="metric-detail">Prior Week (06/08/26): 94.3%<br>Budget: 95.0%</div>
+      <div class="metric-value" id="occ-value">–</div>
+      <div class="metric-change" id="occ-change"></div>
+      <div class="metric-detail" id="occ-detail"></div>
     </div>
 
     <div class="metric-card">
       <div class="metric-label">Leased Occupancy</div>
-      <div class="metric-value">96.1%</div>
-      <div class="metric-change">▲ +40 bps</div>
-      <div class="metric-detail">Prior Week (06/08/26): 95.7%<br>Budget: 96.0%</div>
+      <div class="metric-value" id="leased-value">–</div>
+      <div class="metric-change" id="leased-change"></div>
+      <div class="metric-detail" id="leased-detail"></div>
     </div>
 
     <div class="metric-card">
       <div class="metric-label">% Collected</div>
-      <div class="metric-value">99.1%</div>
-      <div class="metric-change">▲ +30 bps</div>
-      <div class="metric-detail">As of: 06/15/26<br>Prior Month to Date: 98.8%<br>Budget: 99.0%</div>
+      <div class="metric-value" id="collected-value">–</div>
+      <div class="metric-change" id="collected-change"></div>
+      <div class="metric-detail" id="collected-detail"></div>
     </div>
 
     <div class="metric-card">
       <div class="metric-label">Annualized Rent Growth</div>
-      <div class="metric-value">4.7%</div>
-      <div class="metric-change">▲ +40 bps</div>
-      <div class="metric-detail">Prior YTD: 4.3%<br>Budget: 4.0%</div>
+      <div class="metric-value" id="rent-value">–</div>
+      <div class="metric-change" id="rent-change"></div>
+      <div class="metric-detail" id="rent-detail"></div>
     </div>
   </div>
 
   <div class="metric-row">
     <div class="metric-card">
       <div class="metric-label">Trend Occupancy 30-Day</div>
-      <div class="metric-value">95.5%</div>
-      <div class="metric-change">▲ +40 bps</div>
-      <div class="metric-detail">Budget: 95.0%</div>
+      <div class="metric-value" id="trend-value">–</div>
+      <div class="metric-change" id="trend-change"></div>
+      <div class="metric-detail" id="trend-detail"></div>
     </div>
 
     <div class="metric-card">
       <div class="metric-label"># Staffing Vacancies</div>
-      <div class="metric-value">12</div>
-      <div class="metric-change">▼ 2 Open</div>
-      <div class="metric-detail">Prior Month: 14</div>
+      <div class="metric-value" id="staff-value">–</div>
+      <div class="metric-change" id="staff-change"></div>
+      <div class="metric-detail" id="staff-detail"></div>
     </div>
 
     <div class="metric-card">
-      <div class="metric-label">NOI Var. to Budget (Thru June)</div>
-      <div class="metric-value">+2.8%</div>
-      <div class="metric-detail">Prior YTD (Thru June): +1.9%<br>Budget: 0.0%</div>
+      <div class="metric-label">NOI Var. to Budget (YTD)</div>
+      <div class="metric-value" id="noi-value">–</div>
+      <div class="metric-change" id="noi-change"></div>
+      <div class="metric-detail" id="noi-detail"></div>
     </div>
 
     <div class="metric-card">
-      <div class="metric-label">CapEx vs Budget</div>
-      <div class="metric-value red">+2.8%</div>
-      <div class="metric-change red">$0.3M over budget</div>
-      <div class="metric-detail">YTD: $1.9M Actual<br>vs. $1.8M Budget</div>
+      <div class="metric-label">CapEx vs Budget (YTD)</div>
+      <div class="metric-value" id="capex-value">–</div>
+      <div class="metric-change" id="capex-change"></div>
+      <div class="metric-detail" id="capex-detail"></div>
     </div>
   </div>
 
@@ -392,58 +393,42 @@
     <div class="marketing-row">
       <div class="marketing-card">
         <div class="marketing-label">Traffic</div>
-        <div class="marketing-value">12.4K</div>
-        <div class="marketing-detail">+8% vs Prior Month to Date</div>
+        <div class="marketing-value" id="mk-traffic">–</div>
+        <div class="marketing-detail" id="mk-traffic-detail"></div>
       </div>
       <div class="marketing-card">
-        <div class="marketing-label">Leads</div>
-        <div class="marketing-value">342</div>
-        <div class="marketing-detail">+12% vs Prior Month to Date</div>
+        <div class="marketing-label">Tours</div>
+        <div class="marketing-value" id="mk-tours">–</div>
+        <div class="marketing-detail" id="mk-tours-detail"></div>
       </div>
       <div class="marketing-card">
         <div class="marketing-label">Applications</div>
-        <div class="marketing-value">28</div>
-        <div class="marketing-detail">+5% vs Prior Month to Date</div>
+        <div class="marketing-value" id="mk-apps">–</div>
+        <div class="marketing-detail" id="mk-apps-detail"></div>
       </div>
       <div class="marketing-card">
-        <div class="marketing-label">Tours over Leads</div>
-        <div class="marketing-value">3.8%</div>
-        <div class="marketing-detail">Prior Month to Date: 4%</div>
+        <div class="marketing-label">Tours / Traffic</div>
+        <div class="marketing-value" id="mk-tot">–</div>
+        <div class="marketing-detail" id="mk-tot-detail"></div>
       </div>
       <div class="marketing-card">
         <div class="marketing-label">Conversions</div>
-        <div class="marketing-value">8.2%</div>
-        <div class="marketing-detail">(Apps/Tours)<br>Prior Month to Date: 8.1%</div>
+        <div class="marketing-value" id="mk-conv">–</div>
+        <div class="marketing-detail">(Apps / Tours)</div>
       </div>
     </div>
   </div>
 
-  <!-- KEY HIGHLIGHTS & AREAS OF FOCUS -->
+  <!-- WEEKLY MEETING TAKEAWAYS & AREAS OF FOCUS -->
   <div class="content-grid">
     <div class="card-box">
-      <div class="section-title">Key Highlights</div>
-      <div class="list-item">Occupancy increased 50 bps to 94.8%</div>
-      <div class="list-item">Leased occupancy remains strong at 96.1%</div>
-      <div class="list-item">Collections exceeded budget at 99.1%</div>
-      <div class="list-item">NOI outperformed budget by 2.8%</div>
-      <div class="list-item">Vacancies improved from 14 to 12</div>
-      <div class="list-item">Trade outs and renewals on track</div>
+      <div class="section-title">Weekly Meeting Takeaways</div>
+      <div id="takeaways"></div>
     </div>
 
     <div class="card-box">
       <div class="section-title">Areas of Focus</div>
-      <div class="focus-box">
-        <div class="icon">!</div>
-        <div class="focus-box-text">Lancaster Village drives 75% of vacancies</div>
-      </div>
-      <div class="focus-box">
-        <div class="icon">!</div>
-        <div class="focus-box-text">Maintenance technician roles remain challenging in 2 markets</div>
-      </div>
-      <div class="focus-box">
-        <div class="icon">!</div>
-        <div class="focus-box-text">Renewal conversion rate down to 58%</div>
-      </div>
+      <div id="focus-areas"></div>
     </div>
   </div>
 
@@ -457,36 +442,10 @@
           <th>Occupancy</th>
           <th>Leased Occ.</th>
           <th>% Collected</th>
-          <th>Rent Growth (Ann.)</th>
           <th>NOI Var. to Budget</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Sienna Heights</td>
-          <td>90.4% <span class="negative">▼ -150 bps</span></td>
-          <td>92.1% <span class="negative">▼ -100 bps</span></td>
-          <td>96.7% <span class="negative">▼ -150 bps</span></td>
-          <td>1.6% <span class="negative">▼ -120 bps</span></td>
-          <td><span class="negative">-3.5% ▼ -330 bps</span></td>
-        </tr>
-        <tr>
-          <td>Cassia Apartments</td>
-          <td>88.6% <span class="negative">▼ -120 bps</span></td>
-          <td>90.3% <span class="negative">▼ -80 bps</span></td>
-          <td>96.2% <span class="negative">▼ -140 bps</span></td>
-          <td>0.9% <span class="negative">▼ -110 bps</span></td>
-          <td><span class="negative">-2.9% ▼ -280 bps</span></td>
-        </tr>
-        <tr>
-          <td>Hills of Corona</td>
-          <td>89.1% <span class="negative">▼ -100 bps</span></td>
-          <td>89.6% <span class="negative">▼ -70 bps</span></td>
-          <td>97.1% <span class="negative">▼ -120 bps</span></td>
-          <td>1.2% <span class="negative">▼ -100 bps</span></td>
-          <td><span class="negative">-2.3% ▼ -220 bps</span></td>
-        </tr>
-      </tbody>
+      <tbody id="bottom-performers"></tbody>
     </table>
   </div>
 
@@ -497,11 +456,7 @@
       <div class="pie-container">
         <canvas id="noi-chart" role="img" aria-label="NOI performance vs budget pie chart">NOI Chart</canvas>
       </div>
-      <div class="legend">
-        <div class="legend-item"><div class="legend-box" style="background: #1D9E75;"></div>Above Budget (> +1%) — 53%</div>
-        <div class="legend-item"><div class="legend-box" style="background: #C9E4D8;"></div>On Line (-1% to +1%) — 27%</div>
-        <div class="legend-item"><div class="legend-box" style="background: #D9534F;"></div>Below Budget (< -1%) — 20%</div>
-      </div>
+      <div class="legend" id="noi-legend"></div>
     </div>
 
     <div class="chart-box">
@@ -509,32 +464,7 @@
       <div class="pie-container">
         <canvas id="net-income-chart" role="img" aria-label="Net income excluding interest expense pie chart">Net Income Chart</canvas>
       </div>
-      <div class="legend">
-        <div class="legend-item"><div class="legend-box" style="background: #1D9E75;"></div>Above Target (> +2%) — 58%</div>
-        <div class="legend-item"><div class="legend-box" style="background: #C9E4D8;"></div>At Target (-2% to +2%) — 24%</div>
-        <div class="legend-item"><div class="legend-box" style="background: #D9534F;"></div>Below Target (< -2%) — 18%</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- WEEKLY MEETING TAKEAWAYS -->
-  <div class="priority-box">
-    <div class="section-title">Weekly Meeting Takeaways</div>
-    <div class="priority-item">
-      <span class="priority-num">1</span>
-      <span>Fill 4 open maintenance positions across portfolio</span>
-    </div>
-    <div class="priority-item">
-      <span class="priority-num">2</span>
-      <span>Increase occupancy at Lancaster Village from 91% to 93%</span>
-    </div>
-    <div class="priority-item">
-      <span class="priority-num">3</span>
-      <span>Push June renewals to achieve 5% annualized rent growth</span>
-    </div>
-    <div class="priority-item">
-      <span class="priority-num">4</span>
-      <span>Complete roof replacement at Property X on schedule and budget</span>
+      <div class="legend" id="net-income-legend"></div>
     </div>
   </div>
 
@@ -542,88 +472,197 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-  // GitHub raw content URL
-  const METRICS_URL = 'https://raw.githubusercontent.com/mikeyozery-beep/afton-dashboard/main/data/metrics.json';
+  const METRICS_URL = 'data/dashboard.json';
+  let noiChart = null, niChart = null;
+
+  // ---- formatting helpers ----
+  const pct  = (v, dp = 1) => (v === null || v === undefined) ? '–' : (v * 100).toFixed(dp) + '%';
+  const num  = (v) => (v === null || v === undefined) ? '–' : Number(v).toLocaleString();
+  const set  = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+  const setHTML = (id, h) => { const el = document.getElementById(id); if (el) el.innerHTML = h; };
+
+  // signed basis-point change between two decimals (e.g. 0.96 vs 0.958 -> +20 bps)
+  function bps(cur, prior) {
+    if (cur == null || prior == null) return null;
+    return Math.round((cur - prior) * 10000);
+  }
+  function changeHTML(b, goodIsUp = true) {
+    if (b === null) return ['', false];
+    const up = b >= 0;
+    const arrow = up ? '▲' : '▼';
+    const bad = goodIsUp ? !up : up;
+    return [`${arrow} ${up ? '+' : ''}${b} bps`, bad];
+  }
 
   async function loadMetrics() {
     try {
-      const response = await fetch(METRICS_URL);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      populateMetrics(data);
-    } catch (error) {
-      console.error('Failed to load metrics:', error);
-      document.querySelector('.period').textContent += ' (using cached data)';
+      const res = await fetch(METRICS_URL + '?t=' + Date.now());
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      populate(await res.json());
+    } catch (e) {
+      console.error('Failed to load metrics:', e);
+      set('period', 'Could not load live data (' + e.message + ')');
     }
   }
 
-  function populateMetrics(data) {
-    // Update the metrics from the fetched JSON
-    if (data && data.metrics) {
-      const metrics = data.metrics.reduce((acc, m) => {
-        acc[m.name] = m.value;
-        return acc;
-      }, {});
+  function populate(d) {
+    const k = d.kpis || {};
+    const a = d.as_of || {};
 
-      // Update metric cards with fetched data
-      document.querySelectorAll('.metric-card').forEach(card => {
-        const label = card.querySelector('.metric-label');
-        if (label) {
-          const metricName = label.textContent;
-          if (metrics[metricName]) {
-            const valueEl = card.querySelector('.metric-value');
-            if (valueEl) valueEl.textContent = metrics[metricName];
-          }
-        }
-      });
+    set('period', `As of: ${a.occupancy || '—'}  ·  Collections ${a.collections || '—'}  ·  Financials ${a.financials || '—'}  ·  updated ${new Date(d.generated_at).toLocaleString()}`);
+
+    // Portfolio Occupancy
+    const po = k.portfolio_occupancy || {};
+    set('occ-value', pct(po.value, 1));
+    applyChange('occ-change', bps(po.value, po.prior_week), true);
+    setHTML('occ-detail', `Prior Week: ${pct(po.prior_week)}` + (po.budget != null ? `<br>Budget: ${pct(po.budget)}` : ''));
+
+    // Leased
+    const lo = k.leased_occupancy || {};
+    set('leased-value', pct(lo.value, 1));
+    applyChange('leased-change', bps(lo.value, lo.prior_week), true);
+    setHTML('leased-detail', `Prior Week: ${pct(lo.prior_week)}`);
+
+    // % Collected
+    const pc = k.percent_collected || {};
+    set('collected-value', pct(pc.value, 1));
+    setHTML('collected-detail', pc.budget != null ? `Budget: ${pct(pc.budget)}` : '');
+
+    // Rent growth
+    const rg = k.rent_growth || {};
+    set('rent-value', pct(rg.value, 1));
+    applyChange('rent-change', bps(rg.value, rg.prior), true);
+    setHTML('rent-detail', `Prior: ${pct(rg.prior)}` + (rg.budget != null ? `<br>Budget: ${pct(rg.budget)}` : ''));
+
+    // Trend occupancy 30-day (K30 = forecasted/trend occupancy level)
+    const tr = k.trend_occupancy_30d || {};
+    set('trend-value', pct(tr.value, 1));
+    applyChange('trend-change', bps(tr.value, tr.budget), true);
+    setHTML('trend-detail', tr.budget != null ? `Budget: ${pct(tr.budget)}` : '');
+
+    // Staffing
+    const st = k.staffing_vacancies || {};
+    set('staff-value', st.value == null ? '–' : st.value);
+    if (st.prior_month != null && st.value != null) {
+      const diff = st.value - st.prior_month;
+      applyChangeRaw('staff-change', `${diff <= 0 ? '▼' : '▲'} ${diff > 0 ? '+' : ''}${diff} vs prior`, diff > 0);
+      setHTML('staff-detail', `Prior Month: ${st.prior_month}`);
     }
 
-    // Update timestamp
-    if (data && data.timestamp) {
-      const date = new Date(data.timestamp);
-      document.querySelector('.period').textContent = `Last updated: ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    // NOI variance
+    const noi = k.noi_variance || {};
+    setSigned('noi-value', noi.value, 1);
+    setHTML('noi-detail', noi.as_of ? `As of: ${noi.as_of} (YTD)` : '');
+
+    // CapEx
+    const cx = k.capex_vs_budget || {};
+    setSigned('capex-value', cx.value, 1, true /* over budget = bad */);
+    if (cx.actual != null && cx.budget != null) {
+      const overM = ((cx.actual - cx.budget) / 1e6);
+      applyChangeRaw('capex-change', `${overM >= 0 ? '+' : ''}$${overM.toFixed(1)}M vs budget`, overM > 0);
+      setHTML('capex-detail', `YTD: $${(cx.actual/1e6).toFixed(1)}M actual<br>vs. $${(cx.budget/1e6).toFixed(1)}M budget${cx.as_of ? ' · ' + cx.as_of : ''}`);
     }
+
+    // Marketing
+    const m = d.marketing || {};
+    set('mk-traffic', m.traffic == null ? '–' : num(m.traffic));
+    set('mk-traffic-detail', m.period || '');
+    set('mk-tours', m.tours == null ? '–' : num(m.tours));
+    set('mk-tours-detail', 'Shows');
+    set('mk-apps', m.applications == null ? '–' : num(m.applications));
+    set('mk-tot', m.tours_over_traffic == null ? '–' : pct(m.tours_over_traffic, 1));
+    set('mk-tot-detail', 'Tour rate');
+    set('mk-conv', m.conversions == null ? '–' : pct(m.conversions, 1));
+
+    // Weekly takeaways
+    const tks = d.takeaways || [];
+    setHTML('takeaways', tks.length
+      ? tks.map(t => `<div class="list-item">${escapeHTML(t)}</div>`).join('')
+      : '<div class="list-item">No takeaways found in latest notes.</div>');
+
+    // Areas of focus
+    const fa = d.focus_areas || [];
+    setHTML('focus-areas', fa.length
+      ? fa.map(f => `<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">${escapeHTML(f.summary)}</div></div>`).join('')
+      : '<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">No anomalies detected.</div></div>');
+
+    // Bottom performers table
+    const bp = d.bottom_performers || [];
+    setHTML('bottom-performers', bp.map(p => `
+      <tr>
+        <td>${escapeHTML(p.name)}</td>
+        <td>${pct(p.occupancy)}</td>
+        <td>${pct(p.leased)}</td>
+        <td>${pct(p.collected)}</td>
+        <td class="${(p.noi_variance ?? 0) < 0 ? 'negative' : ''}">${signedPct(p.noi_variance)}</td>
+      </tr>`).join(''));
+
+    // Charts
+    renderCharts(d);
   }
 
-  // Load metrics on page load and refresh every 30 seconds
+  function applyChange(id, b, goodIsUp) {
+    const [txt, bad] = changeHTML(b, goodIsUp);
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = txt;
+    el.classList.toggle('red', bad);
+  }
+  function applyChangeRaw(id, txt, bad) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = txt;
+    el.classList.toggle('red', !!bad);
+  }
+  function setSigned(id, v, dp) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (v == null) { el.textContent = '–'; return; }
+    el.textContent = (v >= 0 ? '+' : '') + (v * 100).toFixed(dp) + '%';
+    el.classList.toggle('red', v < 0);
+  }
+  function signedPct(v, dp = 1) {
+    if (v == null) return '–';
+    return (v >= 0 ? '+' : '') + (v * 100).toFixed(dp) + '%';
+  }
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function renderCharts(d) {
+    const opts = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } };
+    const noi = d.noi_distribution || { above: 0, online: 0, below: 0 };
+    const ni  = d.net_income_distribution || { above: 0, at: 0, below: 0 };
+
+    setHTML('noi-legend', `
+      <div class="legend-item"><div class="legend-box" style="background:#1D9E75;"></div>Above Budget (&gt; +1%) — ${noi.above}%</div>
+      <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>On Line (-1% to +1%) — ${noi.online}%</div>
+      <div class="legend-item"><div class="legend-box" style="background:#D9534F;"></div>Below Budget (&lt; -1%) — ${noi.below}%</div>`);
+    setHTML('net-income-legend', `
+      <div class="legend-item"><div class="legend-box" style="background:#1D9E75;"></div>Above Target (&gt; +2%) — ${ni.above}%</div>
+      <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>At Target (-2% to +2%) — ${ni.at}%</div>
+      <div class="legend-item"><div class="legend-box" style="background:#D9534F;"></div>Below Target (&lt; -2%) — ${ni.below}%</div>`);
+
+    if (noiChart) noiChart.destroy();
+    if (niChart) niChart.destroy();
+    noiChart = new Chart(document.getElementById('noi-chart'), {
+      type: 'doughnut',
+      data: { labels: ['Above Budget', 'On Line', 'Below Budget'],
+        datasets: [{ data: [noi.above, noi.online, noi.below],
+          backgroundColor: ['#1D9E75', '#C9E4D8', '#D9534F'], borderColor: '#fff', borderWidth: 2 }] },
+      options: opts
+    });
+    niChart = new Chart(document.getElementById('net-income-chart'), {
+      type: 'doughnut',
+      data: { labels: ['Above Target', 'At Target', 'Below Target'],
+        datasets: [{ data: [ni.above, ni.at, ni.below],
+          backgroundColor: ['#1D9E75', '#C9E4D8', '#D9534F'], borderColor: '#fff', borderWidth: 2 }] },
+      options: opts
+    });
+  }
+
   loadMetrics();
-  setInterval(loadMetrics, 30000);
-
-  setTimeout(() => {
-    const chartOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } }
-    };
-
-    new Chart(document.getElementById('noi-chart'), {
-      type: 'doughnut',
-      data: {
-        labels: ['Above Budget', 'On Line', 'Below Budget'],
-        datasets: [{
-          data: [53, 27, 20],
-          backgroundColor: ['#1D9E75', '#C9E4D8', '#D9534F'],
-          borderColor: '#fff',
-          borderWidth: 2
-        }]
-      },
-      options: chartOptions
-    });
-
-    new Chart(document.getElementById('net-income-chart'), {
-      type: 'doughnut',
-      data: {
-        labels: ['Above Target', 'At Target', 'Below Target'],
-        datasets: [{
-          data: [58, 24, 18],
-          backgroundColor: ['#1D9E75', '#C9E4D8', '#D9534F'],
-          borderColor: '#fff',
-          borderWidth: 2
-        }]
-      },
-      options: chartOptions
-    });
-  }, 100);
+  setInterval(loadMetrics, 60000);
 </script>
 
 </body>
