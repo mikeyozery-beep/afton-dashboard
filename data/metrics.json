@@ -1,37 +1,160 @@
 {
-  "timestamp": "2026-06-25T13:19:35.197888",
+  "timestamp": "2026-06-25T15:36:10.270664",
   "metrics": [
     {
       "name": "Portfolio Occupancy",
-      "value": "96.08%",
+      "value": 78.93,
       "updated": "2026-06-25",
-      "source": "Occupancy Analysis.xlsx"
+      "source": "YARDI Reports"
     },
     {
-      "name": "Leased Occupancy",
-      "value": "97.50%",
+      "name": "Properties",
+      "value": [
+        {
+          "name": "AC Apartments LLC",
+          "occupancy_today": 95.14,
+          "occupancy_7day": 95.49
+        },
+        {
+          "name": "PVT Apartments LLC",
+          "occupancy_today": 96.59,
+          "occupancy_7day": 96.77
+        },
+        {
+          "name": "333 Enos LLC",
+          "occupancy_today": 96.15,
+          "occupancy_7day": 96.15
+        },
+        {
+          "name": "Aurora 1 SPE LP",
+          "occupancy_today": 97.73,
+          "occupancy_7day": 98.48
+        },
+        {
+          "name": "CCV Apartments LLC",
+          "occupancy_today": 98.31,
+          "occupancy_7day": 97.75
+        },
+        {
+          "name": "AG Sunset Ridge Owner LP",
+          "occupancy_today": 96.0,
+          "occupancy_7day": 95.75
+        },
+        {
+          "name": "SV Apartments SPE LLC",
+          "occupancy_today": 95.78,
+          "occupancy_7day": 95.78
+        },
+        {
+          "name": "2060 Zocolo LLC",
+          "occupancy_today": 97.79,
+          "occupancy_7day": 97.79
+        },
+        {
+          "name": "5377 Quail Run LLC",
+          "occupancy_today": 95.37,
+          "occupancy_7day": 96.76
+        },
+        {
+          "name": "MCP El Sereno LP",
+          "occupancy_today": 96.71,
+          "occupancy_7day": 97.04
+        },
+        {
+          "name": "AG Sienna Heights Owner LP",
+          "occupancy_today": 92.68,
+          "occupancy_7day": 92.68
+        },
+        {
+          "name": "AG Cordova Park Owner LP",
+          "occupancy_today": 92.55,
+          "occupancy_7day": 92.07
+        },
+        {
+          "name": "310 Amedeo Owner LLC",
+          "occupancy_today": 99.4,
+          "occupancy_7day": 98.8
+        },
+        {
+          "name": "550 Los Arbolitos Owner LLC",
+          "occupancy_today": 92.75,
+          "occupancy_7day": 93.24
+        },
+        {
+          "name": "Redlands Owner LP",
+          "occupancy_today": 97.18,
+          "occupancy_7day": 97.18
+        },
+        {
+          "name": "Stewards Crossing Owner LLC",
+          "occupancy_today": 95.0,
+          "occupancy_7day": 95.83
+        },
+        {
+          "name": "Town Court Owner CA LLC",
+          "occupancy_today": 95.57,
+          "occupancy_7day": 95.25
+        },
+        {
+          "name": "The Village at West Long Branch",
+          "occupancy_today": 99.44,
+          "occupancy_7day": 99.44
+        },
+        {
+          "name": "4700 Caldwell Owner LLC",
+          "occupancy_today": 96.2,
+          "occupancy_7day": 95.78
+        },
+        {
+          "name": "Catherines Way Owner LLC",
+          "occupancy_today": 98.35,
+          "occupancy_7day": 98.02
+        },
+        {
+          "name": "Hills Of Corona Owner LLC",
+          "occupancy_today": 95.16,
+          "occupancy_7day": 94.76
+        },
+        {
+          "name": "Azure Apartments Owner LLC",
+          "occupancy_today": 95.91,
+          "occupancy_7day": 95.6
+        },
+        {
+          "name": "Landing at Arroyo Owner LLC",
+          "occupancy_today": 94.34,
+          "occupancy_7day": 93.4
+        },
+        {
+          "name": "Afton Capital LAA Member LLC",
+          "occupancy_today": 0.0,
+          "occupancy_7day": 0.0
+        },
+        {
+          "name": "Afton Capital Azure Member LLC",
+          "occupancy_today": 0.0,
+          "occupancy_7day": 0.0
+        },
+        {
+          "name": "Afton Capital HOC Member LLC",
+          "occupancy_today": 0.0,
+          "occupancy_7day": 0.0
+        },
+        {
+          "name": "Emunah Holdings Scep SPV 1 LLC",
+          "occupancy_today": 0.0,
+          "occupancy_7day": 0.0
+        },
+        {
+          "name": "Afton Properties",
+          "occupancy_today": 0.0,
+          "occupancy_7day": 0.0
+        }
+      ],
       "updated": "2026-06-25",
-      "source": "Occupancy Analysis.xlsx"
-    },
-    {
-      "name": "Percent Collected",
-      "value": "98.05%",
-      "updated": "2026-06-25",
-      "source": "DQ Reports.xlsm"
-    },
-    {
-      "name": "Annualized Rent Growth",
-      "value": "2.42%",
-      "updated": "2026-06-25",
-      "source": "Effective Rent Analysis.xlsx"
-    },
-    {
-      "name": "Annualized Rent Growth (Prior Year)",
-      "value": "2.48%",
-      "updated": "2026-06-25",
-      "source": "Effective Rent Analysis.xlsx"
+      "source": "YARDI Reports"
     }
   ],
-  "count": 5,
+  "count": 2,
   "success": true
 }
