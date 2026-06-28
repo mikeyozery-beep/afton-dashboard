@@ -96,10 +96,14 @@ def get_occupancy():
         code = code_from(ws.cell(r, 4).value)  # D
         if not name or str(name).startswith("Total"):
             continue
+        occ_v = num(ws.cell(r, 7).value)            # G current occupancy
+        wow   = num(ws.cell(r, 9).value)            # I WoW Occ Variance (= current - prior week)
         per_property[code] = {
             "name": str(name).strip(),
-            "occupancy": num(ws.cell(r, 7).value),   # G
+            "occupancy": occ_v,
             "leased":    num(ws.cell(r, 8).value),   # H
+            "trend":     num(ws.cell(r, 11).value),  # K Forecasted Occupancy
+            "occ_prior_week": (occ_v - wow) if (occ_v is not None and wow is not None) else None,
         }
         names[code] = str(name).strip()
     res = {
@@ -129,7 +133,10 @@ def get_collections():
         code = code_from(ws.cell(r, 3).value)   # C
         if not name or str(name).startswith("Total"):
             continue
-        per_property[code] = num(ws.cell(r, 8).value)  # H = % rent collected
+        per_property[code] = {
+            "collected": num(ws.cell(r, 8).value),       # H = % rent collected
+            "prior_month": num(ws.cell(r, 52).value),    # AZ = T1 Average Rent Collected %
+        }
     res = {
         "percent_collected_current": num(ws["H29"].value),
         "percent_collected_prior_month": num(ws["AZ29"].value),  # 'T1 Average Rent Collected %'
@@ -213,24 +220,14 @@ def _ingest_prospects():
         pass
     return log
 
-def get_marketing(now):
-    """Marketing funnel from the prospects running log: unique prospects, counted BY EVENT DATE
-    (Traffic=first_contact, Tours=show, Applications=application). Past 7 days vs prior-4-week avg."""
-    log = _ingest_prospects()
-    if not log:
-        return {"error": "no prospect data"}
-    today = now.date()
-
-    fcs = [date.fromisoformat(e["fc"]) for e in log.values() if e.get("fc")]
-    earliest = min(fcs) if fcs else None
-
+def _funnel(entries, today, earliest):
+    """Compute the 7-day funnel + prior-4-week-avg benchmark for a set of prospect entries."""
     def week_counts(w):
-        """Counts for week offset w (0 = last 7 days, 1 = the week before, ...)."""
         hi = today - timedelta(days=7 * w)
         lo = hi - timedelta(days=7)
         t = s = a = 0
-        for e in log.values():
-            for fld, hit in (("fc", "t"), ("show", "s"), ("app", "a")):
+        for e in entries:
+            for fld in ("fc", "show", "app"):
                 ds = e.get(fld)
                 if ds:
                     d = date.fromisoformat(ds)
@@ -247,7 +244,6 @@ def get_marketing(now):
         "tours_over_traffic": (cur["tours"] / cur["traffic"]) if cur["traffic"] else None,
         "conversions": (cur["applications"] / cur["tours"]) if cur["tours"] else None,
     }
-    # prior weeks fully inside the data coverage
     prior = [wk[w] for w in range(1, 5) if earliest and wk[w]["lo"] >= earliest]
 
     def ratio(w, kind):
@@ -265,11 +261,35 @@ def get_marketing(now):
         avg = (sum(rs) / len(rs)) if rs else None
         cv = current[kind]
         bench_pct[kind] = ((cv - avg) / avg) if (avg and cv is not None) else None
-
     current.update({
         "period": f"{(cur['lo'] + timedelta(days=1)).strftime('%m/%d')}-{today.strftime('%m/%d/%Y')}",
         "benchmark_pct": bench_pct,
         "benchmark_weeks": len(prior),
+    })
+    return current
+
+def get_marketing(now):
+    """Marketing funnel from the prospects running log: unique prospects, counted BY EVENT DATE
+    (Traffic=first_contact, Tours=show, Applications=application). Past 7 days vs prior-4-week avg.
+    Returns portfolio funnel plus per-property funnels under _by_property."""
+    log = _ingest_prospects()
+    if not log:
+        return {"error": "no prospect data"}
+    today = now.date()
+    entries = list(log.values())
+    fcs = [date.fromisoformat(e["fc"]) for e in entries if e.get("fc")]
+    earliest = min(fcs) if fcs else None
+
+    current = _funnel(entries, today, earliest)
+
+    groups = {}
+    for e in entries:
+        c = code_from(e.get("prop") or "")
+        if c:
+            groups.setdefault(c, []).append(e)
+    current["_by_property"] = {c: _funnel(es, today, earliest) for c, es in groups.items()}
+
+    current.update({
         "log_size": len(log),
         "data_since": earliest.isoformat() if earliest else None,
     })
@@ -287,51 +307,70 @@ def latest_fin_folder():
         return p.stat().st_mtime
     return sorted(cands, key=key)[-1]
 
-def get_financials():
-    """Aggregate the 23 'RGxx Final.xlsx' Financial Snapshots (YTD vs budget)."""
+def _find_row(ws, gl, max_row=120):
+    for r in range(1, max_row + 1):
+        if str(ws.cell(r, 1).value).strip() == gl:
+            return r
+    return None
+
+def get_financials(units):
+    """One pass over the 23 'RGxx Final.xlsx' files. Returns portfolio aggregates AND
+    per-property values for NOI var, CapEx var, and annualized-MoM rent (actual & budget).
+    Distributions are raw PROPERTY COUNTS (not %)."""
     folder = latest_fin_folder()
     if folder is None:
         return {"error": "no financial review folder"}
     month_label = folder.name.split(" Financial Reviews")[0].split(". ")[-1]
 
     noi_ytd = noi_bud = capex_act = capex_bud = 0.0
-    noi_var_by_code, ni_var_by_code = {}, {}
     noi_buckets = {"above": 0, "online": 0, "below": 0}
     ni_buckets  = {"above": 0, "at": 0, "below": 0}
+    per = {}                      # code -> {noi_var, capex_var, rent_actual, rent_budget}
+    ra_ws = ra_wu = rb_ws = rb_wu = 0.0
     n = 0
     for fp in sorted(folder.glob("RG* Final.xlsx")):
         code = code_from(fp.name)
         try:
-            wb = load(fp); ws = wb["Financial Snapshot"]
-            # row 83 NOI, row 104 Net Income, row 88 Unit Impr, row 94 Building Impr
-            nj, nk, nl = num(ws.cell(83, 10).value), num(ws.cell(83, 11).value), num(ws.cell(83, 12).value)
-            il = num(ws.cell(104, 12).value)
-            u_j, u_k = num(ws.cell(88, 10).value), num(ws.cell(88, 11).value)
-            b_j, b_k = num(ws.cell(94, 10).value), num(ws.cell(94, 11).value)
+            wb = load(fp); fs = wb["Financial Snapshot"]
+            nj, nk, nl = num(fs.cell(83, 10).value), num(fs.cell(83, 11).value), num(fs.cell(83, 12).value)
+            il = num(fs.cell(104, 12).value)
+            u_j, u_k = num(fs.cell(88, 10).value), num(fs.cell(88, 11).value)
+            b_j, b_k = num(fs.cell(94, 10).value), num(fs.cell(94, 11).value)
+            prow = _find_row(fs, "4212-0000", 40)            # Total Potential Rent (actual)
+            ra_recent = num(fs.cell(prow, 3).value) if prow else None   # C current month
+            ra_prior  = num(fs.cell(prow, 6).value) if prow else None   # F prior month
+            rb_recent = rb_prior = None
+            if "Budget" in wb.sheetnames:
+                bs = wb["Budget"]
+                tcol = next((c for c in range(3, bs.max_column + 1)
+                             if str(bs.cell(5, c).value).strip().lower() == "total"), None)
+                brow = _find_row(bs, "4212-0000", 80)
+                if tcol and brow:
+                    rb_recent = num(bs.cell(brow, tcol - 1).value)
+                    rb_prior  = num(bs.cell(brow, tcol - 2).value)
             wb.close()
         except Exception:
             continue
         n += 1
         if nj is not None: noi_ytd += nj
         if nk is not None: noi_bud += nk
-        for val, acc in ((u_j, "ca"), (b_j, "ca")):
-            pass
-        capex_act += (u_j or 0) + (b_j or 0)
-        capex_bud += (u_k or 0) + (b_k or 0)
+        cx_a = (u_j or 0) + (b_j or 0)
+        cx_b = (u_k or 0) + (b_k or 0)
+        capex_act += cx_a; capex_bud += cx_b
+        ra = ((ra_recent / ra_prior) ** 12 - 1) if (ra_recent and ra_prior and ra_prior > 0) else None
+        rb = ((rb_recent / rb_prior) ** 12 - 1) if (rb_recent and rb_prior and rb_prior > 0) else None
+        per[code] = {
+            "noi_var": nl,
+            "capex_var": (cx_a / cx_b - 1) if cx_b else None,
+            "rent_actual": ra, "rent_budget": rb,
+        }
+        w = units.get(code, 0)
+        if ra is not None and w: ra_ws += ra * w; ra_wu += w
+        if rb is not None and w: rb_ws += rb * w; rb_wu += w
         if nl is not None:
-            noi_var_by_code[code] = nl
-            if   nl >  0.01: noi_buckets["above"]  += 1
-            elif nl < -0.01: noi_buckets["below"]  += 1
-            else:            noi_buckets["online"] += 1
+            noi_buckets["above" if nl > 0.01 else "below" if nl < -0.01 else "online"] += 1
         if il is not None:
-            ni_var_by_code[code] = il
-            if   il >  0.05: ni_buckets["above"] += 1   # widened At-Target band to +/-5%
-            elif il < -0.05: ni_buckets["below"] += 1
-            else:            ni_buckets["at"]    += 1
-
-    def pct(d):
-        tot = sum(d.values()) or 1
-        return {k: round(100 * v / tot) for k, v in d.items()}
+            ni_buckets["above" if il > 0.05 else "below" if il < -0.05 else "at"] += 1
 
     return {
         "month_label": month_label,
@@ -340,9 +379,12 @@ def get_financials():
         "capex_actual_ytd": capex_act,
         "capex_budget_ytd": capex_bud,
         "capex_vs_budget_ytd": (capex_act / capex_bud - 1) if capex_bud else None,
-        "noi_distribution": pct(noi_buckets),
-        "net_income_distribution": pct(ni_buckets),
-        "_noi_var_by_code": noi_var_by_code,
+        "rent_actual_portfolio": (ra_ws / ra_wu) if ra_wu else None,
+        "rent_budget_portfolio": (rb_ws / rb_wu) if rb_wu else None,
+        "noi_distribution": dict(noi_buckets),       # raw counts
+        "net_income_distribution": dict(ni_buckets), # raw counts
+        "_per_property": per,
+        "_noi_var_by_code": {c: v["noi_var"] for c, v in per.items()},
     }
 
 def get_units():
@@ -368,11 +410,9 @@ def get_budget_targets(month_num, units):
     Month columns start at C(=Jan); column = month_num + 2."""
     col = month_num + 2  # C=3 for January
     acc = {"occupancy": [0.0, 0.0], "collected": [0.0, 0.0]}  # [weighted_sum, units]
+    per = {}
     for fp in BUDG.glob("RG*.xlsx"):
         code = code_from(fp.stem)
-        w = units.get(code, 0)
-        if w == 0:
-            continue
         try:
             wb = load(fp)
             ws = wb["Assumptions"] if "Assumptions" in wb.sheetnames else wb.active
@@ -381,11 +421,15 @@ def get_budget_targets(month_num, units):
             wb.close()
         except Exception:
             continue
-        if occ is not None:
-            occ = occ / 100.0 if occ > 1.5 else occ
-            acc["occupancy"][0] += occ * w; acc["occupancy"][1] += w
-        if coll is not None:
-            acc["collected"][0] += coll * w; acc["collected"][1] += w
+        if occ is not None and occ > 1.5:
+            occ = occ / 100.0
+        per[code] = {"occ_budget": occ, "coll_budget": coll}
+        w = units.get(code, 0)
+        if w:
+            if occ is not None:
+                acc["occupancy"][0] += occ * w; acc["occupancy"][1] += w
+            if coll is not None:
+                acc["collected"][0] += coll * w; acc["collected"][1] += w
 
     def wavg(key):
         s, u = acc[key]
@@ -393,6 +437,7 @@ def get_budget_targets(month_num, units):
     return {
         "occupancy_budget": wavg("occupancy"),
         "collected_budget": wavg("collected"),
+        "_per_property": per,
     }
 
 def get_rent_growth_actual(units):
@@ -503,6 +548,34 @@ def get_staffing():
     return {"value": open_count, "prior_month": FIN_PRIOR_MONTH_STAFFING,
             "source": f"{src.name} (SharePoint export)"}
 
+def get_staffing_by_property():
+    """Open-position count per property code from the latest local Position export.
+    Title column (B) holds the property code (occasionally 'RGAL/RGST' -> split)."""
+    counts = {}
+    src = None
+    if POS_DIR.exists():
+        files = sorted(POS_DIR.glob("*.xlsx"), key=lambda p: p.stat().st_mtime)
+        if files:
+            src = files[-1]
+    if src is None and OPEN_POS.exists():
+        src = OPEN_POS
+    if src is None:
+        return counts
+    wb = load(src); ws = wb.active
+    hdr = {str(ws.cell(1, c).value).strip().lower(): c for c in range(1, ws.max_column + 1)}
+    sc = hdr.get("status"); tc = hdr.get("title")
+    if sc and tc:
+        for r in range(2, ws.max_row + 1):
+            st = ws.cell(r, sc).value
+            if isinstance(st, str) and st.strip().lower() == "open":
+                title = str(ws.cell(r, tc).value or "")
+                for part in title.split("/"):
+                    code = code_from(part)
+                    if code:
+                        counts[code] = counts.get(code, 0) + 1
+    wb.close()
+    return counts
+
 def get_takeaways():
     """Latest .docx in Weekly Meeting Notes -> list-paragraph bullets."""
     try:
@@ -554,7 +627,8 @@ def get_areas_of_focus():
 
     trade, trade_asof = weighted_avg(4, 3)     # Tradeouts block (header row 3)
     renew, renew_asof = weighted_avg(30, 29)   # Renewals block (header row 29)
-    eff_mom = num(ws["O108"].value)            # Effective Rents 'MoM %' (latest month)
+    eff_mom       = num(ws["O108"].value)      # Effective Rents 'MoM %' latest month (June)
+    eff_mom_prior = num(ws["N108"].value)      # prior month (May)
     wb.close()
 
     def mon(d):
@@ -571,11 +645,14 @@ def get_areas_of_focus():
     focus.append({"theme": "Renewals",
                   "summary": (f"Renewals averaging {renew*100:+.1f}% (as of {asof})"
                               if renew is not None else "Renewals: no current data")})
-    if eff_mom is None:
+    annz = lambda m: ((1 + m) ** 12 - 1) if m is not None else None
+    eff_cur, eff_prior = annz(eff_mom), annz(eff_mom_prior)
+    if eff_cur is None:
         eff_txt = "Effective rent: no current data"
     else:
-        trend = "declining" if eff_mom < 0 else "rising"
-        eff_txt = f"Effective rent {eff_mom*100:+.2f}% MoM - portfolio {trend} (as of {asof})"
+        eff_txt = f"Effective rent {eff_cur*100:+.1f}% Annualized as of {asof}"
+        if eff_prior is not None:
+            eff_txt += f" vs {eff_prior*100:+.1f}% annualized Prior Month"
     focus.append({"theme": "Effective Rent", "summary": eff_txt})
     return focus
 
@@ -596,7 +673,7 @@ def build_analysis(occ, coll, fin):
             "code": code, "name": name,
             "occupancy": o.get("occupancy"),
             "leased": o.get("leased"),
-            "collected": coll_pp.get(code),
+            "collected": (coll_pp.get(code) or {}).get("collected"),
             "noi_variance": noi_pp.get(code),
         })
 
@@ -639,6 +716,72 @@ def build_analysis(occ, coll, fin):
 
     return bottom_out, focus
 
+def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
+    """Assemble the toggleable rows 1-3 for Portfolio + each property."""
+    names   = occ.get("_names", {})
+    occ_pp  = occ.get("_per_property", {})
+    coll_pp = coll.get("_per_property", {})
+    bud_pp  = bud.get("_per_property", {})
+    fin_pp  = fin.get("_per_property", {})
+    mkt_pp  = mkt.get("_by_property", {}) if isinstance(mkt, dict) else {}
+
+    def mkt_view(f):
+        if not f:
+            return {}
+        return {k: f.get(k) for k in ("traffic", "tours", "applications", "tours_over_traffic",
+                                      "conversions", "period", "benchmark_pct", "benchmark_weeks")}
+
+    views = {
+        "PORTFOLIO": {
+            "label": f"Portfolio ({fin.get('properties_counted') or len(names)} properties)",
+            "kpis": {
+                "portfolio_occupancy": {"value": occ.get("portfolio_occupancy_current"),
+                                        "prior_week": occ.get("portfolio_occupancy_prior_week"),
+                                        "budget": bud.get("occupancy_budget")},
+                "leased_occupancy": {"value": occ.get("leased_occupancy_current"), "budget": None},
+                "percent_collected": {"value": coll.get("percent_collected_current"),
+                                      "prior_month": coll.get("percent_collected_prior_month"),
+                                      "budget": bud.get("collected_budget")},
+                "rent_growth": {"value": fin.get("rent_actual_portfolio"),
+                                "budget": fin.get("rent_budget_portfolio")},
+                "trend_occupancy_30d": {"value": occ.get("trend_occupancy_30d"),
+                                        "budget": bud.get("occupancy_budget")},
+                "staffing_vacancies": {"value": staff.get("value"),
+                                       "prior_month": prior.get("staffing_open")},
+                "noi_variance": {"value": fin.get("noi_variance_to_budget_ytd"),
+                                 "as_of": fin.get("month_label")},
+                "capex_vs_budget": {"value": fin.get("capex_vs_budget_ytd"),
+                                    "actual": fin.get("capex_actual_ytd"),
+                                    "budget": fin.get("capex_budget_ytd"),
+                                    "as_of": fin.get("month_label")},
+            },
+            "marketing": mkt_view(mkt),
+        }
+    }
+    for code, nm in names.items():
+        o = occ_pp.get(code, {}); c = coll_pp.get(code, {})
+        b = bud_pp.get(code, {});  f = fin_pp.get(code, {})
+        views[code] = {
+            "label": nm,
+            "kpis": {
+                "portfolio_occupancy": {"value": o.get("occupancy"),
+                                        "prior_week": o.get("occ_prior_week"),
+                                        "budget": b.get("occ_budget")},
+                "leased_occupancy": {"value": o.get("leased"), "budget": None},
+                "percent_collected": {"value": c.get("collected"),
+                                      "prior_month": c.get("prior_month"),
+                                      "budget": b.get("coll_budget")},
+                "rent_growth": {"value": f.get("rent_actual"), "budget": f.get("rent_budget")},
+                "trend_occupancy_30d": {"value": o.get("trend"), "budget": b.get("occ_budget")},
+                "staffing_vacancies": {"value": staff_pp.get(code, 0), "prior_month": None},
+                "noi_variance": {"value": f.get("noi_var"), "as_of": fin.get("month_label")},
+                "capex_vs_budget": {"value": f.get("capex_var"), "actual": None,
+                                    "budget": None, "as_of": fin.get("month_label")},
+            },
+            "marketing": mkt_view(mkt_pp.get(code)),
+        }
+    return views
+
 # ----------------------------------------------------------------------------
 # Main
 # ----------------------------------------------------------------------------
@@ -675,22 +818,19 @@ def main():
     errors = []
     now = datetime.now()
 
-    occ  = safe(get_occupancy,    "occupancy",   errors)
-    coll = safe(get_collections,  "collections", errors)
-    rent = safe(get_rent_growth,  "rent_growth", errors)
-    box  = safe(lambda: get_marketing(now), "marketing", errors)
-    fin  = safe(get_financials,   "financials",  errors)
-    units = safe(get_units,       "units",       errors) or {}
-    bud  = safe(lambda: get_budget_targets(now.month, units), "budgets", errors)
-    rent_budget = safe(lambda: get_rent_growth_budget(units), "rent_budget", errors)
-    rent_actual = safe(lambda: get_rent_growth_actual(units), "rent_actual", errors)
-    staff= safe(get_staffing,     "staffing",    errors)
-    take = safe(get_takeaways,    "takeaways",   errors)
+    occ   = safe(get_occupancy,    "occupancy",   errors)
+    coll  = safe(get_collections,  "collections", errors)
+    rent  = safe(get_rent_growth,  "rent_growth", errors)
+    box   = safe(lambda: get_marketing(now), "marketing", errors)
+    units = safe(get_units,        "units",       errors) or {}
+    fin   = safe(lambda: get_financials(units), "financials", errors)
+    bud   = safe(lambda: get_budget_targets(now.month, units), "budgets", errors)
+    staff = safe(get_staffing,     "staffing",    errors)
+    staff_pp = safe(get_staffing_by_property, "staffing_by_property", errors) or {}
+    take  = safe(get_takeaways,    "takeaways",   errors)
 
     # Month-over-month comparisons (auto-snapshot; appears once a new month rolls over)
-    prior = update_history(now, {
-        "staffing_open": staff.get("value"),
-    })
+    prior = update_history(now, {"staffing_open": staff.get("value")})
 
     bottom = []
     if occ and coll:
@@ -700,6 +840,10 @@ def main():
             errors.append(f"analysis: {e}"); traceback.print_exc()
     focus = safe(get_areas_of_focus, "focus_areas", errors) or []
 
+    views = build_views(occ, coll, bud, fin, staff, staff_pp, box, prior)
+    portfolio = views["PORTFOLIO"]
+    portfolio["kpis"]["rent_growth"]["yoy_effective"] = rent.get("rent_growth_current")
+
     out = {
         "generated_at": now.isoformat(),
         "as_of": {
@@ -708,59 +852,15 @@ def main():
             "financials":  fin.get("month_label"),
             "boxscore":    box.get("period"),
         },
-        "kpis": {
-            "portfolio_occupancy": {
-                "value": occ.get("portfolio_occupancy_current"),
-                "prior_week": occ.get("portfolio_occupancy_prior_week"),
-                "budget": bud.get("occupancy_budget"),
-            },
-            "leased_occupancy": {
-                "value": occ.get("leased_occupancy_current"),
-                "prior_week": occ.get("leased_occupancy_prior_week"),
-                "budget": None,
-            },
-            "percent_collected": {
-                "value": coll.get("percent_collected_current"),
-                "prior_month": coll.get("percent_collected_prior_month"),  # DQ AZ29
-                "budget": bud.get("collected_budget"),
-            },
-            "rent_growth": {
-                "value": rent_actual,                       # annualized MoM actual (same basis as budget)
-                "budget": rent_budget,                      # annualized MoM budgeted
-                "yoy_effective": rent.get("rent_growth_current"),  # kept for reference (O109)
-            },
-            "trend_occupancy_30d": {
-                "value": occ.get("trend_occupancy_30d"),
-                "budget": bud.get("occupancy_budget"),
-            },
-            "staffing_vacancies": {
-                "value": staff.get("value"),
-                "prior_month": prior.get("staffing_open"),
-            },
-            "noi_variance": {
-                "value": fin.get("noi_variance_to_budget_ytd"),
-                "as_of": fin.get("month_label"),
-            },
-            "capex_vs_budget": {
-                "value": fin.get("capex_vs_budget_ytd"),
-                "actual": fin.get("capex_actual_ytd"),
-                "budget": fin.get("capex_budget_ytd"),
-                "as_of": fin.get("month_label"),
-            },
-        },
-        "marketing": {
-            "traffic": box.get("traffic"),
-            "tours": box.get("tours"),
-            "applications": box.get("applications"),
-            "tours_over_traffic": box.get("tours_over_traffic"),
-            "conversions": box.get("conversions"),
-            "period": box.get("period"),
-            "benchmark_pct": box.get("benchmark_pct"),
-            "benchmark_weeks": box.get("benchmark_weeks"),
-        },
+        # toggleable rows 1-3 per view; HTML defaults to PORTFOLIO
+        "views": views,
+        "default_view": "PORTFOLIO",
+        # portfolio mirror (rows 4+ and any non-toggled consumers)
+        "kpis": portfolio["kpis"],
+        "marketing": portfolio["marketing"],
         "bottom_performers": bottom,
         "focus_areas": focus,
-        "noi_distribution": fin.get("noi_distribution"),
+        "noi_distribution": fin.get("noi_distribution"),          # raw property counts
         "net_income_distribution": fin.get("net_income_distribution"),
         "takeaways": take.get("items", []),
         "errors": errors,
