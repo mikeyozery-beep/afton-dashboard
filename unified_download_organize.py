@@ -8,7 +8,7 @@ No manual sequencing required. One command handles everything.
 import logging
 from pathlib import Path
 from datetime import datetime
-from openpyxl import load_workbook
+from openpyxl import load_workbook, Workbook
 import zipfile
 import shutil
 import subprocess
@@ -54,7 +54,7 @@ def step_1_download_files():
             ["powershell", "-ExecutionPolicy", "Bypass", "-File", str(download_script)],
             capture_output=True,
             text=True,
-            timeout=300
+            timeout=600
         )
 
         if result.returncode != 0:
@@ -110,88 +110,95 @@ def step_2_extract_zips():
         logger.error(f"Step 2 error: {e}", exc_info=True)
         return False
 
+def _unique_output_path(folder, base):
+    """Collision-safe path: base_<timestamp>[_n].xlsx (never overwrites)."""
+    ts = datetime.now().strftime("%Y-%m-%d %H-%M-%S")
+    candidate = folder / f"{base}_{ts}.xlsx"
+    n = 1
+    while candidate.exists():
+        candidate = folder / f"{base}_{ts}_{n}.xlsx"
+        n += 1
+    return candidate
+
+
+def organize_data_dir(data_dir):
+    """File every report into a folder named by its A1 title.
+
+    Single-sheet workbooks (the common YARDI case) are MOVED as-is - no
+    re-save - which is the fast path. Multi-sheet workbooks are loaded once
+    and split into one values-only file per sheet. Downstream extractors read
+    wb.active, so the single sheet does not need renaming.
+    """
+    data_dir = Path(data_dir)
+    files = sorted(
+        [f for f in data_dir.glob("*.xlsx") if f.is_file()]
+        + [f for f in data_dir.glob("*.xls") if f.is_file()]
+    )
+    if not files:
+        logger.info("No files to organize")
+        return 0, 0
+
+    logger.info(f"Organizing {len(files)} file(s)")
+    organized = 0
+    folders = set()
+
+    for filepath in files:
+        try:
+            # Cheap lazy pass: sheet count + A1 of the first sheet
+            wb = load_workbook(filepath, read_only=True, data_only=True)
+            sheetnames = wb.sheetnames
+
+            if len(sheetnames) == 1:
+                ws = wb[sheetnames[0]]
+                first = next(ws.iter_rows(min_row=1, max_row=1, max_col=1, values_only=True), None)
+                a1 = first[0] if first else None
+                report_name = str(a1).strip() if a1 not in (None, "") else sheetnames[0]
+                wb.close()
+
+                folder = data_dir / sanitize_foldername(report_name)
+                folder.mkdir(exist_ok=True)
+                dest = _unique_output_path(folder, folder.name)
+                shutil.move(str(filepath), str(dest))          # fast: no re-save
+                folders.add(folder.name)
+                organized += 1
+                logger.info(f"  [move]  {filepath.name} -> {folder.name}/")
+            else:
+                wb.close()
+                src = load_workbook(filepath, data_only=True)  # single full load
+                for sheet_name in sheetnames:
+                    src_ws = src[sheet_name]
+                    a1 = src_ws["A1"].value
+                    report_name = str(a1).strip() if a1 not in (None, "") else sheet_name
+                    new_wb = Workbook()
+                    new_ws = new_wb.active
+                    for row in src_ws.iter_rows(values_only=True):
+                        new_ws.append(row)
+                    folder = data_dir / sanitize_foldername(report_name)
+                    folder.mkdir(exist_ok=True)
+                    dest = _unique_output_path(folder, folder.name)
+                    new_wb.save(dest)
+                    new_wb.close()
+                    folders.add(folder.name)
+                    organized += 1
+                    logger.info(f"  [split] {filepath.name} [{sheet_name}] -> {folder.name}/")
+                src.close()
+                filepath.unlink()
+
+        except Exception as e:
+            logger.error(f"  Error organizing {filepath.name}: {e}")
+
+    logger.info(f"Organized {organized} report(s) into {len(folders)} folder(s)")
+    return organized, len(folders)
+
+
 def step_3_extract_worksheets():
-    """Extract worksheets from multi-sheet Excel files"""
+    """Organize downloaded reports into per-report folders."""
     logger.info("\n" + "=" * 70)
     logger.info("STEP 3: EXTRACTING & ORGANIZING BY REPORT NAME")
     logger.info("=" * 70)
-
     try:
-        root_files = list(DASHBOARD_DATA_DIR.glob("*.xlsx")) + list(DASHBOARD_DATA_DIR.glob("*.xls"))
-
-        if not root_files:
-            logger.warning("No Excel files found in root")
-            return True
-
-        logger.info(f"Found {len(root_files)} files\n")
-
-        organized_count = 0
-        report_folders = {}
-        files_to_delete = []
-
-        for filepath in sorted(root_files):
-            try:
-                wb = load_workbook(filepath)
-                logger.info(f"[{filepath.name}] {len(wb.sheetnames)} worksheet(s)")
-
-                for sheet_name in wb.sheetnames:
-                    try:
-                        # Create new workbook with just this sheet
-                        new_wb = load_workbook(filepath)
-
-                        sheets_to_delete = [s for s in new_wb.sheetnames if s != sheet_name]
-                        for sheet_to_delete in sheets_to_delete:
-                            del new_wb[sheet_to_delete]
-
-                        new_ws = new_wb.active
-                        new_ws.title = "Report"
-
-                        # Read A1 for actual report name
-                        report_name = new_ws['A1'].value
-
-                        if not report_name:
-                            logger.warning(f"  No name in A1, using: {sheet_name}")
-                            report_name = sheet_name
-
-                        report_name = str(report_name).strip()
-                        logger.info(f"  → {report_name}")
-
-                        # Create folder and save
-                        safe_folder = sanitize_foldername(report_name)
-                        report_folder = DASHBOARD_DATA_DIR / safe_folder
-                        report_folder.mkdir(exist_ok=True)
-
-                        timestamp = datetime.now().strftime("%Y-%m-%d %H-%M-%S")
-                        output_filename = f"{safe_folder}_{timestamp}.xlsx"
-                        output_path = report_folder / output_filename
-
-                        new_wb.save(output_path)
-                        logger.info(f"     ✓ {safe_folder}/")
-
-                        if safe_folder not in report_folders:
-                            report_folders[safe_folder] = 0
-                        report_folders[safe_folder] += 1
-                        organized_count += 1
-
-                    except Exception as e:
-                        logger.error(f"  Error: {e}")
-
-                files_to_delete.append(filepath)
-
-            except Exception as e:
-                logger.error(f"Error processing {filepath.name}: {e}")
-
-        # Delete originals
-        logger.info(f"\nDeleting {len(files_to_delete)} original files...")
-        for filepath in files_to_delete:
-            try:
-                filepath.unlink()
-            except Exception as e:
-                logger.error(f"Could not delete {filepath.name}: {e}")
-
-        logger.info(f"✓ Organized {organized_count} worksheets into {len(report_folders)} folders")
+        organize_data_dir(DASHBOARD_DATA_DIR)
         return True
-
     except Exception as e:
         logger.error(f"Step 3 error: {e}", exc_info=True)
         return False

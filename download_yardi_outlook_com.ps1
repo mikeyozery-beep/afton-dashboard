@@ -101,7 +101,7 @@ try {
                                 }
                             }
                             [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $extractPath, $true)
-                            Write-Host "[$timestamp]     `u{2713} Extracted: $($entry.Name)"
+                            Write-Host "[$timestamp]     [OK]Extracted: $($entry.Name)"
                             $extracted++
                             $savedFromThisEmail = $true
                         }
@@ -109,7 +109,7 @@ try {
                     $zip.Dispose()
                 }
                 catch {
-                    Write-Host "[$timestamp]     `u{2717} Error extracting: $_"
+                    Write-Host "[$timestamp]     [X]Error extracting: $_"
                 }
                 Remove-Item $tempPath -Force
                 continue
@@ -145,12 +145,12 @@ try {
 
             try {
                 Move-Item $tempPath $finalPath -Force
-                Write-Host "[$timestamp] [Email $processed] `u{2713} Downloaded: $filename ($emailDate)"
+                Write-Host "[$timestamp] [Email $processed] [OK]Downloaded: $filename ($emailDate)"
                 $downloaded++
                 $savedFromThisEmail = $true
             }
             catch {
-                Write-Host "[$timestamp] [Email $processed] `u{2717} Error: $_"
+                Write-Host "[$timestamp] [Email $processed] [X]Error: $_"
                 Remove-Item $tempPath -Force -ErrorAction SilentlyContinue
             }
         }
