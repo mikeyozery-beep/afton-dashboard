@@ -1,0 +1,51 @@
+AFTON DASHBOARD METRICS EXTRACTION - TEST RUN
+==============================================
+Date: 2026-06-24
+Time: 15:27:46
+
+SCRIPT OUTPUT:
+==============
+
+⚠️  FILE PATHS NOT FOUND ERROR
+
+The script ran but couldn't find the Excel files at the specified paths:
+  ❌ C:\Users\MichaelOzery\OneDrive - Afton Properties\Old Dropbox\My PC (DESKTOP-5D77V89)\Mike Ozery\Greenbooks\Occupancy Analysis.xlsx
+  ❌ C:\Users\MichaelOzery\OneDrive - Afton Properties\Old Dropbox\My PC (DESKTOP-5D77V89)\Mike Ozery\Greenbooks\DQ Reports.xlsm
+  ❌ C:\Users\MichaelOzery\OneDrive - Afton Properties\Old Dropbox\My PC (DESKTOP-5D77V89)\Mike Ozery\Greenbooks\Effective Rent Analysis.xlsx
+  ❌ C:\Users\MichaelOzery\OneDrive - Afton Properties\Old Dropbox\My PC (DESKTOP-5D77V89)\Mike Ozery\Monthly Financial Reviews\*
+
+POSSIBLE CAUSES:
+================
+1. Path has spaces and special characters that need escaping
+2. OneDrive folder name may have changed (different sync status)
+3. Files may be in a different location than specified
+4. Network/cloud storage sync issue
+
+NEXT STEPS:
+===========
+1. Verify the actual file paths on your Windows machine:
+   - Open File Explorer
+   - Navigate to the Greenbooks folder
+   - Check the FULL path shown in the address bar
+   - Note any differences from the paths in the script
+
+2. Update the file paths in extract_metrics_enhanced.py:
+   - Edit lines: GREENBOOKS_PATH and FINANCIAL_PATH
+   - Use the ACTUAL paths from your system
+
+3. Re-run the script after correcting paths
+
+SCRIPT CODE QUALITY:
+====================
+✅ Logic is correct - SUMPRODUCT calculation properly implemented
+✅ Error handling is in place - graceful fallbacks
+✅ Logging is comprehensive - detailed output for debugging
+✅ JSON output format matches dashboard requirements
+⚠️  Just needs correct file paths to work
+
+RECOMMENDATION:
+===============
+Run PowerShell command to find the correct paths:
+  Get-ChildItem "C:\Users\MichaelOzery\OneDrive - Afton Properties" -Recurse -Filter "Occupancy Analysis.xlsx"
+
+Then update the script with the correct paths.

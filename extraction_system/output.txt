@@ -1,0 +1,212 @@
+2026-06-27 23:31:22,778 - INFO - ============================================================
+2026-06-27 23:31:22,778 - INFO - AFTON DASHBOARD EXTRACTION CYCLE STARTED
+2026-06-27 23:31:22,778 - INFO - ============================================================
+2026-06-27 23:31:22,779 - INFO - Starting daily extraction cycle
+Traceback (most recent call last):
+  File "C:\Afton\Dashboard\extraction_system\extractors\excel_extractor.py", line 16, in extract_occupancy_metrics
+    wb = openpyxl.load_workbook(path)
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openpyxl\reader\excel.py", line 346, in load_workbook
+    reader = ExcelReader(filename, read_only, keep_vba,
+                         data_only, keep_links, rich_text)
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openpyxl\reader\excel.py", line 123, in __init__
+    self.archive = _validate_archive(fn)
+                   ~~~~~~~~~~~~~~~~~^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\openpyxl\reader\excel.py", line 95, in _validate_archive
+    archive = ZipFile(filename, 'r')
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\zipfile\__init__.py", line 1462, in __init__
+    self.fp = io.open(file, filemode)
+              ~~~~~~~^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\MichaelOzery\\OneDrive - Afton Properties\\Old Dropbox\\My PC (DESKTOP-5D77V89)\\Mike Ozery\\Greenbooks\\Occupancy Analysis.xlsx'
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 33: character maps to <undefined>
+Call stack:
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 197, in <module>
+    results = extractor.run_full_cycle(monthly=monthly)
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 175, in run_full_cycle
+    self.extract_all_daily()
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 45, in extract_all_daily
+    logger.info("\u2713 Excel extractions complete")
+Message: '\u2713 Excel extractions complete'
+Arguments: ()
+2026-06-27 23:31:23,151 - INFO - \u2713 Excel extractions complete
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 33: character maps to <undefined>
+Call stack:
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 197, in <module>
+    results = extractor.run_full_cycle(monthly=monthly)
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 175, in run_full_cycle
+    self.extract_all_daily()
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 55, in extract_all_daily
+    logger.info("\u2713 Box Score extractions complete")
+Message: '\u2713 Box Score extractions complete'
+Arguments: ()
+2026-06-27 23:31:23,154 - INFO - \u2713 Box Score extractions complete
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 33: character maps to <undefined>
+Call stack:
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 197, in <module>
+    results = extractor.run_full_cycle(monthly=monthly)
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 175, in run_full_cycle
+    self.extract_all_daily()
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 65, in extract_all_daily
+    logger.info("\u2713 Staffing extraction complete")
+Message: '\u2713 Staffing extraction complete'
+Arguments: ()
+2026-06-27 23:31:24,302 - INFO - \u2713 Staffing extraction complete
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 33: character maps to <undefined>
+Call stack:
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 197, in <module>
+    results = extractor.run_full_cycle(monthly=monthly)
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 175, in run_full_cycle
+    self.extract_all_daily()
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 80, in extract_all_daily
+    logger.info("\u2713 Budget extraction complete")
+Message: '\u2713 Budget extraction complete'
+Arguments: ()
+2026-06-27 23:31:24,303 - INFO - \u2713 Budget extraction complete
+2026-06-27 23:31:24,304 - INFO - Starting analysis phase
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 33: character maps to <undefined>
+Call stack:
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 197, in <module>
+    results = extractor.run_full_cycle(monthly=monthly)
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 180, in run_full_cycle
+    self.run_analysis()
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 125, in run_analysis
+    logger.info("\u2713 Bottom performer analysis complete")
+Message: '\u2713 Bottom performer analysis complete'
+Arguments: ()
+2026-06-27 23:31:24,306 - INFO - \u2713 Bottom performer analysis complete
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 33: character maps to <undefined>
+Call stack:
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 197, in <module>
+    results = extractor.run_full_cycle(monthly=monthly)
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 180, in run_full_cycle
+    self.run_analysis()
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 134, in run_analysis
+    logger.info("\u2713 Anomaly detection complete")
+Message: '\u2713 Anomaly detection complete'
+Arguments: ()
+2026-06-27 23:31:24,308 - INFO - \u2713 Anomaly detection complete
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 33: character maps to <undefined>
+Call stack:
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 197, in <module>
+    results = extractor.run_full_cycle(monthly=monthly)
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 180, in run_full_cycle
+    self.run_analysis()
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 145, in run_analysis
+    logger.info("\u2713 Analyst summary generation complete")
+Message: '\u2713 Analyst summary generation complete'
+Arguments: ()
+2026-06-27 23:31:24,309 - INFO - \u2713 Analyst summary generation complete
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 33: character maps to <undefined>
+Call stack:
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 197, in <module>
+    results = extractor.run_full_cycle(monthly=monthly)
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 181, in run_full_cycle
+    self.output_dashboard_json()
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 166, in output_dashboard_json
+    logger.info(f"\u2713 Dashboard JSON output to {output_path}")
+Message: '\u2713 Dashboard JSON output to outputs/dashboard_metrics.json'
+Arguments: ()
+2026-06-27 23:31:24,312 - INFO - \u2713 Dashboard JSON output to outputs/dashboard_metrics.json
+2026-06-27 23:31:24,312 - INFO - ============================================================
+2026-06-27 23:31:24,312 - INFO - EXTRACTION CYCLE COMPLETE
+2026-06-27 23:31:24,312 - INFO - ============================================================
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 198, in <module>
+    print("\n\u2713 Extraction complete. Check logs/extraction.log for details.\n")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 278: character maps to <undefined>
+Call stack:
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 200, in <module>
+    logger.error(f"FATAL ERROR: {e}", exc_info=True)
+Message: "FATAL ERROR: 'charmap' codec can't encode character '\\u2713' in position 2: character maps to <undefined>"
+Arguments: ()
+2026-06-27 23:31:24,313 - ERROR - FATAL ERROR: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Afton\Dashboard\extraction_system\main_extractor.py", line 198, in <module>
+    print("\n\u2713 Extraction complete. Check logs/extraction.log for details.\n")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MichaelOzery\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+[DEBUG] Reading occupancy from: C:\Users\MichaelOzery\OneDrive - Afton Properties\Old Dropbox\My PC (DESKTOP-5D77V89)\Mike Ozery\Greenbooks\Occupancy Analysis.xlsx
+[ERROR] Error extracting occupancy: [Errno 13] Permission denied: 'C:\\Users\\MichaelOzery\\OneDrive - Afton Properties\\Old Dropbox\\My PC (DESKTOP-5D77V89)\\Mike Ozery\\Greenbooks\\Occupancy Analysis.xlsx'
+Error reading portfolio index: [Errno 2] No such file or directory: 'C:\\Users\\MichaelOzery\\OneDrive - Afton Properties\\Old Dropbox\\My PC (DESKTOP-5D77V89)\\Mike Ozery\\Portfolio Index.xlsx'

@@ -1,9 +1,29 @@
-﻿credentials.json
+# Secrets / auth — never commit these
+credentials.json
+credentials.json.json
+*credentials*.json
 token.json
 graph_token_cache.json
 graph_config.json
 metrics_history.json
 marketing_prospects_log.json
+*.token
+OAUTH_CREDENTIALS_REFERENCE.md
+tokens/
+o365_tokens/
+
+# Transient automation state
+pending_mark_read.txt
+last_download.txt
+
+# Logs and Python cruft
 logs/
 *.pyc
 __pycache__/
+
+# Local working dirs / downloaded binaries
+temp_yardi_downloads/
+chromedriver-win64/
+
+# Generated outputs (contains its own nested git repo)
+extraction_system/outputs/
