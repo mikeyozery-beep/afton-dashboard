@@ -6,7 +6,7 @@ Rebuilds data/dashboard.json from live sources and pushes it to GitHub Pages.
 Run by Windows Task Scheduler each morning. Requires GITHUB_TOKEN in the
 environment (already set on this machine) OR a git credential helper.
 """
-import os, subprocess, logging
+import subprocess, logging
 from datetime import datetime
 from pathlib import Path
 
@@ -21,10 +21,6 @@ logging.basicConfig(
     handlers=[logging.FileHandler(LOG_DIR / "update_dashboard.log"), logging.StreamHandler()],
 )
 log = logging.getLogger(__name__)
-
-REPO  = "github.com/mikeyozery-beep/afton-dashboard.git"
-TOKEN = os.getenv("GITHUB_TOKEN")
-
 
 def git(*args, check=True):
     return subprocess.run(["git", *args], cwd=SCRIPT_DIR, check=check,
@@ -48,12 +44,9 @@ def main():
     msg = f"Auto-update dashboard data - {datetime.now():%Y-%m-%d %H:%M}"
     git("commit", "-m", msg)
 
-    # push (use token if available, else rely on configured credentials)
-    if TOKEN:
-        url = f"https://{TOKEN}@{REPO}"
-        git("push", url, "HEAD:main")
-    else:
-        git("push", "origin", "main")
+    # push via the system git credential helper (Git Credential Manager);
+    # the remote URL is tokenless and the credential lives in the OS vault.
+    git("push", "origin", "main")
     log.info("Published: https://mikeyozery-beep.github.io/afton-dashboard/dashboard_live.html")
 
 

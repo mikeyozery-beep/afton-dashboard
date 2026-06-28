@@ -5,7 +5,9 @@
 
 $ErrorActionPreference = "Stop"
 $py     = "C:\Users\MichaelOzery\AppData\Local\Python\bin\python.exe"
-$repo   = "C:\Afton\Dashboard\extraction_system\outputs\afton-dashboard"
+# Run from the root working copy (single source of truth; pushes to the same
+# GitHub repo, which is what updates GitHub Pages).
+$repo   = "C:\Afton\Dashboard"
 $script = Join-Path $repo "update_dashboard.py"
 
 if (-not (Test-Path $py))     { throw "Python not found at $py" }
