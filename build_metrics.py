@@ -678,41 +678,55 @@ def get_takeaways():
     return {"items": bullets, "source_file": docs[-1].name}
 
 def get_areas_of_focus():
-    """Three portfolio-average focus themes from Effective Rent Analysis -> Summary:
-    Tradeouts (block from row 4), Renewals (block from row 30), Effective-rent MoM (O108).
-    Each is a unit-weighted portfolio average shown as current month vs prior month; the
-    section as-of (e.g. 'June vs May 2026') is returned so bullets don't repeat the month."""
+    """Tradeouts / Renewals / Effective-rent focus bullets from Effective Rent Analysis ->
+    Summary, for the PORTFOLIO (unit-weighted) AND each property. Layout (col 3 = code):
+    Tradeouts rows 4+ and Renewals rows 30+ are per-property RATES (read the current & prior
+    month columns directly); Effective Rents rows 84+ are monthly LEVELS, converted to MoM
+    (cur = last/prior-1, prior = prior/prior2-1). Portfolio effective MoM uses the sheet's
+    own WA-MoM row (108). Returns {as_of, items (portfolio), by_property: {code: items}}."""
     wb = load(RENT_FILE); ws = wb["Summary"]
 
     def month_cols(hdr_row):
-        return [c for c in range(4, 32) if isinstance(ws.cell(hdr_row, c).value, datetime)]
+        # FIRST contiguous run of month-dated columns only. Tradeouts/Renewals have a second,
+        # sparser date block further right (cols ~20-31) that must NOT be used.
+        cols = []
+        for c in range(4, 40):
+            if isinstance(ws.cell(hdr_row, c).value, datetime):
+                cols.append(c)
+            elif cols:
+                break
+        return cols
 
-    def weighted_avg(data_start, col):
-        if not col:
-            return None
-        wsum = wunits = 0.0
+    def block(data_start):
+        rows = []
         for r in range(data_start, data_start + 30):
             code = ws.cell(r, 3).value
             if not code or not str(code).strip().upper().startswith("RG"):
                 break
-            val = num(ws.cell(r, col).value)
-            u   = num(ws.cell(r, 1).value)
-            if val is not None and u:
-                wsum += val * u; wunits += u
-        return (wsum / wunits) if wunits else None
+            rows.append((r, code_from(code), num(ws.cell(r, 1).value)))
+        return rows
 
-    def cur_prior(data_start, hdr_row):
-        cols = month_cols(hdr_row)
-        last  = cols[-1] if cols else None
-        prior = cols[-2] if len(cols) >= 2 else None
-        return (weighted_avg(data_start, last), weighted_avg(data_start, prior),
-                ws.cell(hdr_row, last).value if last else None,
-                ws.cell(hdr_row, prior).value if prior else None)
+    # tradeouts & renewals: stored as rates -> read current/prior month columns
+    tcols = month_cols(3);  t_last, t_prior = tcols[-1], tcols[-2]
+    rcols = month_cols(29); r_last, r_prior = rcols[-1], rcols[-2]
+    trade_pp, renew_pp = {}, {}
+    for r, code, u in block(4):
+        trade_pp[code] = (num(ws.cell(r, t_last).value), num(ws.cell(r, t_prior).value), u)
+    for r, code, u in block(30):
+        renew_pp[code] = (num(ws.cell(r, r_last).value), num(ws.cell(r, r_prior).value), u)
 
-    trade, trade_prior, t_asof, t_prior_asof = cur_prior(4, 3)     # Tradeouts (header row 3)
-    renew, renew_prior, _, _                 = cur_prior(30, 29)   # Renewals  (header row 29)
-    eff_mom       = num(ws["O108"].value)      # Effective Rents 'MoM %' latest month (June)
-    eff_mom_prior = num(ws["N108"].value)      # prior month (May)
+    # effective rents: monthly LEVELS -> MoM (need last, prior, prior-2 columns)
+    ecols = month_cols(83); e_last, e_prior, e_prior2 = ecols[-1], ecols[-2], ecols[-3]
+    eff_pp = {}
+    for r, code, u in block(84):
+        lv_l = num(ws.cell(r, e_last).value); lv_p = num(ws.cell(r, e_prior).value); lv_p2 = num(ws.cell(r, e_prior2).value)
+        cur = (lv_l / lv_p - 1) if (lv_l and lv_p) else None
+        prv = (lv_p / lv_p2 - 1) if (lv_p and lv_p2) else None
+        eff_pp[code] = (cur, prv, u)
+    # portfolio effective MoM from the sheet's WA-MoM row (108)
+    port_eff_cur, port_eff_prior = num(ws.cell(108, e_last).value), num(ws.cell(108, e_prior).value)
+
+    t_asof, t_prior_asof = ws.cell(3, t_last).value, ws.cell(3, t_prior).value
     wb.close()
 
     def mname(d):
@@ -721,34 +735,52 @@ def get_areas_of_focus():
         except Exception:
             return ""
     cur_m, prior_m = mname(t_asof), mname(t_prior_asof)
-    try:
-        yr = t_asof.year
-    except Exception:
-        yr = ""
+    yr = getattr(t_asof, "year", "")
     as_of = (f"{cur_m} vs {prior_m} {yr}".strip() if cur_m and prior_m
              else (f"{cur_m} {yr}".strip() if cur_m else ""))
 
-    def cur_vs_prior(label, cur, prior, suffix=""):
+    def fmt_rate(label, cur, prior):
         if cur is None:
             return f"{label}: no current data"
-        s = f"{label} averaging {cur*100:+.1f}%{suffix}"
+        s = f"{label} averaging {cur*100:+.1f}%"
         if prior is not None:
-            s += f" vs {prior*100:+.1f}%{suffix} in prior month"
+            s += f" vs {prior*100:+.1f}% in prior month"
         return s
+    def fmt_eff(cur_mom, prior_mom):
+        annz = lambda m: ((1 + m) ** 12 - 1) if m is not None else None
+        c, p = annz(cur_mom), annz(prior_mom)
+        if c is None:
+            return "Effective rent: no current data"
+        s = f"Effective rent {c*100:+.1f}% annualized"
+        if p is not None:
+            s += f" vs {p*100:+.1f}% in prior month"
+        return s
+    def items(tc, tp, rc, rp, ec, ep):
+        return [
+            {"theme": "Tradeouts", "summary": fmt_rate("Tradeouts", tc, tp)},
+            {"theme": "Renewals",  "summary": fmt_rate("Renewals", rc, rp)},
+            {"theme": "Effective Rent", "summary": fmt_eff(ec, ep)},
+        ]
 
-    focus = []
-    focus.append({"theme": "Tradeouts", "summary": cur_vs_prior("Tradeouts", trade, trade_prior)})
-    focus.append({"theme": "Renewals",  "summary": cur_vs_prior("Renewals", renew, renew_prior)})
-    annz = lambda m: ((1 + m) ** 12 - 1) if m is not None else None
-    eff_cur, eff_prior = annz(eff_mom), annz(eff_mom_prior)
-    if eff_cur is None:
-        eff_txt = "Effective rent: no current data"
-    else:
-        eff_txt = f"Effective rent {eff_cur*100:+.1f}% annualized"
-        if eff_prior is not None:
-            eff_txt += f" vs {eff_prior*100:+.1f}% in prior month"
-    focus.append({"theme": "Effective Rent", "summary": eff_txt})
-    return {"as_of": as_of, "items": focus}
+    def wavg(pp, idx):
+        s = u = 0.0
+        for vals in pp.values():
+            v, w = vals[idx], vals[2]
+            if v is not None and w:
+                s += v * w; u += w
+        return (s / u) if u else None
+
+    portfolio_items = items(wavg(trade_pp, 0), wavg(trade_pp, 1),
+                            wavg(renew_pp, 0), wavg(renew_pp, 1),
+                            port_eff_cur, port_eff_prior)
+    by_property = {}
+    for code in set(trade_pp) | set(renew_pp) | set(eff_pp):
+        tc, tp, _ = trade_pp.get(code, (None, None, None))
+        rc, rp, _ = renew_pp.get(code, (None, None, None))
+        ec, ep, _ = eff_pp.get(code, (None, None, None))
+        by_property[code] = items(tc, tp, rc, rp, ec, ep)
+
+    return {"as_of": as_of, "items": portfolio_items, "by_property": by_property}
 
 
 # ----------------------------------------------------------------------------
@@ -832,14 +864,16 @@ def build_analysis(occ, coll, fin):
 
     return bottom_out, focus
 
-def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
-    """Assemble the toggleable rows 1-3 for Portfolio + each property."""
+def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior, focus=None):
+    """Assemble the toggleable rows 1-3 (+ charts + Areas of Focus) for Portfolio + each property."""
     names   = occ.get("_names", {})
     occ_pp  = occ.get("_per_property", {})
     coll_pp = coll.get("_per_property", {})
     bud_pp  = bud.get("_per_property", {})
     fin_pp  = fin.get("_per_property", {})
     mkt_pp  = mkt.get("_by_property", {}) if isinstance(mkt, dict) else {}
+    focus_items = focus.get("items", []) if isinstance(focus, dict) else []
+    focus_pp    = focus.get("by_property", {}) if isinstance(focus, dict) else {}
 
     def mkt_view(f):
         if not f:
@@ -894,6 +928,7 @@ def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
                 "as_of": fin.get("month_label"),
             },
             "marketing": mkt_view(mkt),
+            "focus": focus_items,
         }
     }
     for code, nm in names.items():
@@ -930,6 +965,7 @@ def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
                 "as_of": fin.get("month_label"),
             },
             "marketing": mkt_view(mkt_pp.get(code)),
+            "focus": focus_pp.get(code, focus_items),
         }
     return views
 
@@ -995,7 +1031,7 @@ def main():
     else:
         focus, focus_as_of = focus_raw, None
 
-    views = build_views(occ, coll, bud, fin, staff, staff_pp, box, prior)
+    views = build_views(occ, coll, bud, fin, staff, staff_pp, box, prior, focus_raw)
     portfolio = views["PORTFOLIO"]
     portfolio["kpis"]["rent_growth"]["yoy_effective"] = rent.get("rent_growth_current")
 

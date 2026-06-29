@@ -2,8 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Afton Properties - Executive Portfolio Dashboard</title>
+
+  <!-- PWA / mobile install -->
+  <meta name="theme-color" content="#1D9E75">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Afton Dash">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -378,6 +387,55 @@
       font-weight: 600;
       flex-shrink: 0;
     }
+
+    /* ----------------------------------------------------------------
+       Responsive: phones & small tablets. Laptop layout is unchanged.
+       ---------------------------------------------------------------- */
+    @media (max-width: 760px) {
+      .dashboard { padding: 12px; }
+      .header { margin-bottom: 16px; padding-bottom: 12px; }
+      .header h1 { font-size: 18px; line-height: 1.25; }
+      .header-top { flex-wrap: wrap; gap: 10px; }
+      .view-select { width: 100%; max-width: none; padding: 10px 12px; font-size: 14px; }
+
+      /* KPI cards: 4-wide -> 2-wide */
+      .metric-row { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+      .metric-card { padding: 12px; }
+      .metric-value { font-size: 24px; }
+
+      /* marketing: 5-wide -> 2-wide */
+      .marketing-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .marketing-value { font-size: 18px; }
+
+      /* side-by-side panels stack */
+      .content-grid { grid-template-columns: 1fr; gap: 12px; }
+      .charts-grid { grid-template-columns: 1fr; gap: 12px; }
+      .summary-amt { font-size: 22px; }
+
+      /* bottom-performers table -> stacked, labeled cards */
+      table, thead, tbody, tr, td { display: block; }
+      table { border: none; border-radius: 0; overflow: visible; }
+      table thead { display: none; }
+      table tr {
+        border: 1px solid #e8e8e8; border-radius: 6px;
+        margin-bottom: 10px; background: #fff; overflow: hidden;
+      }
+      table td {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 9px 12px; border: none; border-top: 1px solid #f2f2f2; font-size: 13px;
+      }
+      table td::before {
+        content: attr(data-label);
+        font-size: 10px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.4px; color: #999; margin-right: 12px;
+      }
+      table td:first-child {
+        background: #1D4D39; color: #fff; font-weight: 700; font-size: 14px;
+        border-top: none; justify-content: flex-start;
+      }
+      table td:first-child::before { content: ""; margin: 0; }
+      table td.concern { background: #FDECEA; }
+    }
   </style>
 </head>
 <body>
@@ -682,6 +740,12 @@
     set('mk-conv', m.conversions == null ? '–' : pct(m.conversions, 1)); setHTML('mk-conv-detail', vs('conversions') || '(Apps / Tours)');
 
     renderCharts(v.charts);   // pies follow the toggle (portfolio vs single property)
+
+    // Areas of Focus bullets follow the toggle too (portfolio vs single property)
+    const fa = v.focus || [];
+    setHTML('focus-areas', fa.length
+      ? fa.map(f => `<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">${escapeHTML(f.summary)}</div></div>`).join('')
+      : '<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">No focus items.</div></div>');
   }
 
   // Rows 4+ (portfolio-level; not affected by the toggle)
@@ -691,21 +755,19 @@
       ? tks.map(t => `<div class="list-item">${escapeHTML(t)}</div>`).join('')
       : '<div class="list-item">No takeaways found in latest notes.</div>');
 
+    // Section heading (month range is the same across views); the bullets themselves are
+    // rendered per-view in renderView() so they follow the Portfolio/property toggle.
     set('focus-title', d.focus_as_of ? `Areas of Focus as of ${d.focus_as_of}` : 'Areas of Focus');
-    const fa = d.focus_areas || [];
-    setHTML('focus-areas', fa.length
-      ? fa.map(f => `<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">${escapeHTML(f.summary)}</div></div>`).join('')
-      : '<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">No focus items.</div></div>');
 
     const bp = d.bottom_performers || [];
     const cc = (p, m) => p.concern === m ? 'concern' : '';
     setHTML('bottom-performers', bp.map(p => `
       <tr>
-        <td>${escapeHTML(p.name)}</td>
-        <td class="${cc(p, 'occupancy')}">${pct(p.occupancy)}</td>
-        <td class="${cc(p, 'leased')}">${pct(p.leased)}</td>
-        <td class="${cc(p, 'collected')}">${pct(p.collected)}</td>
-        <td class="${cc(p, 'noi_variance') || ((p.noi_variance ?? 0) < 0 ? 'negative' : '')}">${signedPct(p.noi_variance)}</td>
+        <td data-label="Community">${escapeHTML(p.name)}</td>
+        <td data-label="Occupancy" class="${cc(p, 'occupancy')}">${pct(p.occupancy)}</td>
+        <td data-label="Leased Occ." class="${cc(p, 'leased')}">${pct(p.leased)}</td>
+        <td data-label="% Collected" class="${cc(p, 'collected')}">${pct(p.collected)}</td>
+        <td data-label="NOI Var. to Budget" class="${cc(p, 'noi_variance') || ((p.noi_variance ?? 0) < 0 ? 'negative' : '')}">${signedPct(p.noi_variance)}</td>
       </tr>`).join(''));
   }
 
