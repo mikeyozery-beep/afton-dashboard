@@ -34,6 +34,7 @@ POS_DIR   = DD / "Position"               # auto-exported timestamped Position_*
 OPEN_POS  = DD / "Open Positions.xlsx"     # legacy fixed-name fallback
 NOTES_DIR = DD / "Weekly Meeting Notes"
 PROSPECTS_DIR = DD / "rs_sql_prospects_w_reasons_muvan"   # marketing funnel source
+IBC_DIR   = DD / "rs_sql_income_budget_comparison_muvan"  # financials source (P&L vs budget)
 
 SCRIPT_DIR = Path(__file__).parent
 OUT_FILE   = SCRIPT_DIR / "data" / "dashboard.json"
@@ -313,80 +314,149 @@ def _find_row(ws, gl, max_row=120):
             return r
     return None
 
-def get_financials(units):
-    """One pass over the 23 'RGxx Final.xlsx' files. Returns portfolio aggregates AND
-    per-property values for NOI var, CapEx var, and annualized-MoM rent (actual & budget).
-    Distributions are raw PROPERTY COUNTS (not %)."""
-    folder = latest_fin_folder()
-    if folder is None:
-        return {"error": "no financial review folder"}
-    month_label = folder.name.split(" Financial Reviews")[0].split(". ")[-1]
+def _ibc_num(v):
+    """Parse an income/budget cell that may be a string with $, commas, or (parentheses)."""
+    try:
+        if v is None or v == "":
+            return 0.0
+        return float(str(v).replace(",", "").replace("$", "").replace("(", "-").replace(")", ""))
+    except (TypeError, ValueError):
+        return 0.0
 
-    noi_ytd = noi_bud = capex_act = capex_bud = 0.0
-    ni_act = ni_bud = 0.0
+def latest_fin_month(today):
+    """A month M's financials are ready after the 25th of month M+1. Return the (year, month)
+    of the latest READY month as of `today`. E.g. 2026-06-28 -> (2026, 5) since June 25 passed."""
+    y, m = today.year, today.month
+    py, pm = (y - 1, 12) if m == 1 else (y, m - 1)   # previous calendar month
+    if today.day >= 25:                              # previous month is ready
+        return (py, pm)
+    return (py - 1, 12) if pm == 1 else (py, pm - 1)  # else the month before that
+
+def get_financials(units, now=None):
+    """Per-property NOI / Net Income (excl. interest) / CapEx / annualized rent growth from the
+    latest rs_sql_income_budget_comparison_muvan export. The sheet is a long-format P&L: each
+    row is a leaf GL account with a SIGNED actual_amount (income +, expense -). The budget_amount
+    column stores expenses as POSITIVE magnitudes, so any leaf whose hierarchy path contains
+    'EXPENSE' has its budget re-signed negative to match.
+
+      NOI            = leaves whose path contains 'NET OPERATING INCOME'
+      Net Income     = every leaf (all paths roll up to NET INCOME)
+      Interest exp.  = leaves with both 'INTEREST' and 'EXPENSE' in the path (excludes Interest Income)
+      Net Income ex-interest = Net Income - Interest expense  (interest is negative, so this adds it back)
+      CapEx          = leaves under 'TOTAL BUILDING IMPROVEMENTS' (shown as positive spend)
+      Rent           = leaves under 'TOTAL POTENTIAL INCOME'
+
+    Dollar figures are YTD (Jan..as-of month). Rent growth is the annualized month-over-month
+    change in Total Potential Income (as-of vs prior month), unit-weighted for the portfolio.
+    Distributions are raw PROPERTY COUNTS bucketed on each property's YTD variance."""
+    from collections import defaultdict
+    now = now or datetime.now()
+    files = sorted(IBC_DIR.glob("*.xlsx"), key=lambda p: p.stat().st_mtime) if IBC_DIR.exists() else []
+    if not files:
+        return {"error": "no income/budget comparison file"}
+
+    wb = load(files[-1]); ws = wb["Report"]
+    # slot layout per (code, month): [noi_a, noi_b, ni_a, ni_b, int_a, int_b, cap_a, cap_b, tpi_a, tpi_b]
+    acc = defaultdict(lambda: defaultdict(lambda: [0.0] * 10))
+    months = set()
+    header_seen = False
+    for row in ws.iter_rows(values_only=True):
+        if not header_seen:
+            if row and row[0] == "property_code":
+                header_seen = True
+            continue
+        if not row or not row[0]:
+            continue
+        code = code_from(row[0])
+        if not code or not code.startswith("RG"):     # skip ap-jr / ap-ss / ap-unkwn / ap-yl
+            continue
+        d = row[3]
+        if isinstance(d, (datetime, date)):
+            ym = (d.year, d.month)
+        else:
+            s = str(d)
+            try:
+                ym = (int(s[:4]), int(s[5:7]))
+            except (ValueError, IndexError):
+                continue
+        months.add(ym)
+        p = row[6] or ""
+        a = _ibc_num(row[4])
+        b = _ibc_num(row[5])
+        if "EXPENSE" in p:
+            b = -abs(b)
+        sl = acc[code][ym]
+        if "NET OPERATING INCOME" in p: sl[0] += a; sl[1] += b
+        sl[2] += a; sl[3] += b                                       # every leaf -> Net Income
+        if "INTEREST" in p and "EXPENSE" in p: sl[4] += a; sl[5] += b
+        if "BUILDING IMPROVEMENTS" in p: sl[6] += a; sl[7] += b
+        if "TOTAL POTENTIAL INCOME" in p: sl[8] += a; sl[9] += b
+    wb.close()
+
+    if not months:
+        return {"error": "no property rows in income/budget file"}
+    target = latest_fin_month(now)
+    elig = sorted(ym for ym in months if ym <= target) or sorted(months)
+    as_of = elig[-1]
+    ytd_months = [ym for ym in elig if ym[0] == as_of[0]]            # Jan..as-of of the as-of year
+    prior = elig[-2] if len(elig) >= 2 else None
+    month_label = date(as_of[0], as_of[1], 1).strftime("%B %Y")
+
+    noi_ytd = noi_bud = nix_act = nix_bud = capex_act = capex_bud = 0.0
+    ra_ws = ra_wu = rb_ws = rb_wu = 0.0
     noi_buckets = {"above": 0, "online": 0, "below": 0}
     ni_buckets  = {"above": 0, "at": 0, "below": 0}
-    per = {}                      # code -> {noi_var, capex_var, rent_actual, rent_budget}
-    ra_ws = ra_wu = rb_ws = rb_wu = 0.0
+    per = {}
     n = 0
-    for fp in sorted(folder.glob("RG* Final.xlsx")):
-        code = code_from(fp.name)
-        try:
-            wb = load(fp); fs = wb["Financial Snapshot"]
-            nj, nk, nl = num(fs.cell(83, 10).value), num(fs.cell(83, 11).value), num(fs.cell(83, 12).value)
-            ij, ik, il = num(fs.cell(104, 10).value), num(fs.cell(104, 11).value), num(fs.cell(104, 12).value)
-            u_j, u_k = num(fs.cell(88, 10).value), num(fs.cell(88, 11).value)
-            b_j, b_k = num(fs.cell(94, 10).value), num(fs.cell(94, 11).value)
-            prow = _find_row(fs, "4212-0000", 40)            # Total Potential Rent (actual)
-            ra_recent = num(fs.cell(prow, 3).value) if prow else None   # C current month
-            ra_prior  = num(fs.cell(prow, 6).value) if prow else None   # F prior month
-            rb_recent = rb_prior = None
-            if "Budget" in wb.sheetnames:
-                bs = wb["Budget"]
-                tcol = next((c for c in range(3, bs.max_column + 1)
-                             if str(bs.cell(5, c).value).strip().lower() == "total"), None)
-                brow = _find_row(bs, "4212-0000", 80)
-                if tcol and brow:
-                    rb_recent = num(bs.cell(brow, tcol - 1).value)
-                    rb_prior  = num(bs.cell(brow, tcol - 2).value)
-            wb.close()
-        except Exception:
-            continue
-        n += 1
-        if nj is not None: noi_ytd += nj
-        if nk is not None: noi_bud += nk
-        if ij is not None: ni_act += ij
-        if ik is not None: ni_bud += ik
-        cx_a = (u_j or 0) + (b_j or 0)
-        cx_b = (u_k or 0) + (b_k or 0)
-        capex_act += cx_a; capex_bud += cx_b
-        ra = ((ra_recent / ra_prior) ** 12 - 1) if (ra_recent and ra_prior and ra_prior > 0) else None
-        rb = ((rb_recent / rb_prior) ** 12 - 1) if (rb_recent and rb_prior and rb_prior > 0) else None
+    for code, by_month in acc.items():
+        s = [0.0] * 10
+        for ym in ytd_months:
+            v = by_month.get(ym)
+            if v:
+                for i in range(10):
+                    s[i] += v[i]
+        p_noi_a, p_noi_b, p_ni_a, p_ni_b, p_int_a, p_int_b, p_cap_a, p_cap_b, _, _ = s
+        p_nix_a, p_nix_b = p_ni_a - p_int_a, p_ni_b - p_int_b        # net income excl. interest
+        p_cap_a, p_cap_b = -p_cap_a, -p_cap_b                        # capex as positive spend
+        noi_var = (p_noi_a / p_noi_b - 1) if p_noi_b else None
+        nix_var = (p_nix_a / p_nix_b - 1) if p_nix_b else None
+        cap_var = (p_cap_a / p_cap_b - 1) if p_cap_b else None
+        # annualized MoM rent growth from Total Potential Income (as-of vs prior month)
+        ra = rb = None
+        if prior:
+            cm, pm = by_month.get(as_of), by_month.get(prior)
+            if cm and pm:
+                if cm[8] and pm[8] and pm[8] > 0: ra = (cm[8] / pm[8]) ** 12 - 1
+                if cm[9] and pm[9] and pm[9] > 0: rb = (cm[9] / pm[9]) ** 12 - 1
         per[code] = {
-            "noi_var": nl,
-            "noi_actual": nj, "noi_budget": nk,
-            "ni_actual": ij, "ni_budget": ik, "ni_var": il,
-            "capex_var": (cx_a / cx_b - 1) if cx_b else None,
-            "capex_actual": cx_a, "capex_budget": cx_b,
+            "noi_var": noi_var, "noi_actual": p_noi_a, "noi_budget": p_noi_b,
+            "ni_var": nix_var, "ni_actual": p_nix_a, "ni_budget": p_nix_b,
+            "capex_var": cap_var, "capex_actual": p_cap_a, "capex_budget": p_cap_b,
             "rent_actual": ra, "rent_budget": rb,
         }
+        n += 1
+        noi_ytd += p_noi_a; noi_bud += p_noi_b
+        nix_act += p_nix_a; nix_bud += p_nix_b
+        capex_act += p_cap_a; capex_bud += p_cap_b
         w = units.get(code, 0)
         if ra is not None and w: ra_ws += ra * w; ra_wu += w
         if rb is not None and w: rb_ws += rb * w; rb_wu += w
-        if nl is not None:
-            noi_buckets["above" if nl > 0.01 else "below" if nl < -0.01 else "online"] += 1
-        if il is not None:
-            ni_buckets["above" if il > 0.05 else "below" if il < -0.05 else "at"] += 1
+        if noi_var is not None:
+            noi_buckets["above" if noi_var > 0.01 else "below" if noi_var < -0.01 else "online"] += 1
+        if nix_var is not None:
+            ni_buckets["above" if nix_var > 0.05 else "below" if nix_var < -0.05 else "at"] += 1
 
     return {
         "month_label": month_label,
+        "prior_month_label": (date(prior[0], prior[1], 1).strftime("%B %Y") if prior else None),
+        "ytd_through": month_label,
         "properties_counted": n,
         "noi_variance_to_budget_ytd": (noi_ytd / noi_bud - 1) if noi_bud else None,
         "noi_actual_ytd": noi_ytd,
         "noi_budget_ytd": noi_bud,
-        "ni_actual_ytd": ni_act,
-        "ni_budget_ytd": ni_bud,
-        "ni_variance_to_budget_ytd": (ni_act / ni_bud - 1) if ni_bud else None,
+        "ni_actual_ytd": nix_act,
+        "ni_budget_ytd": nix_bud,
+        "ni_variance_to_budget_ytd": (nix_act / nix_bud - 1) if nix_bud else None,
         "capex_actual_ytd": capex_act,
         "capex_budget_ytd": capex_bud,
         "capex_vs_budget_ytd": (capex_act / capex_bud - 1) if capex_bud else None,
@@ -904,7 +974,7 @@ def main():
     rent  = safe(get_rent_growth,  "rent_growth", errors)
     box   = safe(lambda: get_marketing(now), "marketing", errors)
     units = safe(get_units,        "units",       errors) or {}
-    fin   = safe(lambda: get_financials(units), "financials", errors)
+    fin   = safe(lambda: get_financials(units, now), "financials", errors)
     bud   = safe(lambda: get_budget_targets(now.month, units), "budgets", errors)
     staff = safe(get_staffing,     "staffing",    errors)
     staff_pp = safe(get_staffing_by_property, "staffing_by_property", errors) or {}

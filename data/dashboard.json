@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-28T20:35:21.638700",
+  "generated_at": "2026-06-28T21:13:05.054718",
   "as_of": {
     "occupancy": "06/26/2026",
     "collections": "06/25/2026",
-    "financials": "April 2026",
+    "financials": "May 2026",
     "boxscore": "06/22-06/28/2026"
   },
   "views": {
@@ -25,9 +25,9 @@
           "budget": 0.987692536749083
         },
         "rent_growth": {
-          "value": 0.02186269611635738,
-          "budget": 0.030240698437694242,
-          "as_of": "April 2026",
+          "value": 0.0346042093737795,
+          "budget": 0.031509594874027685,
+          "as_of": "May 2026",
           "yoy_effective": 0.024159403128736656
         },
         "trend_occupancy_30d": {
@@ -39,40 +39,40 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.004371412156539134,
-          "actual": 37138942.99000002,
-          "budget": 37302005.43000001,
-          "as_of": "April 2026"
+          "value": 0.027045957435528623,
+          "actual": 46562723.0,
+          "budget": 45336552.53000001,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.060429320114474105,
-          "actual": 5110767.039999999,
-          "budget": 4819526.34,
-          "as_of": "April 2026"
+          "value": 0.1142583538663755,
+          "actual": 3269395.21,
+          "budget": 2934144.6700000004,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 37138942.99000002,
-          "budget": 37302005.43000001,
-          "variance": -0.004371412156539134,
+          "actual": 46562723.0,
+          "budget": 45336552.53000001,
+          "variance": 0.027045957435528623,
           "dist": {
-            "above": 9,
-            "online": 4,
-            "below": 10
+            "above": 16,
+            "online": 3,
+            "below": 4
           }
         },
         "net_income": {
-          "actual": 12951284.229999999,
-          "budget": 13302484.3,
-          "variance": -0.026401088855260046,
+          "actual": 38870594.95,
+          "budget": 37597227.15000001,
+          "variance": 0.0338686625723672,
           "dist": {
             "above": 8,
-            "at": 7,
-            "below": 8
+            "at": 13,
+            "below": 2
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 841,
@@ -109,9 +109,9 @@
           "budget": 0.9906043326532531
         },
         "rent_growth": {
-          "value": 0.16687469486142414,
-          "budget": -0.0013288809604840024,
-          "as_of": "April 2026"
+          "value": 0.028912060282379803,
+          "budget": 0.00031815695719972226,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9708333333333333,
@@ -122,23 +122,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.05307142320211755,
-          "actual": 1002351.35,
-          "budget": 1058528.99,
-          "as_of": "April 2026"
+          "value": -0.04298488252504673,
+          "actual": 1236946.7000000002,
+          "budget": 1292504.870000001,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.07901196548180323,
-          "actual": 175190.04,
-          "budget": 190219.67,
-          "as_of": "April 2026"
+          "value": 0.331247168276922,
+          "actual": 92407.79000000001,
+          "budget": 69414.45000000001,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1002351.35,
-          "budget": 1058528.99,
-          "variance": -0.05307142320211755,
+          "actual": 1236946.7000000002,
+          "budget": 1292504.870000001,
+          "variance": -0.04298488252504673,
           "dist": {
             "above": 0,
             "online": 0,
@@ -146,16 +146,16 @@
           }
         },
         "net_income": {
-          "actual": 367721.18000000005,
-          "budget": 402863.93,
-          "variance": -0.08723230694790651,
+          "actual": 923412.9900000002,
+          "budget": 946970.050000001,
+          "variance": -0.024876246086136256,
           "dist": {
             "above": 0,
-            "at": 0,
-            "below": 1
+            "at": 1,
+            "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 43,
@@ -192,9 +192,9 @@
           "budget": 0.9847686137488629
         },
         "rent_growth": {
-          "value": 0.006060858570250405,
-          "budget": 0.05201834075098977,
-          "as_of": "April 2026"
+          "value": 0.031810474753844575,
+          "budget": 0.05922406108207512,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9888444444444444,
@@ -205,23 +205,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.01515000631142982,
-          "actual": 1269454.27,
-          "budget": 1250509.05,
-          "as_of": "April 2026"
+          "value": 0.020675914849888954,
+          "actual": 1597100.28,
+          "budget": 1564747.6899999997,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.14367780950068476,
-          "actual": 144524.87,
-          "budget": 168773.94,
-          "as_of": "April 2026"
+          "value": 0.04651948009375362,
+          "actual": 118121.02000000002,
+          "budget": 112870.35,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1269454.27,
-          "budget": 1250509.05,
-          "variance": 0.01515000631142982,
+          "actual": 1597100.28,
+          "budget": 1564747.6899999997,
+          "variance": 0.020675914849888954,
           "dist": {
             "above": 1,
             "online": 0,
@@ -229,16 +229,16 @@
           }
         },
         "net_income": {
-          "actual": 531736.98,
-          "budget": 484630.16000000003,
-          "variance": 0.09720158563800485,
+          "actual": 1371676.35,
+          "budget": 1310097.4199999995,
+          "variance": 0.04700332132552454,
           "dist": {
-            "above": 1,
-            "at": 0,
+            "above": 0,
+            "at": 1,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 19,
@@ -275,9 +275,9 @@
           "budget": 0.9937364399027843
         },
         "rent_growth": {
-          "value": 0.02921814593990546,
-          "budget": 0.030147364192877557,
-          "as_of": "April 2026"
+          "value": 0.05590505732395079,
+          "budget": 0.04170494980885309,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9382949367088607,
@@ -288,40 +288,40 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.004422872571331338,
-          "actual": 3611711.67,
-          "budget": 3595807.8699999996,
-          "as_of": "April 2026"
+          "value": 0.04420932172002279,
+          "actual": 4484813.45,
+          "budget": 4294937.1899999995,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.2547211877538367,
-          "actual": 782966.31,
-          "budget": 624016.17,
-          "as_of": "April 2026"
+          "value": 0.08272003727163235,
+          "actual": 238995.55,
+          "budget": 220736.24,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 3611711.67,
-          "budget": 3595807.8699999996,
-          "variance": 0.004422872571331338,
+          "actual": 4484813.45,
+          "budget": 4294937.1899999995,
+          "variance": 0.04420932172002279,
           "dist": {
-            "above": 0,
-            "online": 1,
+            "above": 1,
+            "online": 0,
             "below": 0
           }
         },
         "net_income": {
-          "actual": 1229685.83,
-          "budget": 1366340.27,
-          "variance": -0.1000149399095146,
+          "actual": 3317453.77,
+          "budget": 3328931.3100000005,
+          "variance": -0.003447815208899696,
           "dist": {
             "above": 0,
-            "at": 0,
-            "below": 1
+            "at": 1,
+            "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 54,
@@ -358,9 +358,9 @@
           "budget": 0.98
         },
         "rent_growth": {
-          "value": 0.05676610802344206,
-          "budget": 0.022539569872309206,
-          "as_of": "April 2026"
+          "value": -0.06126540673649472,
+          "budget": 0.0640526129998864,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9900789473684212,
@@ -371,23 +371,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.046696599947773976,
-          "actual": 1292671.05,
-          "budget": 1355991.23,
-          "as_of": "April 2026"
+          "value": -0.014718672375544806,
+          "actual": 1688599.1899999997,
+          "budget": 1713824.410000001,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.06665627641396576,
-          "actual": 207384.71000000002,
-          "budget": 222195.43,
-          "as_of": "April 2026"
+          "value": 0.14676293405324858,
+          "actual": 179230.40000000002,
+          "budget": 156292.46000000002,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1292671.05,
-          "budget": 1355991.23,
-          "variance": -0.046696599947773976,
+          "actual": 1688599.1899999997,
+          "budget": 1713824.410000001,
+          "variance": -0.014718672375544806,
           "dist": {
             "above": 0,
             "online": 0,
@@ -395,16 +395,16 @@
           }
         },
         "net_income": {
-          "actual": 105684.14000000001,
-          "budget": 145710.1,
-          "variance": -0.27469585155730447,
+          "actual": 1347789.4399999997,
+          "budget": 1337811.8800000013,
+          "variance": 0.007458118850012241,
           "dist": {
             "above": 0,
-            "at": 0,
-            "below": 1
+            "at": 1,
+            "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 21,
@@ -441,9 +441,9 @@
           "budget": 0.9930170135331589
         },
         "rent_growth": {
-          "value": 0.013841934061245453,
-          "budget": 0.025676503068934098,
-          "as_of": "April 2026"
+          "value": 0.027826998882086063,
+          "budget": 0.027580219317352217,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9433830188679246,
@@ -454,40 +454,40 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.01842309507222062,
-          "actual": 1600592.93,
-          "budget": 1630634.26,
-          "as_of": "April 2026"
+          "value": 0.05666039198305284,
+          "actual": 2014643.5599999998,
+          "budget": 1906614.06,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.2335497776646258,
-          "actual": 54896.16,
-          "budget": 44502.590000000004,
-          "as_of": "April 2026"
+          "value": 0.019249455402651217,
+          "actual": 58112.100000000006,
+          "budget": 57014.600000000006,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1600592.93,
-          "budget": 1630634.26,
-          "variance": -0.01842309507222062,
+          "actual": 2014643.5599999998,
+          "budget": 1906614.06,
+          "variance": 0.05666039198305284,
           "dist": {
-            "above": 0,
+            "above": 1,
             "online": 0,
-            "below": 1
+            "below": 0
           }
         },
         "net_income": {
-          "actual": 368078.86,
-          "budget": 400333.18999999994,
-          "variance": -0.08056871327605875,
+          "actual": 1897705.5899999999,
+          "budget": 1791586.94,
+          "variance": 0.05923164967925021,
           "dist": {
-            "above": 0,
+            "above": 1,
             "at": 0,
-            "below": 1
+            "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 22,
@@ -524,9 +524,9 @@
           "budget": 0.9896009208248725
         },
         "rent_growth": {
-          "value": 0.06668989850519025,
-          "budget": 0.020791145727832694,
-          "as_of": "April 2026"
+          "value": 0.10735913509096418,
+          "budget": 0.025587633933525478,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9236222222222222,
@@ -537,23 +537,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.03508907428120622,
-          "actual": 1553557.7699999998,
-          "budget": 1500892.83,
-          "as_of": "April 2026"
+          "value": 0.03386759659982164,
+          "actual": 1937214.32,
+          "budget": 1873754.7500000005,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.08934352488724318,
-          "actual": 256110.97,
-          "budget": 235105.79,
-          "as_of": "April 2026"
+          "value": 0.03892144492742289,
+          "actual": 215929.35,
+          "budget": 207839.92,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1553557.7699999998,
-          "budget": 1500892.83,
-          "variance": 0.03508907428120622,
+          "actual": 1937214.32,
+          "budget": 1873754.7500000005,
+          "variance": 0.03386759659982164,
           "dist": {
             "above": 1,
             "online": 0,
@@ -561,16 +561,16 @@
           }
         },
         "net_income": {
-          "actual": 668264.62,
-          "budget": 631463.65,
-          "variance": 0.05827884154535257,
+          "actual": 1581922.0500000003,
+          "budget": 1539083.3600000003,
+          "variance": 0.027833898483575314,
           "dist": {
-            "above": 1,
-            "at": 0,
+            "above": 0,
+            "at": 1,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 33,
@@ -607,9 +607,9 @@
           "budget": 0.995
         },
         "rent_growth": {
-          "value": -0.019923956707447954,
-          "budget": -0.0012882862512794135,
-          "as_of": "April 2026"
+          "value": -0.09184423199233493,
+          "budget": 0.0153649072179034,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9120333333333334,
@@ -620,23 +620,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.04010514910240537,
-          "actual": 1445289.9100000001,
-          "budget": 1505675.2400000002,
-          "as_of": "April 2026"
+          "value": -0.025237071226872132,
+          "actual": 1815716.2999999998,
+          "budget": 1862726.05,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.6534429987550139,
-          "actual": 147629.51,
-          "budget": 89286.12,
-          "as_of": "April 2026"
+          "value": 0.6882651941327411,
+          "actual": 140906.80000000002,
+          "budget": 83462.48,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1445289.9100000001,
-          "budget": 1505675.2400000002,
-          "variance": -0.04010514910240537,
+          "actual": 1815716.2999999998,
+          "budget": 1862726.05,
+          "variance": -0.025237071226872132,
           "dist": {
             "above": 0,
             "online": 0,
@@ -644,16 +644,16 @@
           }
         },
         "net_income": {
-          "actual": 741127.5399999999,
-          "budget": 847184.32,
-          "variance": -0.1251873736284449,
+          "actual": 1617337.8799999997,
+          "budget": 1707688.67,
+          "variance": -0.052908232974339664,
           "dist": {
             "above": 0,
             "at": 0,
             "below": 1
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 20,
@@ -690,9 +690,9 @@
           "budget": 0.9879950652079224
         },
         "rent_growth": {
-          "value": 0.09091017381474575,
-          "budget": 0.04237546856709473,
-          "as_of": "April 2026"
+          "value": 0.07390908837309174,
+          "budget": 0.02952946989005878,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9774820224719101,
@@ -703,23 +703,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.01028184733422477,
-          "actual": 1203016.7200000002,
-          "budget": 1190773.3699999999,
-          "as_of": "April 2026"
+          "value": 0.019584366362853434,
+          "actual": 1499986.5000000002,
+          "budget": 1471174.48,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.0368746987873525,
-          "actual": 254960.09,
-          "budget": 264721.62,
-          "as_of": "April 2026"
+          "value": 0.007394001833878505,
+          "actual": 137792.5,
+          "budget": 136781.14,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1203016.7200000002,
-          "budget": 1190773.3699999999,
-          "variance": 0.01028184733422477,
+          "actual": 1499986.5000000002,
+          "budget": 1471174.48,
+          "variance": 0.019584366362853434,
           "dist": {
             "above": 1,
             "online": 0,
@@ -727,16 +727,16 @@
           }
         },
         "net_income": {
-          "actual": 462535.5299999999,
-          "budget": 432219.92999999993,
-          "variance": 0.07013929228113103,
+          "actual": 1165595.1200000003,
+          "budget": 1100729.2100000002,
+          "variance": 0.058929943360002346,
           "dist": {
             "above": 1,
             "at": 0,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 14,
@@ -773,9 +773,9 @@
           "budget": 0.9893313436579318
         },
         "rent_growth": {
-          "value": 0.023038970728811448,
-          "budget": 0.05852606497772639,
-          "as_of": "April 2026"
+          "value": 0.05026809053132886,
+          "budget": 0.06808231386848207,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9395032258064516,
@@ -786,23 +786,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.034488672844309454,
-          "actual": 1185212.58,
-          "budget": 1227549.12,
-          "as_of": "April 2026"
+          "value": -0.020200717949785507,
+          "actual": 1495960.6399999997,
+          "budget": 1526803.1600000008,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.14591871527090405,
-          "actual": 270040.73,
-          "budget": 235654.35,
-          "as_of": "April 2026"
+          "value": 0.12077905513740661,
+          "actual": 156503.2,
+          "budget": 139637.87,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1185212.58,
-          "budget": 1227549.12,
-          "variance": -0.034488672844309454,
+          "actual": 1495960.6399999997,
+          "budget": 1526803.1600000008,
+          "variance": -0.020200717949785507,
           "dist": {
             "above": 0,
             "online": 0,
@@ -810,16 +810,16 @@
           }
         },
         "net_income": {
-          "actual": 82255.37000000001,
-          "budget": 170246.09,
-          "variance": -0.5168442928703971,
+          "actual": 1128155.9400000002,
+          "budget": 1181064.2000000007,
+          "variance": -0.04479710755774369,
           "dist": {
             "above": 0,
-            "at": 0,
-            "below": 1
+            "at": 1,
+            "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 47,
@@ -856,9 +856,9 @@
           "budget": 0.995
         },
         "rent_growth": {
-          "value": 0.01994845207164664,
-          "budget": 0.027601114610912303,
-          "as_of": "April 2026"
+          "value": -0.02857430266688965,
+          "budget": 0.04098826959995949,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9521647058823528,
@@ -869,23 +869,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.013930786134232598,
-          "actual": 1887245.9500000002,
-          "budget": 1861316.3499999999,
-          "as_of": "April 2026"
+          "value": 0.024119865565636722,
+          "actual": 2371773.3500000006,
+          "budget": 2315913.8200000003,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.01195460285406702,
-          "actual": 218611.16999999998,
-          "budget": 221256.2,
-          "as_of": "April 2026"
+          "value": 0.1455708800373241,
+          "actual": 88689.33,
+          "budget": 77419.33,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1887245.9500000002,
-          "budget": 1861316.3499999999,
-          "variance": 0.013930786134232598,
+          "actual": 2371773.3500000006,
+          "budget": 2315913.8200000003,
+          "variance": 0.024119865565636722,
           "dist": {
             "above": 1,
             "online": 0,
@@ -893,16 +893,16 @@
           }
         },
         "net_income": {
-          "actual": 986435.06,
-          "budget": 949555.78,
-          "variance": 0.038838455598680044,
+          "actual": 2045132.9000000008,
+          "budget": 1948310.4300000002,
+          "variance": 0.04969560728574485,
           "dist": {
             "above": 0,
             "at": 1,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 10,
@@ -939,9 +939,9 @@
           "budget": 0.98
         },
         "rent_growth": {
-          "value": 0.0470932772256627,
-          "budget": 0.023051122471466234,
-          "as_of": "April 2026"
+          "value": 0.06541073834191824,
+          "budget": 0.008318140253327222,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9566846153846155,
@@ -952,23 +952,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.027046232232250444,
-          "actual": 1036827.4199999999,
-          "budget": 1009523.6100000001,
-          "as_of": "April 2026"
+          "value": 0.03951020549394246,
+          "actual": 1308641.3,
+          "budget": 1258901.8299999998,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.043712438506583684,
-          "actual": 364506.79999999993,
-          "budget": 349240.64,
-          "as_of": "April 2026"
+          "value": 0.020159067450241208,
+          "actual": 316537.20999999996,
+          "budget": 310282.21,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1036827.4199999999,
-          "budget": 1009523.6100000001,
-          "variance": 0.027046232232250444,
+          "actual": 1308641.3,
+          "budget": 1258901.8299999998,
+          "variance": 0.03951020549394246,
           "dist": {
             "above": 1,
             "online": 0,
@@ -976,16 +976,16 @@
           }
         },
         "net_income": {
-          "actual": 154146.0,
-          "budget": 146886.4,
-          "variance": 0.04942322774606778,
+          "actual": 864837.2800000001,
+          "budget": 843573.4400000001,
+          "variance": 0.025206862842908073,
           "dist": {
             "above": 0,
             "at": 1,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 36,
@@ -1022,9 +1022,9 @@
           "budget": 0.9895134053335068
         },
         "rent_growth": {
-          "value": 0.009606030034701396,
-          "budget": 0.01349141901772577,
-          "as_of": "April 2026"
+          "value": 0.0012882960692759404,
+          "budget": 0.004405349326435326,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9402767295597484,
@@ -1035,23 +1035,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.025695406639861584,
-          "actual": 2080733.21,
-          "budget": 2028607.32,
-          "as_of": "April 2026"
+          "value": 0.03033231260979008,
+          "actual": 2615121.6799999997,
+          "budget": 2538134.2,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 1.515475134917966,
-          "actual": 93791.05,
-          "budget": 37285.619999999995,
-          "as_of": "April 2026"
+          "value": 2.136511249898832,
+          "actual": 18601.77,
+          "budget": 5930.72,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 2080733.21,
-          "budget": 2028607.32,
-          "variance": 0.025695406639861584,
+          "actual": 2615121.6799999997,
+          "budget": 2538134.2,
+          "variance": 0.03033231260979008,
           "dist": {
             "above": 1,
             "online": 0,
@@ -1059,16 +1059,16 @@
           }
         },
         "net_income": {
-          "actual": 614002.11,
-          "budget": 615007.52,
-          "variance": -0.0016347930184659187,
+          "actual": 2458798.909999999,
+          "budget": 2405953.3199999994,
+          "variance": 0.021964511763677974,
           "dist": {
             "above": 0,
             "at": 1,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 36,
@@ -1105,9 +1105,9 @@
           "budget": 0.98
         },
         "rent_growth": {
-          "value": 0.10976270232491392,
-          "budget": 0.060504312294222595,
-          "as_of": "April 2026"
+          "value": -0.02537273423085118,
+          "budget": 0.032987461758962056,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9605315789473684,
@@ -1118,40 +1118,40 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.031017063359077723,
-          "actual": 1275404.12,
-          "budget": 1316229.7,
-          "as_of": "April 2026"
+          "value": -0.0011914753581508952,
+          "actual": 1606065.35,
+          "budget": 1607981.2199999995,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.141183992518933,
-          "actual": 188012.55,
-          "budget": 218920.64,
-          "as_of": "April 2026"
+          "value": 0.03137756242491063,
+          "actual": 113737.11,
+          "budget": 110276.89,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1275404.12,
-          "budget": 1316229.7,
-          "variance": -0.031017063359077723,
+          "actual": 1606065.35,
+          "budget": 1607981.2199999995,
+          "variance": -0.0011914753581508952,
           "dist": {
             "above": 0,
-            "online": 0,
-            "below": 1
+            "online": 1,
+            "below": 0
           }
         },
         "net_income": {
-          "actual": 658199.2100000001,
-          "budget": 660796.63,
-          "variance": -0.003930740385283071,
+          "actual": 1330272.6400000001,
+          "budget": 1282553.1500000001,
+          "variance": 0.03720663740134267,
           "dist": {
             "above": 0,
             "at": 1,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 40,
@@ -1188,9 +1188,9 @@
           "budget": 0.995
         },
         "rent_growth": {
-          "value": -0.01396670875697592,
-          "budget": 0.03298873228630228,
-          "as_of": "April 2026"
+          "value": 0.03109373967428586,
+          "budget": 0.018360785331152485,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9588157706093191,
@@ -1201,23 +1201,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.026566577553305937,
-          "actual": 3278034.8899999997,
-          "budget": 3193202.4299999997,
-          "as_of": "April 2026"
+          "value": 0.052291943584795275,
+          "actual": 4087434.37,
+          "budget": 3884315.9399999995,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.029979463618077795,
-          "actual": 641903.97,
-          "budget": 661742.66,
-          "as_of": "April 2026"
+          "value": 0.012172965051980178,
+          "actual": 686412.06,
+          "budget": 678156.8800000001,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 3278034.8899999997,
-          "budget": 3193202.4299999997,
-          "variance": 0.026566577553305937,
+          "actual": 4087434.37,
+          "budget": 3884315.9399999995,
+          "variance": 0.052291943584795275,
           "dist": {
             "above": 1,
             "online": 0,
@@ -1225,16 +1225,16 @@
           }
         },
         "net_income": {
-          "actual": 1394952.49,
-          "budget": 1274202.84,
-          "variance": 0.09476485706153337,
+          "actual": 3107358.25,
+          "budget": 2833023.7699999996,
+          "variance": 0.09683451402880405,
           "dist": {
             "above": 1,
             "at": 0,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 34,
@@ -1271,9 +1271,9 @@
           "budget": 0.995
         },
         "rent_growth": {
-          "value": -0.052310676501641784,
-          "budget": 0.056721353098508454,
-          "as_of": "April 2026"
+          "value": 0.10316637728466249,
+          "budget": 0.017235361809274874,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9496225806451613,
@@ -1284,40 +1284,40 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.01809192555160022,
-          "actual": 2725070.4299999997,
-          "budget": 2775280.6,
-          "as_of": "April 2026"
+          "value": 0.04426155212703331,
+          "actual": 3431804.190000001,
+          "budget": 3286345.4400000023,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.10119004811896715,
-          "actual": 238712.75999999998,
-          "budget": 265587.58,
-          "as_of": "April 2026"
+          "value": 0.5539663209420469,
+          "actual": 125791.73999999999,
+          "budget": 80948.82,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 2725070.4299999997,
-          "budget": 2775280.6,
-          "variance": -0.01809192555160022,
+          "actual": 3431804.190000001,
+          "budget": 3286345.4400000023,
+          "variance": 0.04426155212703331,
           "dist": {
-            "above": 0,
+            "above": 1,
             "online": 0,
-            "below": 1
+            "below": 0
           }
         },
         "net_income": {
-          "actual": -66608.84,
-          "budget": -48107.26,
-          "variance": 0.38459018451684823,
+          "actual": 3003206.5400000005,
+          "budget": 2807555.780000002,
+          "variance": 0.06968722096057456,
           "dist": {
             "above": 1,
             "at": 0,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 42,
@@ -1354,9 +1354,9 @@
           "budget": 0.995
         },
         "rent_growth": {
-          "value": 0.010064962260385002,
-          "budget": -0.005079286733225552,
-          "as_of": "April 2026"
+          "value": -0.040758212695970686,
+          "budget": 0.016843805641523657,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9216795180722891,
@@ -1367,40 +1367,40 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.007150914233279293,
-          "actual": 879235.9700000001,
-          "budget": 872993.27,
-          "as_of": "April 2026"
+          "value": 0.045700232061211876,
+          "actual": 1103139.0399999998,
+          "budget": 1054928.5599999998,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.06329861744335763,
-          "actual": 96902.72,
-          "budget": 91134.06,
-          "as_of": "April 2026"
+          "value": 0.18132353482618235,
+          "actual": 40106.82000000001,
+          "budget": 33950.75,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 879235.9700000001,
-          "budget": 872993.27,
-          "variance": 0.007150914233279293,
+          "actual": 1103139.0399999998,
+          "budget": 1054928.5599999998,
+          "variance": 0.045700232061211876,
           "dist": {
-            "above": 0,
-            "online": 1,
+            "above": 1,
+            "online": 0,
             "below": 0
           }
         },
         "net_income": {
-          "actual": 485228.51999999996,
-          "budget": 481130.73000000004,
-          "variance": 0.008516999111654933,
+          "actual": 967672.8599999999,
+          "budget": 913021.3099999998,
+          "variance": 0.05985791284542974,
           "dist": {
-            "above": 0,
-            "at": 1,
+            "above": 1,
+            "at": 0,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 25,
@@ -1437,9 +1437,9 @@
           "budget": 0.9859450770901557
         },
         "rent_growth": {
-          "value": 0.01726430222275499,
-          "budget": 0.02788461559597244,
-          "as_of": "April 2026"
+          "value": 0.061910928205717974,
+          "budget": 0.02958254760502066,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9227,
@@ -1450,23 +1450,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.008723196550113332,
-          "actual": 1128777.8,
-          "budget": 1119016.4,
-          "as_of": "April 2026"
+          "value": -0.0067082654488662685,
+          "actual": 1398035.3699999999,
+          "budget": 1407477.1000000003,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.1207714329292412,
-          "actual": 157141.55000000002,
-          "budget": 178726.62,
-          "as_of": "April 2026"
+          "value": 0.08498270223297033,
+          "actual": 112018.54000000001,
+          "budget": 103244.54000000001,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1128777.8,
-          "budget": 1119016.4,
-          "variance": 0.008723196550113332,
+          "actual": 1398035.3699999999,
+          "budget": 1407477.1000000003,
+          "variance": -0.0067082654488662685,
           "dist": {
             "above": 0,
             "online": 1,
@@ -1474,16 +1474,16 @@
           }
         },
         "net_income": {
-          "actual": 398194.68,
-          "budget": 357038.7,
-          "variance": 0.11527036144821268,
+          "actual": 1063107.5299999998,
+          "budget": 1074894.2800000003,
+          "variance": -0.010965496997528357,
           "dist": {
-            "above": 1,
-            "at": 0,
+            "above": 0,
+            "at": 1,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 34,
@@ -1520,9 +1520,9 @@
           "budget": 0.9775
         },
         "rent_growth": {
-          "value": -0.005117508079892752,
-          "budget": 0.0316797206975048,
-          "as_of": "April 2026"
+          "value": 0.028084102878465522,
+          "budget": 0.045362581702074634,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9650500000000001,
@@ -1533,40 +1533,40 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.036069549918356425,
-          "actual": 3529890.0100000002,
-          "budget": 3661975.83,
-          "as_of": "April 2026"
+          "value": 0.012070489881071067,
+          "actual": 4373007.609999999,
+          "budget": 4320852.800000002,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.03272771005839825,
-          "actual": 175690.53999999998,
-          "budget": 170122.81,
-          "as_of": "April 2026"
+          "value": 0.10850363772886618,
+          "actual": 88753.94,
+          "budget": 80066.44,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 3529890.0100000002,
-          "budget": 3661975.83,
-          "variance": -0.036069549918356425,
+          "actual": 4373007.609999999,
+          "budget": 4320852.800000002,
+          "variance": 0.012070489881071067,
           "dist": {
-            "above": 0,
+            "above": 1,
             "online": 0,
-            "below": 1
+            "below": 0
           }
         },
         "net_income": {
-          "actual": 1640965.4499999997,
-          "budget": 1780386.38,
-          "variance": -0.0783093667566701,
+          "actual": 4093581.81,
+          "budget": 3987858.7600000007,
+          "variance": 0.026511232308538357,
           "dist": {
             "above": 0,
-            "at": 0,
-            "below": 1
+            "at": 1,
+            "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 127,
@@ -1603,9 +1603,9 @@
           "budget": 0.9795607803066336
         },
         "rent_growth": {
-          "value": 0.006012484254091843,
-          "budget": 0.02101369923368579,
-          "as_of": "April 2026"
+          "value": 0.053243527298112214,
+          "budget": 0.02555902679274169,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9206923076923077,
@@ -1616,40 +1616,40 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.029426248352208417,
-          "actual": 1715814.8499999999,
-          "budget": 1767835.62,
-          "as_of": "April 2026"
+          "value": 0.04488382538870095,
+          "actual": 2107905.81,
+          "budget": 2017359.0199999993,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.015307244943234766,
-          "actual": 152486.94999999998,
-          "budget": 154857.39,
-          "as_of": "April 2026"
+          "value": 0.05400377112144117,
+          "actual": 75189.33,
+          "budget": 71336.87,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1715814.8499999999,
-          "budget": 1767835.62,
-          "variance": -0.029426248352208417,
+          "actual": 2107905.81,
+          "budget": 2017359.0199999993,
+          "variance": 0.04488382538870095,
           "dist": {
-            "above": 0,
+            "above": 1,
             "online": 0,
-            "below": 1
-          }
-        },
-        "net_income": {
-          "actual": 873693.8,
-          "budget": 915847.8600000001,
-          "variance": -0.04602736091996773,
-          "dist": {
-            "above": 0,
-            "at": 1,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "net_income": {
+          "actual": 1904567.2200000007,
+          "budget": 1767469.4499999997,
+          "variance": 0.07756726431678973,
+          "dist": {
+            "above": 1,
+            "at": 0,
+            "below": 0
+          }
+        },
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 69,
@@ -1686,9 +1686,9 @@
           "budget": 0.9867877080498475
         },
         "rent_growth": {
-          "value": 0.0012436787001535166,
-          "budget": 0.05057214622429429,
-          "as_of": "April 2026"
+          "value": 0.08195151443166138,
+          "budget": 0.016610781641597683,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9236152866242038,
@@ -1699,23 +1699,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.026698975427732696,
-          "actual": 1300789.46,
-          "budget": 1266962.8499999999,
-          "as_of": "April 2026"
+          "value": 0.10202813810395117,
+          "actual": 1627729.2599999993,
+          "budget": 1477030.58,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.13577410117788746,
-          "actual": 139927.74,
-          "budget": 161911.07,
-          "as_of": "April 2026"
+          "value": 0.05801947530748208,
+          "actual": 77441.99999999999,
+          "budget": 73195.25,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1300789.46,
-          "budget": 1266962.8499999999,
-          "variance": 0.026698975427732696,
+          "actual": 1627729.2599999993,
+          "budget": 1477030.58,
+          "variance": 0.10202813810395117,
           "dist": {
             "above": 1,
             "online": 0,
@@ -1723,16 +1723,16 @@
           }
         },
         "net_income": {
-          "actual": 646177.99,
-          "budget": 587626.27,
-          "variance": 0.09964108650214021,
+          "actual": 1441488.3099999996,
+          "budget": 1233977.5400000003,
+          "variance": 0.1681641385466377,
           "dist": {
             "above": 1,
             "at": 0,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 50,
@@ -1769,9 +1769,9 @@
           "budget": 0.99
         },
         "rent_growth": {
-          "value": -0.011154096352063214,
-          "budget": 0.016448287250428573,
-          "as_of": "April 2026"
+          "value": 0.04301280478657521,
+          "budget": 0.029212252495286917,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9621242424242425,
@@ -1782,40 +1782,40 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.061733207738913,
-          "actual": 158396.83,
-          "budget": 168818.53999999998,
-          "as_of": "April 2026"
+          "value": 0.21360745429636507,
+          "actual": 232659.52,
+          "budget": 191709.03999999998,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.30392176308869834,
-          "actual": 69682.56999999999,
-          "budget": 53440.76,
-          "as_of": "April 2026"
+          "value": 2.8171857886439238,
+          "actual": 52347.13,
+          "budget": 13713.54,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 158396.83,
-          "budget": 168818.53999999998,
-          "variance": -0.061733207738913,
+          "actual": 232659.52,
+          "budget": 191709.03999999998,
+          "variance": 0.21360745429636507,
           "dist": {
-            "above": 0,
+            "above": 1,
             "online": 0,
-            "below": 1
+            "below": 0
           }
         },
         "net_income": {
-          "actual": -34731.52,
-          "budget": -17708.319999999996,
-          "variance": 0.9613108414575751,
+          "actual": 112453.46000000008,
+          "budget": 94153.32999999994,
+          "variance": 0.19436519133205543,
           "dist": {
             "above": 1,
             "at": 0,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 17,
@@ -1852,9 +1852,9 @@
           "budget": 0.9791679013729963
         },
         "rent_growth": {
-          "value": 0.037742808773358005,
-          "budget": 0.01957852362151824,
-          "as_of": "April 2026"
+          "value": 0.08805716114574702,
+          "budget": 0.0749942985639096,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9704582278481013,
@@ -1865,23 +1865,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.0008330131008651431,
-          "actual": 941265.2699999999,
-          "budget": 942050.01,
-          "as_of": "April 2026"
+          "value": -0.0035166099828438657,
+          "actual": 1180633.6600000001,
+          "budget": 1184800.139999999,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.44070640084789936,
-          "actual": 213385.82,
-          "budget": 148111.94,
-          "as_of": "April 2026"
+          "value": 0.06430200651619855,
+          "actual": 92076.63,
+          "budget": 86513.63,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 941265.2699999999,
-          "budget": 942050.01,
-          "variance": -0.0008330131008651431,
+          "actual": 1180633.6600000001,
+          "budget": 1184800.139999999,
+          "variance": -0.0035166099828438657,
           "dist": {
             "above": 0,
             "online": 1,
@@ -1889,16 +1889,16 @@
           }
         },
         "net_income": {
-          "actual": 164554.22999999998,
-          "budget": 229392.28999999998,
-          "variance": -0.28265143523350333,
+          "actual": 903976.2100000002,
+          "budget": 961425.0399999993,
+          "variance": -0.05975383166637638,
           "dist": {
             "above": 0,
             "at": 0,
             "below": 1
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 29,
@@ -1935,9 +1935,9 @@
           "budget": 0.9935521253140442
         },
         "rent_growth": {
-          "value": 0.05403390499198846,
-          "budget": 0.01866128158514635,
-          "as_of": "April 2026"
+          "value": 0.02089727703856692,
+          "budget": 0.014864699252507219,
+          "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
           "value": 0.9642380952380952,
@@ -1948,23 +1948,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.03570222137479617,
-          "actual": 1037598.53,
-          "budget": 1001830.94,
-          "as_of": "April 2026"
+          "value": 0.04991396930121983,
+          "actual": 1347791.5499999998,
+          "budget": 1283716.1800000006,
+          "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 1.0269656986115772,
-          "actual": 66307.45999999999,
-          "budget": 32712.670000000002,
-          "as_of": "April 2026"
+          "value": 0.7435805244282658,
+          "actual": 43692.89,
+          "budget": 25059.29,
+          "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
-          "actual": 1037598.53,
-          "budget": 1001830.94,
-          "variance": 0.03570222137479617,
+          "actual": 1347791.5499999998,
+          "budget": 1283716.1800000006,
+          "variance": 0.04991396930121983,
           "dist": {
             "above": 1,
             "online": 0,
@@ -1972,16 +1972,16 @@
           }
         },
         "net_income": {
-          "actual": 478985.0,
-          "budget": 489436.84,
-          "variance": -0.021354828949941784,
+          "actual": 1223091.8999999994,
+          "budget": 1199494.5100000002,
+          "variance": 0.01967277866073691,
           "dist": {
             "above": 0,
             "at": 1,
             "below": 0
           }
         },
-        "as_of": "April 2026"
+        "as_of": "May 2026"
       },
       "marketing": {
         "traffic": 19,
@@ -2018,9 +2018,9 @@
       "budget": 0.987692536749083
     },
     "rent_growth": {
-      "value": 0.02186269611635738,
-      "budget": 0.030240698437694242,
-      "as_of": "April 2026",
+      "value": 0.0346042093737795,
+      "budget": 0.031509594874027685,
+      "as_of": "May 2026",
       "yoy_effective": 0.024159403128736656
     },
     "trend_occupancy_30d": {
@@ -2032,16 +2032,16 @@
       "prior_month": null
     },
     "noi_variance": {
-      "value": -0.004371412156539134,
-      "actual": 37138942.99000002,
-      "budget": 37302005.43000001,
-      "as_of": "April 2026"
+      "value": 0.027045957435528623,
+      "actual": 46562723.0,
+      "budget": 45336552.53000001,
+      "as_of": "May 2026"
     },
     "capex_vs_budget": {
-      "value": 0.060429320114474105,
-      "actual": 5110767.039999999,
-      "budget": 4819526.34,
-      "as_of": "April 2026"
+      "value": 0.1142583538663755,
+      "actual": 3269395.21,
+      "budget": 2934144.6700000004,
+      "as_of": "May 2026"
     }
   },
   "marketing": {
@@ -2066,7 +2066,7 @@
       "occupancy": 0.9227,
       "leased": 0.9469,
       "collected": 0.9990116195628921,
-      "noi_variance": 0.008723196550113332,
+      "noi_variance": -0.0067082654488662685,
       "rent_growth": null,
       "concern": "occupancy"
     },
@@ -2075,7 +2075,7 @@
       "occupancy": 0.9255,
       "leased": 0.9470999999999999,
       "collected": 0.9815842562288225,
-      "noi_variance": -0.029426248352208417,
+      "noi_variance": 0.04488382538870095,
       "rent_growth": null,
       "concern": "occupancy"
     },
@@ -2084,7 +2084,7 @@
       "occupancy": 0.9268,
       "leased": 0.9490000000000001,
       "collected": 0.9935247744159478,
-      "noi_variance": 0.026698975427732696,
+      "noi_variance": 0.10202813810395117,
       "rent_growth": null,
       "concern": "occupancy"
     }
@@ -2105,14 +2105,14 @@
   ],
   "focus_as_of": "June vs May 2026",
   "noi_distribution": {
-    "above": 9,
-    "online": 4,
-    "below": 10
+    "above": 16,
+    "online": 3,
+    "below": 4
   },
   "net_income_distribution": {
     "above": 8,
-    "at": 7,
-    "below": 8
+    "at": 13,
+    "below": 2
   },
   "takeaways": [
     "Schedule a meeting with Minna to discuss approval and handling of checks over $100,000.",
