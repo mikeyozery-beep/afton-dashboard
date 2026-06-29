@@ -609,20 +609,16 @@ def get_takeaways():
 def get_areas_of_focus():
     """Three portfolio-average focus themes from Effective Rent Analysis -> Summary:
     Tradeouts (block from row 4), Renewals (block from row 30), Effective-rent MoM (O108).
-    Each is a unit-weighted portfolio average of the latest month; labeled as-of."""
+    Each is a unit-weighted portfolio average shown as current month vs prior month; the
+    section as-of (e.g. 'June vs May 2026') is returned so bullets don't repeat the month."""
     wb = load(RENT_FILE); ws = wb["Summary"]
 
-    def last_month_col(hdr_row):
-        last = None
-        for c in range(4, 32):
-            if isinstance(ws.cell(hdr_row, c).value, datetime):
-                last = c
-        return last
+    def month_cols(hdr_row):
+        return [c for c in range(4, 32) if isinstance(ws.cell(hdr_row, c).value, datetime)]
 
-    def weighted_avg(data_start, hdr_row):
-        col = last_month_col(hdr_row)
+    def weighted_avg(data_start, col):
         if not col:
-            return None, None
+            return None
         wsum = wunits = 0.0
         for r in range(data_start, data_start + 30):
             code = ws.cell(r, 3).value
@@ -632,39 +628,56 @@ def get_areas_of_focus():
             u   = num(ws.cell(r, 1).value)
             if val is not None and u:
                 wsum += val * u; wunits += u
-        asof = ws.cell(hdr_row, col).value
-        return (wsum / wunits if wunits else None), asof
+        return (wsum / wunits) if wunits else None
 
-    trade, trade_asof = weighted_avg(4, 3)     # Tradeouts block (header row 3)
-    renew, renew_asof = weighted_avg(30, 29)   # Renewals block (header row 29)
+    def cur_prior(data_start, hdr_row):
+        cols = month_cols(hdr_row)
+        last  = cols[-1] if cols else None
+        prior = cols[-2] if len(cols) >= 2 else None
+        return (weighted_avg(data_start, last), weighted_avg(data_start, prior),
+                ws.cell(hdr_row, last).value if last else None,
+                ws.cell(hdr_row, prior).value if prior else None)
+
+    trade, trade_prior, t_asof, t_prior_asof = cur_prior(4, 3)     # Tradeouts (header row 3)
+    renew, renew_prior, _, _                 = cur_prior(30, 29)   # Renewals  (header row 29)
     eff_mom       = num(ws["O108"].value)      # Effective Rents 'MoM %' latest month (June)
     eff_mom_prior = num(ws["N108"].value)      # prior month (May)
     wb.close()
 
-    def mon(d):
+    def mname(d):
         try:
-            return d.strftime("%b %Y")
+            return d.strftime("%B")
         except Exception:
             return ""
-    asof = mon(trade_asof or renew_asof)
+    cur_m, prior_m = mname(t_asof), mname(t_prior_asof)
+    try:
+        yr = t_asof.year
+    except Exception:
+        yr = ""
+    as_of = (f"{cur_m} vs {prior_m} {yr}".strip() if cur_m and prior_m
+             else (f"{cur_m} {yr}".strip() if cur_m else ""))
+
+    def cur_vs_prior(label, cur, prior, suffix=""):
+        if cur is None:
+            return f"{label}: no current data"
+        s = f"{label} averaging {cur*100:+.1f}%{suffix}"
+        if prior is not None:
+            s += f" vs {prior*100:+.1f}%{suffix} in prior month"
+        return s
 
     focus = []
-    focus.append({"theme": "Tradeouts",
-                  "summary": (f"Tradeouts averaging {trade*100:+.1f}% (as of {asof})"
-                              if trade is not None else "Tradeouts: no current data")})
-    focus.append({"theme": "Renewals",
-                  "summary": (f"Renewals averaging {renew*100:+.1f}% (as of {asof})"
-                              if renew is not None else "Renewals: no current data")})
+    focus.append({"theme": "Tradeouts", "summary": cur_vs_prior("Tradeouts", trade, trade_prior)})
+    focus.append({"theme": "Renewals",  "summary": cur_vs_prior("Renewals", renew, renew_prior)})
     annz = lambda m: ((1 + m) ** 12 - 1) if m is not None else None
     eff_cur, eff_prior = annz(eff_mom), annz(eff_mom_prior)
     if eff_cur is None:
         eff_txt = "Effective rent: no current data"
     else:
-        eff_txt = f"Effective rent {eff_cur*100:+.1f}% Annualized as of {asof}"
+        eff_txt = f"Effective rent {eff_cur*100:+.1f}% annualized"
         if eff_prior is not None:
-            eff_txt += f" vs {eff_prior*100:+.1f}% annualized Prior Month"
+            eff_txt += f" vs {eff_prior*100:+.1f}% annualized in prior month"
     focus.append({"theme": "Effective Rent", "summary": eff_txt})
-    return focus
+    return {"as_of": as_of, "items": focus}
 
 
 # ----------------------------------------------------------------------------
@@ -763,6 +776,16 @@ def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
         return {k: f.get(k) for k in ("traffic", "tours", "applications", "tours_over_traffic",
                                       "conversions", "period", "benchmark_pct", "benchmark_weeks")}
 
+    # single-property bucket (matches the portfolio distribution thresholds in get_financials)
+    def noi_bucket(v):
+        if v is None:
+            return {"above": 0, "online": 0, "below": 0}
+        return {"above": int(v > 0.01), "online": int(-0.01 <= v <= 0.01), "below": int(v < -0.01)}
+    def ni_bucket(v):
+        if v is None:
+            return {"above": 0, "at": 0, "below": 0}
+        return {"above": int(v > 0.05), "at": int(-0.05 <= v <= 0.05), "below": int(v < -0.05)}
+
     views = {
         "PORTFOLIO": {
             "label": f"Portfolio ({fin.get('properties_counted') or len(names)} properties)",
@@ -792,9 +815,11 @@ def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
             },
             "charts": {
                 "noi": {"actual": fin.get("noi_actual_ytd"), "budget": fin.get("noi_budget_ytd"),
-                        "variance": fin.get("noi_variance_to_budget_ytd")},
+                        "variance": fin.get("noi_variance_to_budget_ytd"),
+                        "dist": fin.get("noi_distribution")},
                 "net_income": {"actual": fin.get("ni_actual_ytd"), "budget": fin.get("ni_budget_ytd"),
-                               "variance": fin.get("ni_variance_to_budget_ytd")},
+                               "variance": fin.get("ni_variance_to_budget_ytd"),
+                               "dist": fin.get("net_income_distribution")},
                 "as_of": fin.get("month_label"),
             },
             "marketing": mkt_view(mkt),
@@ -825,10 +850,12 @@ def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
             },
             "charts": {
                 "noi": {"actual": f.get("noi_actual"), "budget": f.get("noi_budget"),
-                        "variance": f.get("noi_var")},
+                        "variance": f.get("noi_var"), "dist": noi_bucket(f.get("noi_var"))},
                 "net_income": {"actual": f.get("ni_actual"), "budget": f.get("ni_budget"),
                                "variance": ((f["ni_actual"] / f["ni_budget"] - 1)
-                                            if f.get("ni_actual") is not None and f.get("ni_budget") else None)},
+                                            if f.get("ni_actual") is not None and f.get("ni_budget") else None),
+                               "dist": ni_bucket((f["ni_actual"] / f["ni_budget"] - 1)
+                                                 if f.get("ni_actual") is not None and f.get("ni_budget") else None)},
                 "as_of": fin.get("month_label"),
             },
             "marketing": mkt_view(mkt_pp.get(code)),
@@ -891,7 +918,11 @@ def main():
             bottom, _ = build_analysis(occ, coll, fin or {})
         except Exception as e:
             errors.append(f"analysis: {e}"); traceback.print_exc()
-    focus = safe(get_areas_of_focus, "focus_areas", errors) or []
+    focus_raw = safe(get_areas_of_focus, "focus_areas", errors) or {}
+    if isinstance(focus_raw, dict):
+        focus, focus_as_of = focus_raw.get("items", []), focus_raw.get("as_of")
+    else:
+        focus, focus_as_of = focus_raw, None
 
     views = build_views(occ, coll, bud, fin, staff, staff_pp, box, prior)
     portfolio = views["PORTFOLIO"]
@@ -913,6 +944,7 @@ def main():
         "marketing": portfolio["marketing"],
         "bottom_performers": bottom,
         "focus_areas": focus,
+        "focus_as_of": focus_as_of,
         "noi_distribution": fin.get("noi_distribution"),          # raw property counts
         "net_income_distribution": fin.get("net_income_distribution"),
         "takeaways": take.get("items", []),
