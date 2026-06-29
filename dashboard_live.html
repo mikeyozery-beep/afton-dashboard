@@ -740,6 +740,12 @@
     set('mk-conv', m.conversions == null ? '–' : pct(m.conversions, 1)); setHTML('mk-conv-detail', vs('conversions') || '(Apps / Tours)');
 
     renderCharts(v.charts);   // pies follow the toggle (portfolio vs single property)
+
+    // Areas of Focus bullets follow the toggle too (portfolio vs single property)
+    const fa = v.focus || [];
+    setHTML('focus-areas', fa.length
+      ? fa.map(f => `<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">${escapeHTML(f.summary)}</div></div>`).join('')
+      : '<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">No focus items.</div></div>');
   }
 
   // Rows 4+ (portfolio-level; not affected by the toggle)
@@ -749,11 +755,9 @@
       ? tks.map(t => `<div class="list-item">${escapeHTML(t)}</div>`).join('')
       : '<div class="list-item">No takeaways found in latest notes.</div>');
 
+    // Section heading (month range is the same across views); the bullets themselves are
+    // rendered per-view in renderView() so they follow the Portfolio/property toggle.
     set('focus-title', d.focus_as_of ? `Areas of Focus as of ${d.focus_as_of}` : 'Areas of Focus');
-    const fa = d.focus_areas || [];
-    setHTML('focus-areas', fa.length
-      ? fa.map(f => `<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">${escapeHTML(f.summary)}</div></div>`).join('')
-      : '<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">No focus items.</div></div>');
 
     const bp = d.bottom_performers || [];
     const cc = (p, m) => p.concern === m ? 'concern' : '';
