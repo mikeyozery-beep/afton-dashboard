@@ -281,13 +281,49 @@
       color: #333;
     }
 
+    .chart-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
     .pie-container {
+      flex: 1 1 0;
       height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
     }
+
+    .chart-summary {
+      flex: 1 1 0;
+      text-align: center;
+    }
+    .summary-cap {
+      font-size: 10px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .summary-amt {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .summary-sub {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .summary-as {
+      font-size: 10px;
+      color: #999;
+      margin-top: 6px;
+    }
+    .level { color: #333; }
 
     canvas {
       max-width: 100%;
@@ -457,7 +493,7 @@
     </div>
 
     <div class="card-box">
-      <div class="section-title">Areas of Focus</div>
+      <div class="section-title" id="focus-title">Areas of Focus</div>
       <div id="focus-areas"></div>
     </div>
   </div>
@@ -483,16 +519,22 @@
   <div class="charts-grid">
     <div class="chart-box">
       <div class="chart-title">Performance vs Budget (NOI)</div>
-      <div class="pie-container">
-        <canvas id="noi-chart" role="img" aria-label="NOI performance vs budget pie chart">NOI Chart</canvas>
+      <div class="chart-main">
+        <div class="pie-container">
+          <canvas id="noi-chart" role="img" aria-label="NOI performance vs budget pie chart">NOI Chart</canvas>
+        </div>
+        <div class="chart-summary" id="noi-summary"></div>
       </div>
       <div class="legend" id="noi-legend"></div>
     </div>
 
     <div class="chart-box">
       <div class="chart-title">Net Income Excl. Interest Expense</div>
-      <div class="pie-container">
-        <canvas id="net-income-chart" role="img" aria-label="Net income excluding interest expense pie chart">Net Income Chart</canvas>
+      <div class="chart-main">
+        <div class="pie-container">
+          <canvas id="net-income-chart" role="img" aria-label="Net income excluding interest expense pie chart">Net Income Chart</canvas>
+        </div>
+        <div class="chart-summary" id="net-income-summary"></div>
       </div>
       <div class="legend" id="net-income-legend"></div>
     </div>
@@ -604,9 +646,9 @@
     const noi = k.noi_variance || {};
     setSigned('noi-value', noi.value, 1);            // negative = red
     if (noi.actual != null && noi.budget != null) {
-      const overM = (noi.actual - noi.budget) / 1e6;
-      applyChangeRaw('noi-change', `${overM >= 0 ? '+' : ''}$${overM.toFixed(1)}M vs budget`, overM < 0);
-      setHTML('noi-detail', `YTD: $${(noi.actual/1e6).toFixed(1)}M actual<br>vs. $${(noi.budget/1e6).toFixed(1)}M budget${noi.as_of ? ' · ' + escapeHTML(noi.as_of) : ''}`);
+      const diff = noi.actual - noi.budget;
+      applyChangeRaw('noi-change', `${fmtSignedMoney(diff)} vs budget`, diff < 0);
+      setHTML('noi-detail', `YTD: ${fmtMoney(noi.actual)} actual<br>vs. ${fmtMoney(noi.budget)} budget${noi.as_of ? ' · ' + escapeHTML(noi.as_of) : ''}`);
     } else {
       set('noi-change', '');
       setHTML('noi-detail', noi.as_of ? `vs budget · ${noi.as_of} YTD` : 'vs budget');
@@ -615,9 +657,9 @@
     const cx = k.capex_vs_budget || {};
     setSignedCapex('capex-value', cx.value, 1);      // positive (over budget) = red
     if (cx.actual != null && cx.budget != null) {
-      const overM = (cx.actual - cx.budget) / 1e6;
-      applyChangeRaw('capex-change', `${overM >= 0 ? '+' : ''}$${overM.toFixed(1)}M vs budget`, overM > 0);
-      setHTML('capex-detail', `YTD: $${(cx.actual/1e6).toFixed(1)}M actual<br>vs. $${(cx.budget/1e6).toFixed(1)}M budget${cx.as_of ? ' · ' + cx.as_of : ''}`);
+      const diff = cx.actual - cx.budget;
+      applyChangeRaw('capex-change', `${fmtSignedMoney(diff)} vs budget`, diff > 0);
+      setHTML('capex-detail', `YTD: ${fmtMoney(cx.actual)} actual<br>vs. ${fmtMoney(cx.budget)} budget${cx.as_of ? ' · ' + escapeHTML(cx.as_of) : ''}`);
     } else {
       set('capex-change', '');
       setHTML('capex-detail', cx.as_of ? `vs budget · ${cx.as_of} YTD` : 'vs budget');
@@ -649,6 +691,7 @@
       ? tks.map(t => `<div class="list-item">${escapeHTML(t)}</div>`).join('')
       : '<div class="list-item">No takeaways found in latest notes.</div>');
 
+    set('focus-title', d.focus_as_of ? `Areas of Focus as of ${d.focus_as_of}` : 'Areas of Focus');
     const fa = d.focus_areas || [];
     setHTML('focus-areas', fa.length
       ? fa.map(f => `<div class="focus-box"><div class="icon">!</div><div class="focus-box-text">${escapeHTML(f.summary)}</div></div>`).join('')
@@ -702,41 +745,70 @@
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
-  // Pies show the selected view's Actual vs Budget ($ + variance %); toggle-aware.
-  const fmtM = (v) => (v == null) ? '–' : `${v < 0 ? '-' : ''}$${Math.abs(v / 1e6).toFixed(1)}M`;
+  // Each pie shows the share of properties ahead / in-line / behind budget; the panel
+  // to its right shows the view's TOTAL $ and % vs budget (green ahead, red behind,
+  // black in-line). Both follow the toggle (portfolio or single property).
+  const plur = (n) => `${n || 0} ${(n === 1) ? 'property' : 'properties'}`;
+  // adaptive $ scale so single-property deltas (tens of thousands) don't collapse to "$0.0M"
+  const fmtMoney = (v) => {
+    if (v == null) return '–';
+    const s = v < 0 ? '-' : '', a = Math.abs(v);
+    if (a >= 1e6) return `${s}$${(a / 1e6).toFixed(1)}M`;
+    if (a >= 1e3) return `${s}$${(a / 1e3).toFixed(0)}K`;
+    return `${s}$${a.toFixed(0)}`;
+  };
+  const fmtSignedMoney = (v) => {
+    if (v == null) return '–';
+    const s = v >= 0 ? '+' : '-', a = Math.abs(v);
+    if (a >= 1e6) return `${s}$${(a / 1e6).toFixed(1)}M`;
+    if (a >= 1e3) return `${s}$${(a / 1e3).toFixed(0)}K`;
+    return `${s}$${a.toFixed(0)}`;
+  };
 
   function renderCharts(charts) {
     charts = charts || {};
-    drawActualVsBudget('noi-chart', 'noi-legend', charts.noi || {}, charts.as_of, 'noi');
-    drawActualVsBudget('net-income-chart', 'net-income-legend', charts.net_income || {}, charts.as_of, 'ni');
+    const vLabel = (DASH && DASH.views && DASH.views[currentView] && DASH.views[currentView].label) || 'Portfolio';
+    drawDistChart('noi-chart', 'noi-legend', 'noi-summary', charts.noi || {}, charts.as_of, vLabel, 0.01, 'noi');
+    drawDistChart('net-income-chart', 'net-income-legend', 'net-income-summary', charts.net_income || {}, charts.as_of, vLabel, 0.05, 'ni');
   }
 
-  function drawActualVsBudget(canvasId, legendId, c, asof, which) {
+  function drawDistChart(canvasId, legendId, summaryId, c, asof, vLabel, thr, which) {
+    const dist = c.dist || {};
+    const above = dist.above || 0;
+    const mid   = (dist.online != null ? dist.online : dist.at) || 0;   // in-line bucket
+    const below = dist.below || 0;
+
+    // legend = property-count distribution
+    setHTML(legendId, `
+      <div class="legend-item"><div class="legend-box" style="background:#1D9E75;"></div>Ahead of Budget — ${plur(above)}</div>
+      <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>In Line — ${plur(mid)}</div>
+      <div class="legend-item"><div class="legend-box" style="background:#D9534F;"></div>Behind Budget — ${plur(below)}</div>`);
+
+    // right-hand panel = total $ and % vs budget for the selected view
     const a = c.actual, b = c.budget;
     let v = c.variance;
     if (v == null && a != null && b) v = a / b - 1;
+    const diff = (a != null && b != null) ? (a - b) : null;
+    let cls = 'level', word = 'in line with budget';
+    if (v != null && v > thr) { cls = 'up'; word = 'ahead of budget'; }
+    else if (v != null && v < -thr) { cls = 'down'; word = 'behind budget'; }
     const vtxt = (v == null) ? '–' : (v >= 0 ? '+' : '') + (v * 100).toFixed(1) + '%';
-    const vcls = (v == null) ? '' : (v >= 0 ? 'up' : 'down');
-    const diffM = (a != null && b != null) ? (a - b) / 1e6 : null;
-    const diffTxt = (diffM == null) ? '' : ` (${diffM >= 0 ? '+' : '-'}$${Math.abs(diffM).toFixed(1)}M)`;
-
-    setHTML(legendId, `
-      <div class="legend-item"><div class="legend-box" style="background:#1D9E75;"></div>Actual: ${fmtM(a)}</div>
-      <div class="legend-item"><div class="legend-box" style="background:#C9E4D8;"></div>Budget: ${fmtM(b)}</div>
-      <div class="legend-item">Variance: <span class="${vcls}">&nbsp;${vtxt}${diffTxt}</span></div>
-      ${asof ? `<div class="legend-item" style="color:#999;">YTD · ${escapeHTML(asof)}</div>` : ''}`);
+    setHTML(summaryId, `
+      <div class="summary-cap">${escapeHTML(vLabel)} vs Budget</div>
+      <div class="summary-amt ${cls}">${fmtSignedMoney(diff)}</div>
+      <div class="summary-sub ${cls}">${vtxt} · ${word}</div>
+      ${asof ? `<div class="summary-as">YTD · ${escapeHTML(asof)}</div>` : ''}`);
 
     const canvas = document.getElementById(canvasId);
     const existing = which === 'noi' ? noiChart : niChart;
     if (existing) existing.destroy();
 
-    // A proportional Actual-vs-Budget doughnut only reads cleanly when both are positive.
-    if (a != null && b != null && a > 0 && b > 0) {
+    if (above + mid + below > 0) {
       canvas.style.display = '';
       const chart = new Chart(canvas, {
         type: 'doughnut',
-        data: { labels: ['Actual', 'Budget'],
-          datasets: [{ data: [a, b], backgroundColor: ['#1D9E75', '#C9E4D8'],
+        data: { labels: ['Ahead of Budget', 'In Line', 'Behind Budget'],
+          datasets: [{ data: [above, mid, below], backgroundColor: ['#1D9E75', '#C9E4D8', '#D9534F'],
                        borderColor: '#fff', borderWidth: 2 }] },
         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
       });
