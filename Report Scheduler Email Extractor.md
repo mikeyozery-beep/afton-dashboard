@@ -13,9 +13,11 @@ scripts hardcode this path).
 ## What it does
 
 Every morning a Windows scheduled task pulls the overnight YARDI reports out of
-the shared mailbox and files them, with no manual steps. "Unread" in the mailbox
-means "not yet processed" — an email is only marked read after its attachments
-are saved **and** filed into the correct folder.
+the shared mailbox and files them, with no manual steps. What's "already done" is
+tracked by a **processed-email ledger** (`processed_emails.txt`, EntryID per
+line), not by read/unread state — so a report still gets pulled even if someone
+opened (and thereby read) the email before the 5 AM run. Read state is still
+flipped afterward, purely to keep the shared mailbox tidy.
 
 ---
 
@@ -26,10 +28,10 @@ Scheduled task **"YARDI Report Downloader - Daily 5 AM"** runs
 
 | Step | Script | Action |
 |------|--------|--------|
-| 1. Download | `download_yardi_outlook_com.ps1` | Save attachments from **unread** `cdr@yardi.com` emails to the Dashboard Data folder; queue their email IDs in `pending_mark_read.txt`. Does **not** change read state. Extracts `.zip` attachments. Skips exact duplicates. |
+| 1. Download | `download_yardi_outlook_com.ps1` | Select `cdr@yardi.com` emails received in the last 4 days that aren't in the processed-ledger (regardless of read state); save only **workbook** attachments (`.xlsx/.xlsm/.xls`) + `.zip` contents to the Dashboard Data folder. Record each handled email in `processed_emails.txt` immediately (so a later failure can't cause a duplicate re-file) and queue its ID in `pending_mark_read.txt`. First run auto-seeds the ledger from the existing read backlog. |
 | 2. Extract | (built into the orchestrator) | Unzip any remaining `.zip` files. |
-| 3. Organize | organize logic (also in `organize_reports.py`) | Split multi-sheet workbooks; file each report into a folder named after its report title (cell `A1`), timestamped. |
-| 4. Mark read | `mark_read_pending.ps1` | **Only if step 3 succeeded**, mark the queued emails read and clear the queue. If marking fails, emails stay unread and retry next run. |
+| 3. Organize | organize logic (also in `organize_reports.py`) | Split multi-sheet workbooks; file each report into a folder named after its report title — cell `A1`, falling back to `A2` when `A1` is an owner/entity header like `… (.ap-gs)` — timestamped. |
+| 4. Mark read | `mark_read_pending.ps1` | **Only if step 3 succeeded**, mark the queued emails read and clear the queue. Marking is cosmetic now (the ledger already prevents reprocessing); if it fails the run is flagged failed for visibility and retries next run. |
 
 ---
 
@@ -88,8 +90,13 @@ One folder per report type (e.g. `Rent Roll`, `Aged Receivables`,
   from an elevated/automation context, register a temporary scheduled task with
   `LogonType Interactive, RunLevel Limited` as user `MichaelOzery`, start it,
   read its transcript log, then unregister it.
-- **Unread-based selection:** if someone opens a report email in the shared
-  mailbox before 5 AM, Outlook marks it read and that run will skip it.
+- **Ledger-based selection (was unread-based):** selection now keys off
+  `processed_emails.txt` + a 4-day recency window, so a report opened/read before
+  5 AM is **no longer skipped**. The trade-off: a report older than the 4-day
+  window that was never processed won't be picked up — widen `$WindowDays` in
+  `download_yardi_outlook_com.ps1` after a multi-day outage. Don't hand-delete
+  `processed_emails.txt`; doing so makes the next run re-seed from current read
+  state (anything currently unread will be (re)pulled).
 
 ---
 

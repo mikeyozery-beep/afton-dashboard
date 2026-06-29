@@ -6,6 +6,7 @@ No manual sequencing required. One command handles everything.
 """
 
 import logging
+import re
 from pathlib import Path
 from datetime import datetime
 from openpyxl import load_workbook, Workbook
@@ -40,6 +41,23 @@ def sanitize_foldername(name):
     for char in invalid_chars:
         name = name.replace(char, '_')
     return name.strip()
+
+# A1 is normally the report title (e.g. "Rent Roll", "rs_sql_..."). But some
+# YARDI financial exports put the OWNER/ENTITY group on row 1 -
+# e.g. "Afton Garden Style Properties (.ap-gs)" - and the real report title on
+# row 2 ("Lifetime Prefund", "Budget Comparison- current"). The entity header is
+# recognizable by its parenthetical entity code "(.xxx)"; no real report title
+# contains that. When we see it, the report name comes from row 2.
+_ENTITY_HEADER = re.compile(r'\(\s*\.\w')
+
+def report_name_from(a1, a2, fallback):
+    """Pick the report name from row 1, falling back to row 2 when row 1 is an
+    entity/owner header rather than a report title."""
+    a1s = str(a1).strip() if a1 not in (None, "") else ""
+    a2s = str(a2).strip() if a2 not in (None, "") else ""
+    if a1s and _ENTITY_HEADER.search(a1s) and a2s:
+        return a2s            # row 1 is the entity group; row 2 is the report
+    return a1s or fallback
 
 def step_1_download_files():
     """Download all files from mikereports@aftonprop.com inbox"""
@@ -154,9 +172,10 @@ def organize_data_dir(data_dir):
 
             if len(sheetnames) == 1:
                 ws = wb[sheetnames[0]]
-                first = next(ws.iter_rows(min_row=1, max_row=1, max_col=1, values_only=True), None)
-                a1 = first[0] if first else None
-                report_name = str(a1).strip() if a1 not in (None, "") else sheetnames[0]
+                two = list(ws.iter_rows(min_row=1, max_row=2, max_col=1, values_only=True))
+                a1 = two[0][0] if len(two) > 0 else None
+                a2 = two[1][0] if len(two) > 1 else None
+                report_name = report_name_from(a1, a2, sheetnames[0])
                 wb.close()
 
                 folder = data_dir / sanitize_foldername(report_name)
@@ -172,7 +191,8 @@ def organize_data_dir(data_dir):
                 for sheet_name in sheetnames:
                     src_ws = src[sheet_name]
                     a1 = src_ws["A1"].value
-                    report_name = str(a1).strip() if a1 not in (None, "") else sheet_name
+                    a2 = src_ws["A2"].value
+                    report_name = report_name_from(a1, a2, sheet_name)
                     new_wb = Workbook()
                     new_ws = new_wb.active
                     for row in src_ws.iter_rows(values_only=True):
@@ -256,15 +276,24 @@ def main():
         logger.error("\n✗ Process stopped at worksheet extraction")
         return False
 
-    # Only mark emails read once their attachments are safely organized into folders
-    if not step_4_mark_read():
+    # Only mark emails read once their attachments are safely organized into folders.
+    # Downloads + organize are already durable (files filed, emails recorded in the
+    # processed ledger), so a mark-read failure is NOT a data-loss event - emails
+    # simply stay UNREAD. But we still return failure so the scheduled task reports
+    # RED and the unread state gets noticed and retried next run.
+    mark_ok = step_4_mark_read()
+    if not mark_ok:
         logger.warning("\n⚠ Organize succeeded but marking emails read failed - "
-                       "they stay UNREAD and will be retried next run")
+                       "emails stay UNREAD (already filed; ledger prevents re-filing). "
+                       "Flagging the run as failed so it's noticed; retries next run.")
 
     logger.info("\n" + "=" * 70)
-    logger.info("✓ ALL COMPLETE - DOWNLOADED, ORGANIZED & MARKED READ")
+    if mark_ok:
+        logger.info("✓ ALL COMPLETE - DOWNLOADED, ORGANIZED & MARKED READ")
+    else:
+        logger.info("⚠ COMPLETE WITH WARNINGS - DOWNLOADED & ORGANIZED; MARK-READ FAILED")
     logger.info("=" * 70 + "\n")
-    return True
+    return mark_ok
 
 if __name__ == '__main__':
     success = main()

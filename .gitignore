@@ -14,6 +14,7 @@ o365_tokens/
 
 # Transient automation state
 pending_mark_read.txt
+processed_emails.txt
 last_download.txt
 
 # Logs and Python cruft
