@@ -367,6 +367,7 @@ def get_financials(units):
             "noi_actual": nj, "noi_budget": nk,
             "ni_actual": ij, "ni_budget": ik, "ni_var": il,
             "capex_var": (cx_a / cx_b - 1) if cx_b else None,
+            "capex_actual": cx_a, "capex_budget": cx_b,
             "rent_actual": ra, "rent_budget": rb,
         }
         w = units.get(code, 0)
@@ -675,7 +676,7 @@ def get_areas_of_focus():
     else:
         eff_txt = f"Effective rent {eff_cur*100:+.1f}% annualized"
         if eff_prior is not None:
-            eff_txt += f" vs {eff_prior*100:+.1f}% annualized in prior month"
+            eff_txt += f" vs {eff_prior*100:+.1f}% in prior month"
     focus.append({"theme": "Effective Rent", "summary": eff_txt})
     return {"as_of": as_of, "items": focus}
 
@@ -845,8 +846,8 @@ def build_views(occ, coll, bud, fin, staff, staff_pp, mkt, prior):
                 "noi_variance": {"value": f.get("noi_var"),
                                  "actual": f.get("noi_actual"), "budget": f.get("noi_budget"),
                                  "as_of": fin.get("month_label")},
-                "capex_vs_budget": {"value": f.get("capex_var"), "actual": None,
-                                    "budget": None, "as_of": fin.get("month_label")},
+                "capex_vs_budget": {"value": f.get("capex_var"), "actual": f.get("capex_actual"),
+                                    "budget": f.get("capex_budget"), "as_of": fin.get("month_label")},
             },
             "charts": {
                 "noi": {"actual": f.get("noi_actual"), "budget": f.get("noi_budget"),

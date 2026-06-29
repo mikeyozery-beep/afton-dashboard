@@ -646,9 +646,9 @@
     const noi = k.noi_variance || {};
     setSigned('noi-value', noi.value, 1);            // negative = red
     if (noi.actual != null && noi.budget != null) {
-      const overM = (noi.actual - noi.budget) / 1e6;
-      applyChangeRaw('noi-change', `${overM >= 0 ? '+' : ''}$${overM.toFixed(1)}M vs budget`, overM < 0);
-      setHTML('noi-detail', `YTD: $${(noi.actual/1e6).toFixed(1)}M actual<br>vs. $${(noi.budget/1e6).toFixed(1)}M budget${noi.as_of ? ' · ' + escapeHTML(noi.as_of) : ''}`);
+      const diff = noi.actual - noi.budget;
+      applyChangeRaw('noi-change', `${fmtSignedMoney(diff)} vs budget`, diff < 0);
+      setHTML('noi-detail', `YTD: ${fmtMoney(noi.actual)} actual<br>vs. ${fmtMoney(noi.budget)} budget${noi.as_of ? ' · ' + escapeHTML(noi.as_of) : ''}`);
     } else {
       set('noi-change', '');
       setHTML('noi-detail', noi.as_of ? `vs budget · ${noi.as_of} YTD` : 'vs budget');
@@ -657,9 +657,9 @@
     const cx = k.capex_vs_budget || {};
     setSignedCapex('capex-value', cx.value, 1);      // positive (over budget) = red
     if (cx.actual != null && cx.budget != null) {
-      const overM = (cx.actual - cx.budget) / 1e6;
-      applyChangeRaw('capex-change', `${overM >= 0 ? '+' : ''}$${overM.toFixed(1)}M vs budget`, overM > 0);
-      setHTML('capex-detail', `YTD: $${(cx.actual/1e6).toFixed(1)}M actual<br>vs. $${(cx.budget/1e6).toFixed(1)}M budget${cx.as_of ? ' · ' + cx.as_of : ''}`);
+      const diff = cx.actual - cx.budget;
+      applyChangeRaw('capex-change', `${fmtSignedMoney(diff)} vs budget`, diff > 0);
+      setHTML('capex-detail', `YTD: ${fmtMoney(cx.actual)} actual<br>vs. ${fmtMoney(cx.budget)} budget${cx.as_of ? ' · ' + escapeHTML(cx.as_of) : ''}`);
     } else {
       set('capex-change', '');
       setHTML('capex-detail', cx.as_of ? `vs budget · ${cx.as_of} YTD` : 'vs budget');
@@ -749,7 +749,21 @@
   // to its right shows the view's TOTAL $ and % vs budget (green ahead, red behind,
   // black in-line). Both follow the toggle (portfolio or single property).
   const plur = (n) => `${n || 0} ${(n === 1) ? 'property' : 'properties'}`;
-  const fmtSignedM = (v) => (v == null) ? '–' : `${v >= 0 ? '+' : '-'}$${Math.abs(v / 1e6).toFixed(1)}M`;
+  // adaptive $ scale so single-property deltas (tens of thousands) don't collapse to "$0.0M"
+  const fmtMoney = (v) => {
+    if (v == null) return '–';
+    const s = v < 0 ? '-' : '', a = Math.abs(v);
+    if (a >= 1e6) return `${s}$${(a / 1e6).toFixed(1)}M`;
+    if (a >= 1e3) return `${s}$${(a / 1e3).toFixed(0)}K`;
+    return `${s}$${a.toFixed(0)}`;
+  };
+  const fmtSignedMoney = (v) => {
+    if (v == null) return '–';
+    const s = v >= 0 ? '+' : '-', a = Math.abs(v);
+    if (a >= 1e6) return `${s}$${(a / 1e6).toFixed(1)}M`;
+    if (a >= 1e3) return `${s}$${(a / 1e3).toFixed(0)}K`;
+    return `${s}$${a.toFixed(0)}`;
+  };
 
   function renderCharts(charts) {
     charts = charts || {};
@@ -781,7 +795,7 @@
     const vtxt = (v == null) ? '–' : (v >= 0 ? '+' : '') + (v * 100).toFixed(1) + '%';
     setHTML(summaryId, `
       <div class="summary-cap">${escapeHTML(vLabel)} vs Budget</div>
-      <div class="summary-amt ${cls}">${fmtSignedM(diff)}</div>
+      <div class="summary-amt ${cls}">${fmtSignedMoney(diff)}</div>
       <div class="summary-sub ${cls}">${vtxt} · ${word}</div>
       ${asof ? `<div class="summary-as">YTD · ${escapeHTML(asof)}</div>` : ''}`);
 

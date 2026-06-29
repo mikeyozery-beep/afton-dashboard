@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-28T20:04:43.861659",
+  "generated_at": "2026-06-28T20:35:21.638700",
   "as_of": {
     "occupancy": "06/26/2026",
     "collections": "06/25/2026",
@@ -129,8 +129,8 @@
         },
         "capex_vs_budget": {
           "value": -0.07901196548180323,
-          "actual": null,
-          "budget": null,
+          "actual": 175190.04,
+          "budget": 190219.67,
           "as_of": "April 2026"
         }
       },
@@ -212,8 +212,8 @@
         },
         "capex_vs_budget": {
           "value": -0.14367780950068476,
-          "actual": null,
-          "budget": null,
+          "actual": 144524.87,
+          "budget": 168773.94,
           "as_of": "April 2026"
         }
       },
@@ -295,8 +295,8 @@
         },
         "capex_vs_budget": {
           "value": 0.2547211877538367,
-          "actual": null,
-          "budget": null,
+          "actual": 782966.31,
+          "budget": 624016.17,
           "as_of": "April 2026"
         }
       },
@@ -378,8 +378,8 @@
         },
         "capex_vs_budget": {
           "value": -0.06665627641396576,
-          "actual": null,
-          "budget": null,
+          "actual": 207384.71000000002,
+          "budget": 222195.43,
           "as_of": "April 2026"
         }
       },
@@ -461,8 +461,8 @@
         },
         "capex_vs_budget": {
           "value": 0.2335497776646258,
-          "actual": null,
-          "budget": null,
+          "actual": 54896.16,
+          "budget": 44502.590000000004,
           "as_of": "April 2026"
         }
       },
@@ -544,8 +544,8 @@
         },
         "capex_vs_budget": {
           "value": 0.08934352488724318,
-          "actual": null,
-          "budget": null,
+          "actual": 256110.97,
+          "budget": 235105.79,
           "as_of": "April 2026"
         }
       },
@@ -627,8 +627,8 @@
         },
         "capex_vs_budget": {
           "value": 0.6534429987550139,
-          "actual": null,
-          "budget": null,
+          "actual": 147629.51,
+          "budget": 89286.12,
           "as_of": "April 2026"
         }
       },
@@ -710,8 +710,8 @@
         },
         "capex_vs_budget": {
           "value": -0.0368746987873525,
-          "actual": null,
-          "budget": null,
+          "actual": 254960.09,
+          "budget": 264721.62,
           "as_of": "April 2026"
         }
       },
@@ -793,8 +793,8 @@
         },
         "capex_vs_budget": {
           "value": 0.14591871527090405,
-          "actual": null,
-          "budget": null,
+          "actual": 270040.73,
+          "budget": 235654.35,
           "as_of": "April 2026"
         }
       },
@@ -876,8 +876,8 @@
         },
         "capex_vs_budget": {
           "value": -0.01195460285406702,
-          "actual": null,
-          "budget": null,
+          "actual": 218611.16999999998,
+          "budget": 221256.2,
           "as_of": "April 2026"
         }
       },
@@ -959,8 +959,8 @@
         },
         "capex_vs_budget": {
           "value": 0.043712438506583684,
-          "actual": null,
-          "budget": null,
+          "actual": 364506.79999999993,
+          "budget": 349240.64,
           "as_of": "April 2026"
         }
       },
@@ -1042,8 +1042,8 @@
         },
         "capex_vs_budget": {
           "value": 1.515475134917966,
-          "actual": null,
-          "budget": null,
+          "actual": 93791.05,
+          "budget": 37285.619999999995,
           "as_of": "April 2026"
         }
       },
@@ -1125,8 +1125,8 @@
         },
         "capex_vs_budget": {
           "value": -0.141183992518933,
-          "actual": null,
-          "budget": null,
+          "actual": 188012.55,
+          "budget": 218920.64,
           "as_of": "April 2026"
         }
       },
@@ -1208,8 +1208,8 @@
         },
         "capex_vs_budget": {
           "value": -0.029979463618077795,
-          "actual": null,
-          "budget": null,
+          "actual": 641903.97,
+          "budget": 661742.66,
           "as_of": "April 2026"
         }
       },
@@ -1291,8 +1291,8 @@
         },
         "capex_vs_budget": {
           "value": -0.10119004811896715,
-          "actual": null,
-          "budget": null,
+          "actual": 238712.75999999998,
+          "budget": 265587.58,
           "as_of": "April 2026"
         }
       },
@@ -1374,8 +1374,8 @@
         },
         "capex_vs_budget": {
           "value": 0.06329861744335763,
-          "actual": null,
-          "budget": null,
+          "actual": 96902.72,
+          "budget": 91134.06,
           "as_of": "April 2026"
         }
       },
@@ -1457,8 +1457,8 @@
         },
         "capex_vs_budget": {
           "value": -0.1207714329292412,
-          "actual": null,
-          "budget": null,
+          "actual": 157141.55000000002,
+          "budget": 178726.62,
           "as_of": "April 2026"
         }
       },
@@ -1540,8 +1540,8 @@
         },
         "capex_vs_budget": {
           "value": 0.03272771005839825,
-          "actual": null,
-          "budget": null,
+          "actual": 175690.53999999998,
+          "budget": 170122.81,
           "as_of": "April 2026"
         }
       },
@@ -1623,8 +1623,8 @@
         },
         "capex_vs_budget": {
           "value": -0.015307244943234766,
-          "actual": null,
-          "budget": null,
+          "actual": 152486.94999999998,
+          "budget": 154857.39,
           "as_of": "April 2026"
         }
       },
@@ -1706,8 +1706,8 @@
         },
         "capex_vs_budget": {
           "value": -0.13577410117788746,
-          "actual": null,
-          "budget": null,
+          "actual": 139927.74,
+          "budget": 161911.07,
           "as_of": "April 2026"
         }
       },
@@ -1789,8 +1789,8 @@
         },
         "capex_vs_budget": {
           "value": 0.30392176308869834,
-          "actual": null,
-          "budget": null,
+          "actual": 69682.56999999999,
+          "budget": 53440.76,
           "as_of": "April 2026"
         }
       },
@@ -1872,8 +1872,8 @@
         },
         "capex_vs_budget": {
           "value": 0.44070640084789936,
-          "actual": null,
-          "budget": null,
+          "actual": 213385.82,
+          "budget": 148111.94,
           "as_of": "April 2026"
         }
       },
@@ -1955,8 +1955,8 @@
         },
         "capex_vs_budget": {
           "value": 1.0269656986115772,
-          "actual": null,
-          "budget": null,
+          "actual": 66307.45999999999,
+          "budget": 32712.670000000002,
           "as_of": "April 2026"
         }
       },
@@ -2100,7 +2100,7 @@
     },
     {
       "theme": "Effective Rent",
-      "summary": "Effective rent +2.4% annualized vs +3.1% annualized in prior month"
+      "summary": "Effective rent +2.4% annualized vs +3.1% in prior month"
     }
   ],
   "focus_as_of": "June vs May 2026",
