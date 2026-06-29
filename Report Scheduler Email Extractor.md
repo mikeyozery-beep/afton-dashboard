@@ -30,7 +30,7 @@ Scheduled task **"YARDI Report Downloader - Daily 5 AM"** runs
 |------|--------|--------|
 | 1. Download | `download_yardi_outlook_com.ps1` | Select `cdr@yardi.com` emails received in the last 4 days that aren't in the processed-ledger (regardless of read state); save only **workbook** attachments (`.xlsx/.xlsm/.xls`) + `.zip` contents to the Dashboard Data folder. Record each handled email in `processed_emails.txt` immediately (so a later failure can't cause a duplicate re-file) and queue its ID in `pending_mark_read.txt`. First run auto-seeds the ledger from the existing read backlog. |
 | 2. Extract | (built into the orchestrator) | Unzip any remaining `.zip` files. |
-| 3. Organize | organize logic (also in `organize_reports.py`) | Split multi-sheet workbooks; file each report into a folder named after its report title — cell `A1`, falling back to `A2` when `A1` is an owner/entity header like `… (.ap-gs)` — timestamped. |
+| 3. Organize | organize logic (also in `organize_reports.py`) | Split multi-sheet workbooks; file each report into a folder named after its report title — cell `A1`, falling back to `A2` when `A1` is an owner/entity header like `… (.ap-gs)` — plus a **variant suffix** (`variant_suffix()`) so reports that share a title but differ in grouping/filters never share a folder (e.g. `Aged Receivables by Tenant` vs `… by Property`, `Rent Roll by Unit` vs `… by Unit Type`). Timestamped. |
 | 4. Mark read | `mark_read_pending.ps1` | **Only if step 3 succeeded**, mark the queued emails read and clear the queue. Marking is cosmetic now (the ledger already prevents reprocessing); if it fails the run is flagged failed for visibility and retries next run. |
 
 ---

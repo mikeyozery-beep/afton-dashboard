@@ -59,6 +59,47 @@ def report_name_from(a1, a2, fallback):
         return a2s            # row 1 is the entity group; row 2 is the report
     return a1s or fallback
 
+def variant_suffix(report_name, header_rows):
+    """Some YARDI reports share one title (row 1) but ship in different
+    groupings/filters that must NOT share a folder. Derive a folder-name suffix
+    from the column-header rows so each variant files separately.
+
+    `header_rows` is a list of the first ~6 rows, each a list of non-empty,
+    stripped cell strings. Returns "" when the report has no known variants.
+
+    Confirmed variants (see the mappings memory / audit):
+      - Aged Receivables: resident-level detail ("by Tenant", has a Resident
+        column) vs property summary ("by Property").
+      - Rent Roll: unit/resident detail ("by Unit") vs unit-type summary
+        ("by Unit Type", whose header row starts "Property | Unit Type").
+      - rs_sql_tr_payments_muvan: a legacy column name "receipt_reference"
+        (vs the current "payment_reference") marks an older report config.
+    """
+    name = str(report_name).strip().lower()
+    cells = {c.strip().lower() for row in header_rows for c in row}
+
+    if name == "aged receivables":
+        return "by Tenant" if "resident" in cells else "by Property"
+
+    if name == "rent roll":
+        for row in header_rows:
+            low = [c.strip().lower() for c in row]
+            if low[:2] == ["property", "unit type"]:
+                return "by Unit Type"      # summary grouped by unit type
+            if low[:1] == ["unit"]:
+                return "by Unit"           # resident/unit-level detail
+        return ""
+
+    if name == "rs_sql_tr_payments_muvan":
+        return "(receipt_reference)" if "receipt_reference" in cells else ""
+
+    return ""
+
+def folder_name_for(report_name, header_rows):
+    """Full destination folder name = report name + any variant suffix."""
+    suffix = variant_suffix(report_name, header_rows)
+    return sanitize_foldername(f"{report_name} {suffix}".strip() if suffix else report_name)
+
 def step_1_download_files():
     """Download all files from mikereports@aftonprop.com inbox"""
     logger.info("\n" + "=" * 70)
@@ -143,8 +184,21 @@ def _unique_output_path(folder, base):
     return candidate
 
 
+def _read_header_rows(ws, nrows=6, ncols=10):
+    """First `nrows` rows as lists of non-empty, stripped cell strings -
+    enough to recover the report title (row 1/2) and the column-header rows
+    that variant_suffix() keys on."""
+    rows = []
+    for r in ws.iter_rows(min_row=1, max_row=nrows, max_col=ncols, values_only=True):
+        rows.append([str(c).strip() for c in r if c not in (None, "")])
+    return rows
+
+
 def organize_data_dir(data_dir):
-    """File every report into a folder named by its A1 title.
+    """File every report into a folder named by its report title, plus a
+    variant suffix (see variant_suffix) so reports that share a title but differ
+    in grouping/filters - e.g. Aged Receivables by Tenant vs by Property - never
+    share a folder.
 
     Single-sheet workbooks (the common YARDI case) are MOVED as-is - no
     re-save - which is the fast path. Multi-sheet workbooks are loaded once
@@ -172,13 +226,13 @@ def organize_data_dir(data_dir):
 
             if len(sheetnames) == 1:
                 ws = wb[sheetnames[0]]
-                two = list(ws.iter_rows(min_row=1, max_row=2, max_col=1, values_only=True))
-                a1 = two[0][0] if len(two) > 0 else None
-                a2 = two[1][0] if len(two) > 1 else None
+                hdr = _read_header_rows(ws)
+                a1 = hdr[0][0] if hdr and hdr[0] else None
+                a2 = hdr[1][0] if len(hdr) > 1 and hdr[1] else None
                 report_name = report_name_from(a1, a2, sheetnames[0])
                 wb.close()
 
-                folder = data_dir / sanitize_foldername(report_name)
+                folder = data_dir / folder_name_for(report_name, hdr)
                 folder.mkdir(exist_ok=True)
                 dest = _unique_output_path(folder, folder.name)
                 shutil.move(str(filepath), str(dest))          # fast: no re-save
@@ -190,14 +244,15 @@ def organize_data_dir(data_dir):
                 src = load_workbook(filepath, data_only=True)  # single full load
                 for sheet_name in sheetnames:
                     src_ws = src[sheet_name]
-                    a1 = src_ws["A1"].value
-                    a2 = src_ws["A2"].value
+                    hdr = _read_header_rows(src_ws)
+                    a1 = hdr[0][0] if hdr and hdr[0] else None
+                    a2 = hdr[1][0] if len(hdr) > 1 and hdr[1] else None
                     report_name = report_name_from(a1, a2, sheet_name)
                     new_wb = Workbook()
                     new_ws = new_wb.active
                     for row in src_ws.iter_rows(values_only=True):
                         new_ws.append(row)
-                    folder = data_dir / sanitize_foldername(report_name)
+                    folder = data_dir / folder_name_for(report_name, hdr)
                     folder.mkdir(exist_ok=True)
                     dest = _unique_output_path(folder, folder.name)
                     new_wb.save(dest)
