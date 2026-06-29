@@ -564,7 +564,7 @@
         <tr>
           <th>Community</th>
           <th>Occupancy</th>
-          <th>Leased Occ.</th>
+          <th>Effective Rent Growth</th>
           <th>% Collected</th>
           <th>NOI Var. to Budget</th>
         </tr>
@@ -765,7 +765,7 @@
       <tr>
         <td data-label="Community">${escapeHTML(p.name)}</td>
         <td data-label="Occupancy" class="${cc(p, 'occupancy')}">${pct(p.occupancy)}</td>
-        <td data-label="Leased Occ." class="${cc(p, 'leased')}">${pct(p.leased)}</td>
+        <td data-label="Effective Rent Growth" class="${cc(p, 'eff_growth') || ((p.eff_growth ?? 0) < 0 ? 'negative' : '')}">${signedPct(p.eff_growth)}</td>
         <td data-label="% Collected" class="${cc(p, 'collected')}">${pct(p.collected)}</td>
         <td data-label="NOI Var. to Budget" class="${cc(p, 'noi_variance') || ((p.noi_variance ?? 0) < 0 ? 'negative' : '')}">${signedPct(p.noi_variance)}</td>
       </tr>`).join(''));

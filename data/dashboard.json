@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-28T22:15:02.060695",
+  "generated_at": "2026-06-29T08:18:58.646487",
   "as_of": {
     "occupancy": "06/26/2026",
     "collections": "06/25/2026",
     "financials": "May 2026",
-    "boxscore": "06/22-06/28/2026"
+    "boxscore": "06/23-06/29/2026"
   },
   "views": {
     "PORTFOLIO": {
@@ -75,18 +75,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 841,
-        "tours": 248,
-        "applications": 73,
-        "tours_over_traffic": 0.29488703923900117,
-        "conversions": 0.29435483870967744,
-        "period": "06/22-06/28/2026",
+        "traffic": 724,
+        "tours": 200,
+        "applications": 66,
+        "tours_over_traffic": 0.27624309392265195,
+        "conversions": 0.33,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.01877649909145972,
-          "tours": 0.19518072289156627,
-          "applications": 0.07352941176470588,
-          "tours_over_traffic": 0.1752992864061221,
-          "conversions": -0.09130172281445524
+          "traffic": -0.15911730545876887,
+          "tours": -0.09194097616345062,
+          "applications": -0.05714285714285714,
+          "tours_over_traffic": 0.08045069512492838,
+          "conversions": 0.04204573778344825
         },
         "benchmark_weeks": 4
       },
@@ -172,18 +172,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 43,
-        "tours": 11,
+        "traffic": 37,
+        "tours": 9,
         "applications": 3,
-        "tours_over_traffic": 0.2558139534883721,
-        "conversions": 0.2727272727272727,
-        "period": "06/22-06/28/2026",
+        "tours_over_traffic": 0.24324324324324326,
+        "conversions": 0.3333333333333333,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.14666666666666667,
-          "tours": 0.3333333333333333,
+          "traffic": -0.04516129032258064,
+          "tours": 0.02857142857142857,
           "applications": 0.0,
-          "tours_over_traffic": 0.12002685016839536,
-          "conversions": -0.2773157441927158
+          "tours_over_traffic": 0.03100092637657538,
+          "conversions": -0.06180987434953674
         },
         "benchmark_weeks": 4
       },
@@ -269,17 +269,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 19,
+        "traffic": 15,
         "tours": 1,
         "applications": 0,
-        "tours_over_traffic": 0.05263157894736842,
+        "tours_over_traffic": 0.06666666666666667,
         "conversions": 0.0,
-        "period": "06/22-06/28/2026",
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.49019607843137253,
+          "traffic": 0.1111111111111111,
           "tours": 1.0,
           "applications": -1.0,
-          "tours_over_traffic": 1.0,
+          "tours_over_traffic": 1.4000000000000001,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -366,18 +366,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 54,
-        "tours": 25,
-        "applications": 9,
-        "tours_over_traffic": 0.46296296296296297,
-        "conversions": 0.36,
-        "period": "06/22-06/28/2026",
+        "traffic": 48,
+        "tours": 19,
+        "applications": 8,
+        "tours_over_traffic": 0.3958333333333333,
+        "conversions": 0.42105263157894735,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.043478260869565216,
-          "tours": 0.42857142857142855,
-          "applications": 1.25,
-          "tours_over_traffic": 0.3404690630402145,
-          "conversions": 0.5877221324717286
+          "traffic": -0.10697674418604651,
+          "tours": 0.0,
+          "applications": 1.0,
+          "tours_over_traffic": 0.08597343811973295,
+          "conversions": 0.9525045519699377
         },
         "benchmark_weeks": 4
       },
@@ -463,17 +463,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 21,
-        "tours": 5,
+        "traffic": 14,
+        "tours": 3,
         "applications": 0,
-        "tours_over_traffic": 0.23809523809523808,
+        "tours_over_traffic": 0.21428571428571427,
         "conversions": 0.0,
-        "period": "06/22-06/28/2026",
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.2631578947368421,
-          "tours": -0.2,
+          "traffic": -0.5483870967741935,
+          "tours": -0.5555555555555556,
           "applications": -1.0,
-          "tours_over_traffic": 0.08466165246962128,
+          "tours_over_traffic": -0.04591935124359182,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -560,17 +560,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 22,
+        "traffic": 19,
         "tours": 7,
         "applications": 4,
-        "tours_over_traffic": 0.3181818181818182,
+        "tours_over_traffic": 0.3684210526315789,
         "conversions": 0.5714285714285714,
-        "period": "06/22-06/28/2026",
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.5172413793103449,
+          "traffic": 0.22580645161290322,
           "tours": 0.4,
           "applications": 1.6666666666666667,
-          "tours_over_traffic": -0.06973714211263479,
+          "tours_over_traffic": 0.1872391977385919,
           "conversions": 0.5763546798029556
         },
         "benchmark_weeks": 4
@@ -657,18 +657,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 33,
-        "tours": 22,
-        "applications": 6,
-        "tours_over_traffic": 0.6666666666666666,
-        "conversions": 0.2727272727272727,
-        "period": "06/22-06/28/2026",
+        "traffic": 34,
+        "tours": 19,
+        "applications": 5,
+        "tours_over_traffic": 0.5588235294117647,
+        "conversions": 0.2631578947368421,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.043478260869565216,
-          "tours": 0.9555555555555556,
-          "applications": 1.6666666666666667,
-          "tours_over_traffic": 1.1254950687271879,
-          "conversions": 0.5660903513664249
+          "traffic": -0.04895104895104895,
+          "tours": 0.5833333333333334,
+          "applications": 1.0,
+          "tours_over_traffic": 0.6533470460997096,
+          "conversions": 0.31088765020587644
         },
         "benchmark_weeks": 4
       },
@@ -754,18 +754,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 20,
+        "traffic": 18,
         "tours": 7,
         "applications": 3,
-        "tours_over_traffic": 0.35,
+        "tours_over_traffic": 0.3888888888888889,
         "conversions": 0.42857142857142855,
-        "period": "06/22-06/28/2026",
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.1267605633802817,
+          "traffic": -0.0136986301369863,
           "tours": 0.6470588235294118,
           "applications": 2.0,
-          "tours_over_traffic": 0.182089552238806,
-          "conversions": 1.3376623376623373
+          "tours_over_traffic": 0.5326651027226845,
+          "conversions": 0.9780219780219779
         },
         "benchmark_weeks": 4
       },
@@ -856,12 +856,12 @@
         "applications": 0,
         "tours_over_traffic": 0.14285714285714285,
         "conversions": 0.0,
-        "period": "06/22-06/28/2026",
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.25333333333333335,
+          "traffic": -0.2727272727272727,
           "tours": -0.6,
           "applications": -1.0,
-          "tours_over_traffic": -0.4497787853303595,
+          "tours_over_traffic": -0.42251388187783956,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -948,18 +948,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 47,
-        "tours": 25,
-        "applications": 7,
-        "tours_over_traffic": 0.5319148936170213,
-        "conversions": 0.28,
-        "period": "06/22-06/28/2026",
+        "traffic": 37,
+        "tours": 17,
+        "applications": 5,
+        "tours_over_traffic": 0.4594594594594595,
+        "conversions": 0.29411764705882354,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.0273224043715847,
-          "tours": 0.6949152542372882,
-          "applications": 0.5555555555555556,
-          "tours_over_traffic": 0.670188958439399,
-          "conversions": -0.12603278688524575
+          "traffic": -0.23316062176165803,
+          "tours": 0.014925373134328358,
+          "applications": 0.0,
+          "tours_over_traffic": 0.3388637959401823,
+          "conversions": -0.11909591422776003
         },
         "benchmark_weeks": 4
       },
@@ -1045,17 +1045,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 10,
+        "traffic": 12,
         "tours": 1,
         "applications": 0,
-        "tours_over_traffic": 0.1,
+        "tours_over_traffic": 0.08333333333333333,
         "conversions": 0.0,
-        "period": "06/22-06/28/2026",
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.3939393939393939,
+          "traffic": -0.26153846153846155,
           "tours": -0.6923076923076923,
           "applications": -1.0,
-          "tours_over_traffic": -0.4914694551458448,
+          "tours_over_traffic": -0.6032010670223408,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -1142,18 +1142,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 36,
-        "tours": 11,
-        "applications": 6,
-        "tours_over_traffic": 0.3055555555555556,
-        "conversions": 0.5454545454545454,
-        "period": "06/22-06/28/2026",
+        "traffic": 29,
+        "tours": 7,
+        "applications": 3,
+        "tours_over_traffic": 0.2413793103448276,
+        "conversions": 0.42857142857142855,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.014084507042253521,
-          "tours": 0.2222222222222222,
-          "applications": 1.0,
-          "tours_over_traffic": 0.16873924605036777,
-          "conversions": 0.3802256138022561
+          "traffic": -0.22666666666666666,
+          "tours": -0.3,
+          "applications": -0.2,
+          "tours_over_traffic": -0.0742357733691134,
+          "conversions": -0.0010405827263267394
         },
         "benchmark_weeks": 4
       },
@@ -1239,18 +1239,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 36,
-        "tours": 5,
-        "applications": 4,
-        "tours_over_traffic": 0.1388888888888889,
-        "conversions": 0.8,
-        "period": "06/22-06/28/2026",
+        "traffic": 29,
+        "tours": 7,
+        "applications": 6,
+        "tours_over_traffic": 0.2413793103448276,
+        "conversions": 0.8571428571428571,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.3211009174311927,
-          "tours": -0.3333333333333333,
-          "applications": 0.14285714285714285,
-          "tours_over_traffic": -0.4947025264873675,
-          "conversions": 0.806451612903226
+          "traffic": 0.008695652173913044,
+          "tours": -0.06666666666666667,
+          "applications": 0.7142857142857143,
+          "tours_over_traffic": -0.07574417919245507,
+          "conversions": 0.8588640275387261
         },
         "benchmark_weeks": 4
       },
@@ -1336,18 +1336,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 40,
-        "tours": 4,
+        "traffic": 35,
+        "tours": 1,
         "applications": 2,
-        "tours_over_traffic": 0.1,
-        "conversions": 0.5,
-        "period": "06/22-06/28/2026",
+        "tours_over_traffic": 0.02857142857142857,
+        "conversions": 2.0,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.01910828025477707,
-          "tours": -0.058823529411764705,
+          "traffic": -0.14634146341463414,
+          "tours": -0.8,
           "applications": 1.6666666666666667,
-          "tours_over_traffic": -0.13668714725970524,
-          "conversions": 0.9354838709677421
+          "tours_over_traffic": -0.7692872121389726,
+          "conversions": 4.485714285714286
         },
         "benchmark_weeks": 4
       },
@@ -1433,18 +1433,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 34,
-        "tours": 17,
+        "traffic": 29,
+        "tours": 14,
         "applications": 1,
-        "tours_over_traffic": 0.5,
-        "conversions": 0.058823529411764705,
-        "period": "06/22-06/28/2026",
+        "tours_over_traffic": 0.4827586206896552,
+        "conversions": 0.07142857142857142,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.087248322147651,
-          "tours": 0.23636363636363636,
+          "traffic": -0.25161290322580643,
+          "tours": -0.034482758620689655,
           "applications": -0.84,
-          "tours_over_traffic": 0.3773751784077883,
-          "conversions": -0.865314466669339
+          "tours_over_traffic": 0.3153948157204219,
+          "conversions": -0.8259328541892291
         },
         "benchmark_weeks": 4
       },
@@ -1530,18 +1530,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 42,
-        "tours": 11,
+        "traffic": 31,
+        "tours": 9,
         "applications": 3,
-        "tours_over_traffic": 0.2619047619047619,
-        "conversions": 0.2727272727272727,
-        "period": "06/22-06/28/2026",
+        "tours_over_traffic": 0.2903225806451613,
+        "conversions": 0.3333333333333333,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.2037914691943128,
-          "tours": -0.13725490196078433,
-          "applications": -0.07692307692307693,
-          "tours_over_traffic": 0.09403691664040069,
-          "conversions": 0.06306686353090067
+          "traffic": -0.4439461883408072,
+          "tours": -0.32075471698113206,
+          "applications": 0.0,
+          "tours_over_traffic": 0.2430447495156645,
+          "conversions": 0.4501510574018125
         },
         "benchmark_weeks": 4
       },
@@ -1627,18 +1627,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 25,
-        "tours": 12,
+        "traffic": 19,
+        "tours": 9,
         "applications": 2,
-        "tours_over_traffic": 0.48,
-        "conversions": 0.16666666666666666,
-        "period": "06/22-06/28/2026",
+        "tours_over_traffic": 0.47368421052631576,
+        "conversions": 0.2222222222222222,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.34210526315789475,
-          "tours": 0.09090909090909091,
+          "traffic": -0.5159235668789809,
+          "tours": -0.23404255319148937,
           "applications": 0.3333333333333333,
-          "tours_over_traffic": 0.625540724598202,
-          "conversions": 0.01265822784810122
+          "tours_over_traffic": 0.4874052937837605,
+          "conversions": 0.39520398629710374
         },
         "benchmark_weeks": 4
       },
@@ -1725,17 +1725,17 @@
       },
       "marketing": {
         "traffic": 34,
-        "tours": 9,
+        "tours": 8,
         "applications": 2,
-        "tours_over_traffic": 0.2647058823529412,
-        "conversions": 0.2222222222222222,
-        "period": "06/22-06/28/2026",
+        "tours_over_traffic": 0.23529411764705882,
+        "conversions": 0.25,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.1111111111111111,
-          "tours": 0.058823529411764705,
+          "traffic": -0.10526315789473684,
+          "tours": -0.08571428571428572,
           "applications": -0.2,
-          "tours_over_traffic": 0.19521698782727057,
-          "conversions": -0.23809523809523805
+          "tours_over_traffic": 0.036485844350473556,
+          "conversions": -0.18316831683168325
         },
         "benchmark_weeks": 4
       },
@@ -1821,18 +1821,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 127,
-        "tours": 29,
-        "applications": 11,
-        "tours_over_traffic": 0.2283464566929134,
-        "conversions": 0.3793103448275862,
-        "period": "06/22-06/28/2026",
+        "traffic": 106,
+        "tours": 26,
+        "applications": 10,
+        "tours_over_traffic": 0.24528301886792453,
+        "conversions": 0.38461538461538464,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.1571753986332574,
-          "tours": 0.1836734693877551,
-          "applications": 0.0,
-          "tours_over_traffic": 0.005085209267530336,
-          "conversions": -0.11443004612343509
+          "traffic": -0.08026030368763558,
+          "tours": 0.0297029702970297,
+          "applications": -0.1111111111111111,
+          "tours_over_traffic": 0.10322564134986796,
+          "conversions": -0.10961168036290278
         },
         "benchmark_weeks": 4
       },
@@ -1918,18 +1918,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 69,
-        "tours": 23,
-        "applications": 4,
-        "tours_over_traffic": 0.3333333333333333,
-        "conversions": 0.17391304347826086,
-        "period": "06/22-06/28/2026",
+        "traffic": 59,
+        "tours": 15,
+        "applications": 3,
+        "tours_over_traffic": 0.2542372881355932,
+        "conversions": 0.2,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.11290322580645161,
-          "tours": 0.4603174603174603,
-          "applications": 0.0,
-          "tours_over_traffic": 0.30486436105623127,
-          "conversions": -0.24101751651356218
+          "traffic": -0.0888030888030888,
+          "tours": -0.16666666666666666,
+          "applications": -0.3333333333333333,
+          "tours_over_traffic": -0.09011950821765824,
+          "conversions": -0.16325846463291988
         },
         "benchmark_weeks": 4
       },
@@ -2015,18 +2015,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 50,
+        "traffic": 49,
         "tours": 11,
         "applications": 2,
-        "tours_over_traffic": 0.22,
+        "tours_over_traffic": 0.22448979591836735,
         "conversions": 0.18181818181818182,
-        "period": "06/22-06/28/2026",
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.038461538461538464,
+          "traffic": -0.07547169811320754,
           "tours": 0.29411764705882354,
           "applications": -0.5294117647058824,
-          "tours_over_traffic": 0.3101459326686896,
-          "conversions": -0.6286266924564796
+          "tours_over_traffic": 0.3840226356029138,
+          "conversions": -0.6337741607324517
         },
         "benchmark_weeks": 4
       },
@@ -2117,7 +2117,7 @@
         "applications": 1,
         "tours_over_traffic": 0.0,
         "conversions": null,
-        "period": "06/22-06/28/2026",
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
           "traffic": 0.7,
           "tours": null,
@@ -2209,18 +2209,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 29,
-        "tours": 6,
+        "traffic": 19,
+        "tours": 4,
         "applications": 3,
-        "tours_over_traffic": 0.20689655172413793,
-        "conversions": 0.5,
-        "period": "06/22-06/28/2026",
+        "tours_over_traffic": 0.21052631578947367,
+        "conversions": 0.75,
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": -0.13432835820895522,
-          "tours": -0.5384615384615384,
+          "traffic": -0.4722222222222222,
+          "tours": -0.7037037037037037,
           "applications": -0.25,
-          "tours_over_traffic": -0.4631061190575108,
-          "conversions": 0.6842105263157895
+          "tours_over_traffic": -0.44019672124397985,
+          "conversions": 1.5390428211586902
         },
         "benchmark_weeks": 4
       },
@@ -2306,17 +2306,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 19,
+        "traffic": 20,
         "tours": 4,
         "applications": 0,
-        "tours_over_traffic": 0.21052631578947367,
+        "tours_over_traffic": 0.2,
         "conversions": 0.0,
-        "period": "06/22-06/28/2026",
+        "period": "06/23-06/29/2026",
         "benchmark_pct": {
-          "traffic": 0.6170212765957447,
+          "traffic": 0.5686274509803921,
           "tours": 0.3333333333333333,
           "applications": -1.0,
-          "tours_over_traffic": -0.12447583666831426,
+          "tours_over_traffic": -0.1718264276284972,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -2381,18 +2381,18 @@
     }
   },
   "marketing": {
-    "traffic": 841,
-    "tours": 248,
-    "applications": 73,
-    "tours_over_traffic": 0.29488703923900117,
-    "conversions": 0.29435483870967744,
-    "period": "06/22-06/28/2026",
+    "traffic": 724,
+    "tours": 200,
+    "applications": 66,
+    "tours_over_traffic": 0.27624309392265195,
+    "conversions": 0.33,
+    "period": "06/23-06/29/2026",
     "benchmark_pct": {
-      "traffic": 0.01877649909145972,
-      "tours": 0.19518072289156627,
-      "applications": 0.07352941176470588,
-      "tours_over_traffic": 0.1752992864061221,
-      "conversions": -0.09130172281445524
+      "traffic": -0.15911730545876887,
+      "tours": -0.09194097616345062,
+      "applications": -0.05714285714285714,
+      "tours_over_traffic": 0.08045069512492838,
+      "conversions": 0.04204573778344825
     },
     "benchmark_weeks": 4
   },
@@ -2400,29 +2400,26 @@
     {
       "name": "Dylan Apartments",
       "occupancy": 0.9227,
-      "leased": 0.9469,
+      "eff_growth": -0.007175918755154664,
       "collected": 0.9990116195628921,
       "noi_variance": -0.0067082654488662685,
-      "rent_growth": null,
       "concern": "occupancy"
     },
     {
       "name": "Cordova Park",
       "occupancy": 0.9255,
-      "leased": 0.9470999999999999,
+      "eff_growth": -0.008365622705601483,
       "collected": 0.9815842562288225,
       "noi_variance": 0.04488382538870095,
-      "rent_growth": null,
       "concern": "occupancy"
     },
     {
-      "name": "Sienna Heights",
-      "occupancy": 0.9268,
-      "leased": 0.9490000000000001,
-      "collected": 0.9935247744159478,
-      "noi_variance": 0.10202813810395117,
-      "rent_growth": null,
-      "concern": "occupancy"
+      "name": "Steward's Crossing",
+      "occupancy": 0.95,
+      "eff_growth": -0.028527562706929355,
+      "collected": 0.9904973811401494,
+      "noi_variance": -0.04298488252504673,
+      "concern": "eff_growth"
     }
   ],
   "focus_areas": [

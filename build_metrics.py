@@ -780,17 +780,23 @@ def get_areas_of_focus():
         ec, ep, _ = eff_pp.get(code, (None, None, None))
         by_property[code] = items(tc, tp, rc, rp, ec, ep)
 
-    return {"as_of": as_of, "items": portfolio_items, "by_property": by_property}
+    # per-property ANNUALIZED effective rent growth (current month) for the bottom-performers table
+    annz_g = lambda m: ((1 + m) ** 12 - 1) if m is not None else None
+    eff_growth_pp = {code: annz_g(vals[0]) for code, vals in eff_pp.items()}
+
+    return {"as_of": as_of, "items": portfolio_items, "by_property": by_property,
+            "eff_growth_by_property": eff_growth_pp}
 
 
 # ----------------------------------------------------------------------------
 # Analysis: bottom performers + focus areas (anomalies)
 # ----------------------------------------------------------------------------
-def build_analysis(occ, coll, fin):
+def build_analysis(occ, coll, fin, eff_growth=None):
     names = occ["_names"]
     occ_pp  = occ["_per_property"]
     coll_pp = coll["_per_property"]
     noi_pp  = fin.get("_noi_var_by_code", {})
+    eff_growth = eff_growth or {}
 
     rows = []
     for code, name in names.items():
@@ -799,34 +805,38 @@ def build_analysis(occ, coll, fin):
             "code": code, "name": name,
             "occupancy": o.get("occupancy"),
             "leased": o.get("leased"),
+            "eff_growth": eff_growth.get(code),     # annualized MoM effective rent growth
             "collected": (coll_pp.get(code) or {}).get("collected"),
             "noi_variance": noi_pp.get(code),
         })
 
-    # composite score (tiebreaker) across available metrics. Normalize each metric 0..1.
-    metrics = ["occupancy", "leased", "collected", "noi_variance"]
-    ranges = {}
-    for m in metrics:
-        vals = [r[m] for r in rows if r[m] is not None]
-        ranges[m] = (min(vals), max(vals)) if vals else (0, 1)
-    for r in rows:
+    # Rank bottom performers by Occupancy and Effective Rent Growth with EQUAL weight.
+    # Normalize each metric 0..1 (lower raw = worse), average the two -> lowest = worst.
+    def nrange(key):
+        vals = [r[key] for r in rows if r.get(key) is not None]
+        return (min(vals), max(vals)) if vals else (0.0, 1.0)
+    o_lo, o_hi = nrange("occupancy")
+    e_lo, e_hi = nrange("eff_growth")
+    def rank_score(r):
         parts = []
-        for m in metrics:
-            lo, hi = ranges[m]
-            if r[m] is None or hi == lo:
-                continue
-            parts.append((r[m] - lo) / (hi - lo))
-        r["score"] = sum(parts) / len(parts) if parts else 1.0
-
-    # Occupancy-led: rank primarily by occupancy (lowest = worst); composite breaks ties.
-    bottom = sorted(rows, key=lambda r: (r["occupancy"] if r["occupancy"] is not None else 1.0,
-                                         r["score"]))[:3]
+        if r.get("occupancy") is not None and o_hi > o_lo:
+            parts.append((r["occupancy"] - o_lo) / (o_hi - o_lo))
+        if r.get("eff_growth") is not None and e_hi > e_lo:
+            parts.append((r["eff_growth"] - e_lo) / (e_hi - e_lo))
+        return sum(parts) / len(parts) if parts else 1.0
+    bottom = sorted(rows, key=rank_score)[:3]
 
     # Most-concerning column = the metric furthest BELOW its portfolio benchmark.
-    # occ/leased/collected benchmark = portfolio current; NOI variance benchmark = 0 (budget).
+    # occ/collected benchmark = portfolio current; eff_growth = occupancy-weighted portfolio;
+    # NOI variance benchmark = 0 (budget).
+    ew_n = ew_d = 0.0
+    for r in rows:
+        v, w = r.get("eff_growth"), r.get("occupancy")
+        if v is not None and w:
+            ew_n += v * w; ew_d += w
     bench = {
         "occupancy":    occ.get("portfolio_occupancy_current"),
-        "leased":       occ.get("leased_occupancy_current"),
+        "eff_growth":   (ew_n / ew_d) if ew_d else None,
         "collected":    coll.get("percent_collected_current"),
         "noi_variance": 0.0,
     }
@@ -844,9 +854,9 @@ def build_analysis(occ, coll, fin):
 
     bottom_out = [{
         "name": r["name"],
-        "occupancy": r["occupancy"], "leased": r["leased"],
+        "occupancy": r["occupancy"],
+        "eff_growth": r["eff_growth"],
         "collected": r["collected"], "noi_variance": r["noi_variance"],
-        "rent_growth": None,  # not available per-property in a single cell
         "concern": worst_col(r),
     } for r in bottom]
 
@@ -1019,17 +1029,19 @@ def main():
     # Month-over-month comparisons (auto-snapshot; appears once a new month rolls over)
     prior = update_history(now, {"staffing_open": staff.get("value")})
 
-    bottom = []
-    if occ and coll:
-        try:
-            bottom, _ = build_analysis(occ, coll, fin or {})
-        except Exception as e:
-            errors.append(f"analysis: {e}"); traceback.print_exc()
     focus_raw = safe(get_areas_of_focus, "focus_areas", errors) or {}
     if isinstance(focus_raw, dict):
         focus, focus_as_of = focus_raw.get("items", []), focus_raw.get("as_of")
     else:
         focus, focus_as_of = focus_raw, None
+    eff_growth_pp = focus_raw.get("eff_growth_by_property", {}) if isinstance(focus_raw, dict) else {}
+
+    bottom = []
+    if occ and coll:
+        try:
+            bottom, _ = build_analysis(occ, coll, fin or {}, eff_growth_pp)
+        except Exception as e:
+            errors.append(f"analysis: {e}"); traceback.print_exc()
 
     views = build_views(occ, coll, bud, fin, staff, staff_pp, box, prior, focus_raw)
     portfolio = views["PORTFOLIO"]
