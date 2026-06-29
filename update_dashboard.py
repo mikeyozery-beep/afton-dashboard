@@ -29,6 +29,12 @@ def git(*args, check=True):
 
 def main():
     log.info("=" * 60)
+    # Sync to remote first so our push fast-forwards even if another clone or
+    # machine has pushed since the last run (prevents a rejected push from
+    # silently skipping the daily publish).
+    git("fetch", "origin", check=False)
+    git("merge", "--ff-only", "origin/main", check=False)
+
     log.info("Rebuilding dashboard.json from live sources...")
     out = build_metrics.main()
     if out.get("errors"):
