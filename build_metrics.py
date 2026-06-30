@@ -375,11 +375,11 @@ def get_financials(units, now=None):
     """Per-property NOI / Net Income (excl. interest) / CapEx / annualized rent growth from the
     latest rs_sql_income_budget_comparison_muvan export. The sheet is a long-format P&L: each
     row is a leaf GL account with a SIGNED actual_amount (income +, expense -). The budget_amount
-    column stores expenses as POSITIVE magnitudes (and contra/credit accounts as NEGATIVE),
-    so any leaf whose hierarchy path contains 'EXPENSE' has its budget re-signed to match the
-    signed actual. GUARD: flip the sign only when the account is actually a credit (actual >= 0,
-    e.g. 'Contra Real Estate Tax': budget -3,053.75 -> +3,053.75, matching its +actual); for
-    normal expenses use -abs so a wrong-sign budget entry in the source isn't amplified.
+    column stores -(signed P&L), so it is re-signed to match the signed actual and tie to Yardi's
+    official Budget Comparison: INCOME accounts (account_number 4xxx, plus non-operating income)
+    keep their budget sign; everything else (expenses/interest/non-op/capex) flips. Classifying by
+    account number (not the 'EXPENSE' keyword) correctly handles contras (Contra Real Estate Tax)
+    and income that nests under the NON OPERATING EXPENSES rollup (Other Income).
 
       NOI            = leaves whose path contains 'NET OPERATING INCOME'
       Net Income     = every leaf (all paths roll up to NET INCOME)
@@ -424,14 +424,18 @@ def get_financials(units, now=None):
                 continue
         months.add(ym)
         p = row[6] or ""
+        acct = str(row[1] or "").strip()
         a = _ibc_num(row[4])
         b = _ibc_num(row[5])
-        if "EXPENSE" in p:
-            # Budget convention = -(signed P&L). Flip the sign so it matches the signed actual.
-            # GUARD: only flip when the account is actually behaving as a credit (a >= 0, e.g.
-            # 'Contra Real Estate Tax'); for normal expenses (a < 0) treat the budget as an expense
-            # magnitude (-abs) so an occasional wrong-sign budget entry in the source isn't amplified.
-            b = -b if a >= 0 else -abs(b)
+        # Budget column stores -(signed P&L), so re-sign it to match the signed actual and tie to
+        # Yardi's official Budget Comparison. INCOME keeps its budget sign; everything else
+        # (operating expenses, interest, non-op expenses, capex) flips. Classify by account number:
+        # 4xxx = revenue; 6299-09xx = non-operating income (matched via the path, since its account
+        # is 6xxx but it nests under 'NON OPERATING EXPENSES'). This correctly handles contras
+        # (Contra Real Estate Tax -> +) and income-nested-under-expenses (Other Income -> +).
+        is_income = acct.startswith("4") or "NON OPERATING INCOME" in p
+        if not is_income:
+            b = -b
         sl = acc[code][ym]
         if "NET OPERATING INCOME" in p: sl[0] += a; sl[1] += b
         sl[2] += a; sl[3] += b                                       # every leaf -> Net Income
