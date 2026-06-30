@@ -36,8 +36,35 @@ NOTES_DIR = DD / "Weekly Meeting Notes"
 PROSPECTS_DIR = DD / "rs_sql_prospects_w_reasons_muvan"   # marketing funnel source
 IBC_DIR   = DD / "rs_sql_income_budget_comparison_muvan"  # financials source (P&L vs budget)
 
+# Alternate Tradeouts/Renewals source: Kylie's "Afton Revenue Management Dashboard.xlsx".
+# OFF by default -- the live dashboard keeps sourcing rates from Effective Rent Analysis
+# until enabled. Turn on with env AFTON_REVMGMT_RATES=1 (AFTON_REVMGMT_FILE overrides path).
+USE_REVMGMT_RATES = os.environ.get("AFTON_REVMGMT_RATES", "1") not in ("0", "false", "False")
+REVMGMT_NAME = "Afton Revenue Management Dashboard.xlsx"
+
+def revmgmt_path():
+    """Locate the Revenue Management Dashboard workbook. Prefers a OneDrive-synced copy
+    (live + auto-updating once 'Add shortcut to My files' is used) so it always wins over the
+    static bridge copy in Dashboard Data; finally falls back to the newest Downloads copy.
+    AFTON_REVMGMT_FILE overrides everything."""
+    env = os.environ.get("AFTON_REVMGMT_FILE")
+    if env:
+        return Path(env)
+    onedrive = Path(r"C:\Users\MichaelOzery\OneDrive - Afton Properties")
+    candidates = [onedrive / REVMGMT_NAME,                       # OneDrive root (shortcut target) -> live
+                  onedrive / "Revenue Management" / REVMGMT_NAME,
+                  MO / REVMGMT_NAME,
+                  DD / REVMGMT_NAME]                             # static bridge copy (frozen)
+    for p in candidates:
+        if p.exists():
+            return p
+    dl = [p for p in Path(r"C:\Users\MichaelOzery\Downloads").glob("Afton Revenue Management Dashboard*.xlsx")
+          if not p.name.startswith("~$")]
+    dl.sort(key=lambda p: p.stat().st_mtime)
+    return dl[-1] if dl else (DD / REVMGMT_NAME)
+
 SCRIPT_DIR = Path(__file__).parent
-OUT_FILE   = SCRIPT_DIR / "data" / "dashboard.json"
+OUT_FILE   = Path(os.environ.get("AFTON_OUT") or (SCRIPT_DIR / "data" / "dashboard.json"))
 HISTORY    = SCRIPT_DIR / "metrics_history.json"   # monthly snapshots (local, gitignored)
 MKT_LOG    = SCRIPT_DIR / "marketing_prospects_log.json"   # running prospect log (local, gitignored)
 
@@ -677,6 +704,44 @@ def get_takeaways():
             bullets.append(t.lstrip("•-* ").strip())
     return {"items": bullets, "source_file": docs[-1].name}
 
+def get_revmgmt_rates():
+    """Tradeout & Renewal ACTUAL rates from Kylie's Revenue Management Dashboard workbook
+    (sheets 'Tradeouts' and 'Renewal Rates'; identical layout). Each sheet has a
+    'Portfolio Average' block at row 15 and 23 per-property blocks every 7 rows from row 22.
+    Within a block the 'Actual' row (base+3) holds monthly rates in cols 5..16 (Jan..Dec).
+    The current month is named in the Variance Snapshot ('Current Month:' value at R17C19);
+    prior = the column before. Portfolio uses the sheet's own portfolio-average row (row 18).
+    Returns {as_of, portfolio:{trade:(cur,prior), renew:(cur,prior)},
+             by_property:{CODE:{trade:(cur,prior), renew:(cur,prior)}}}."""
+    wb = load(revmgmt_path())
+
+    def sheet_rates(ws):
+        G = lambda r, c: ws.cell(r, c).value
+        cur_month = str(G(17, 19) or "").strip()             # Variance Snapshot 'Current Month:'
+        hdr = {str(G(16, c)).strip(): c for c in range(5, 17) if G(16, c)}
+        cur = hdr.get(cur_month)
+        if not cur:                                          # fallback: last col with a portfolio actual
+            present = [c for c in range(5, 17) if num(G(18, c)) is not None]
+            cur = present[-1] if present else 16
+        prior = cur - 1
+        port = (num(G(18, cur)), num(G(18, prior)))          # row 18 = portfolio 'Actual'
+        pp = {}
+        for base in range(22, 177, 7):
+            code = G(base, 4)
+            if not (isinstance(code, str) and code.strip().lower().startswith("ap-")):
+                continue
+            ar = base + 3                                    # 'Actual' row of this block
+            pp[code_from(code)] = (num(G(ar, cur)), num(G(ar, prior)))
+        return cur_month, port, pp
+
+    cm, port_t, pp_t = sheet_rates(wb["Tradeouts"])
+    _,  port_r, pp_r = sheet_rates(wb["Renewal Rates"])
+    wb.close()
+    by_property = {c: {"trade": pp_t.get(c, (None, None)), "renew": pp_r.get(c, (None, None))}
+                   for c in set(pp_t) | set(pp_r)}
+    return {"as_of": cm, "portfolio": {"trade": port_t, "renew": port_r},
+            "by_property": by_property, "source_file": revmgmt_path().name}
+
 def get_areas_of_focus():
     """Tradeouts / Renewals / Effective-rent focus bullets from Effective Rent Analysis ->
     Summary, for the PORTFOLIO (unit-weighted) AND each property. Layout (col 3 = code):
@@ -770,13 +835,32 @@ def get_areas_of_focus():
                 s += v * w; u += w
         return (s / u) if u else None
 
-    portfolio_items = items(wavg(trade_pp, 0), wavg(trade_pp, 1),
-                            wavg(renew_pp, 0), wavg(renew_pp, 1),
+    # Tradeout/Renewal rates: default source = this sheet (unit-weighted portfolio +
+    # per-property). Optionally overlay from Kylie's Revenue Management Dashboard (its own
+    # portfolio-average row + per-property rows) when AFTON_REVMGMT_RATES is enabled.
+    # Effective Rent (and eff_growth for Bottom Performers) always stay on this sheet.
+    port_trade = (wavg(trade_pp, 0), wavg(trade_pp, 1))
+    port_renew = (wavg(renew_pp, 0), wavg(renew_pp, 1))
+    pp_trade = {c: (v[0], v[1]) for c, v in trade_pp.items()}
+    pp_renew = {c: (v[0], v[1]) for c, v in renew_pp.items()}
+    rates_source = "Effective Rent Analysis"
+    if USE_REVMGMT_RATES:
+        try:
+            rm = get_revmgmt_rates()
+            port_trade, port_renew = rm["portfolio"]["trade"], rm["portfolio"]["renew"]
+            pp_trade = {c: v["trade"] for c, v in rm["by_property"].items()}
+            pp_renew = {c: v["renew"] for c, v in rm["by_property"].items()}
+            rates_source = f"Revenue Management Dashboard (as of {rm.get('as_of')})"
+        except Exception:
+            traceback.print_exc()   # any failure -> keep the Effective-Rent values
+
+    portfolio_items = items(port_trade[0], port_trade[1],
+                            port_renew[0], port_renew[1],
                             port_eff_cur, port_eff_prior)
     by_property = {}
-    for code in set(trade_pp) | set(renew_pp) | set(eff_pp):
-        tc, tp, _ = trade_pp.get(code, (None, None, None))
-        rc, rp, _ = renew_pp.get(code, (None, None, None))
+    for code in set(pp_trade) | set(pp_renew) | set(eff_pp):
+        tc, tp = pp_trade.get(code, (None, None))
+        rc, rp = pp_renew.get(code, (None, None))
         ec, ep, _ = eff_pp.get(code, (None, None, None))
         by_property[code] = items(tc, tp, rc, rp, ec, ep)
 
@@ -785,7 +869,7 @@ def get_areas_of_focus():
     eff_growth_pp = {code: annz_g(vals[0]) for code, vals in eff_pp.items()}
 
     return {"as_of": as_of, "items": portfolio_items, "by_property": by_property,
-            "eff_growth_by_property": eff_growth_pp}
+            "eff_growth_by_property": eff_growth_pp, "rates_source": rates_source}
 
 
 # ----------------------------------------------------------------------------

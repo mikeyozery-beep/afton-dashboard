@@ -26,5 +26,9 @@ __pycache__/
 temp_yardi_downloads/
 chromedriver-win64/
 
+# Local-only test artifacts (Tradeouts/Renewals source switch — never publish)
+dashboard_test.html
+data/dashboard_test.json
+
 # Generated outputs (contains its own nested git repo)
 extraction_system/outputs/
