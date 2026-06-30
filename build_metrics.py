@@ -34,7 +34,8 @@ POS_DIR   = DD / "Position"               # auto-exported timestamped Position_*
 OPEN_POS  = DD / "Open Positions.xlsx"     # legacy fixed-name fallback
 NOTES_DIR = DD / "Weekly Meeting Notes"
 PROSPECTS_DIR = DD / "rs_sql_prospects_w_reasons_muvan"   # marketing funnel source
-IBC_DIR   = DD / "rs_sql_income_budget_comparison_muvan"  # financials source (P&L vs budget)
+IBC_DIR   = DD / "rs_sql_income_budget_comparison_muvan"  # financials BUDGET source (latest reforecast in the feed)
+ISTMT_DIR = DD / "rs_sql_income_statement_all_muvan"      # financials ACTUALS source (arrives daily-fresh)
 
 # Alternate Tradeouts/Renewals source: Kylie's "Afton Revenue Management Dashboard.xlsx".
 # OFF by default -- the live dashboard keeps sourcing rates from Effective Rent Analysis
@@ -363,89 +364,122 @@ def _ibc_num(v):
         return 0.0
 
 def latest_fin_month(today):
-    """A month M's financials are ready after the 25th of month M+1. Return the (year, month)
-    of the latest READY month as of `today`. E.g. 2026-06-28 -> (2026, 5) since June 25 passed."""
+    """A month M's financials are ready the DAY AFTER the 25th of month M+1 (i.e. the 26th
+    onward), never before -- even if a fresher report already shows the newer month. Return the
+    (year, month) of the latest READY month as of `today`. E.g. 2026-06-26 -> (2026, 5); on
+    2026-06-25 it is still (2026, 4)."""
     y, m = today.year, today.month
     py, pm = (y - 1, 12) if m == 1 else (y, m - 1)   # previous calendar month
-    if today.day >= 25:                              # previous month is ready
+    if today.day > 25:                               # day after the 25th -> previous month ready
         return (py, pm)
     return (py - 1, 12) if pm == 1 else (py, pm - 1)  # else the month before that
 
 def get_financials(units, now=None):
-    """Per-property NOI / Net Income (excl. interest) / CapEx / annualized rent growth from the
-    latest rs_sql_income_budget_comparison_muvan export. The sheet is a long-format P&L: each
-    row is a leaf GL account with a SIGNED actual_amount (income +, expense -). The budget_amount
-    column stores -(signed P&L), so it is re-signed to match the signed actual and tie to Yardi's
-    official Budget Comparison: INCOME accounts (account_number 4xxx, plus non-operating income)
-    keep their budget sign; everything else (expenses/interest/non-op/capex) flips. Classifying by
-    account number (not the 'EXPENSE' keyword) correctly handles contras (Contra Real Estate Tax)
-    and income that nests under the NON OPERATING EXPENSES rollup (Other Income).
+    """Per-property NOI / Net Income (excl. interest) / CapEx / annualized rent growth.
+
+    HYBRID SOURCE (keeps the dashboard current without re-running the Yardi scheduler):
+      * ACTUALS  <- newest rs_sql_income_statement_all_muvan (arrives DAILY). Accrual book; one
+        row per leaf GL with `value`. This report stores expenses as POSITIVE, so non-income
+        leaves are negated to the signed convention.
+      * BUDGET   <- newest rs_sql_income_budget_comparison_muvan (the latest reforecast the feed
+        has delivered; auto-updates whenever a newer one lands). `budget_amount` stores -(signed
+        P&L), so non-income leaves are flipped.
+    Both carry the same GL `full_hierarchy_path`, so identical path keywords bucket each side.
+    Income vs expense is decided by ACCOUNT NUMBER (4xxx = revenue) + non-operating income, NOT
+    the 'EXPENSE' keyword -- this ties to Yardi's official Budget Comparison and correctly handles
+    contras (Contra Real Estate Tax) and income nested under NON OPERATING EXPENSES (Other Income).
 
       NOI            = leaves whose path contains 'NET OPERATING INCOME'
       Net Income     = every leaf (all paths roll up to NET INCOME)
       Interest exp.  = leaves with both 'INTEREST' and 'EXPENSE' in the path (excludes Interest Income)
       Net Income ex-interest = Net Income - Interest expense  (interest is negative, so this adds it back)
-      CapEx          = leaves under ANY capital-improvement rollup -- 'TOTAL BUILDING IMPROVEMENTS'
-                       AND 'TOTAL UNIT IMPROVEMENTS' (match 'IMPROVEMENTS'); shown as positive spend
+      CapEx          = leaves under any capital-improvement rollup (match 'IMPROVEMENTS'); shown positive
       Rent           = leaves under 'TOTAL POTENTIAL INCOME'
 
-    Dollar figures are YTD (Jan..as-of month). Rent growth is the annualized month-over-month
-    change in Total Potential Income (as-of vs prior month), unit-weighted for the portfolio.
-    Distributions are raw PROPERTY COUNTS bucketed on each property's YTD variance."""
+    The as-of month is gated by latest_fin_month() (the day AFTER the 25th of M+1), so the daily
+    actuals feed can NEVER advance the as-of early. Dollars are YTD (Jan..as-of). Rent growth is
+    the annualized MoM change in Total Potential Income (as-of vs prior), unit-weighted for the
+    portfolio. Distributions are raw PROPERTY COUNTS bucketed on each property's YTD variance."""
     from collections import defaultdict
     now = now or datetime.now()
-    files = sorted(IBC_DIR.glob("*.xlsx"), key=lambda p: p.stat().st_mtime) if IBC_DIR.exists() else []
-    if not files:
-        return {"error": "no income/budget comparison file"}
+    ist_files = sorted(ISTMT_DIR.glob("*.xlsx"), key=lambda p: p.stat().st_mtime) if ISTMT_DIR.exists() else []
+    if not ist_files:
+        return {"error": "no income statement (actuals) file"}
+    bud_files = sorted(IBC_DIR.glob("*.xlsx"), key=lambda p: p.stat().st_mtime) if IBC_DIR.exists() else []
+    actuals_file = ist_files[-1].name
+    budget_file  = bud_files[-1].name if bud_files else None
 
-    wb = load(files[-1]); ws = wb["Report"]
     # slot layout per (code, month): [noi_a, noi_b, ni_a, ni_b, int_a, int_b, cap_a, cap_b, tpi_a, tpi_b]
     acc = defaultdict(lambda: defaultdict(lambda: [0.0] * 10))
-    months = set()
-    header_seen = False
+    months = set()      # months with ACTUAL data -> drives the as-of (then gated by the 25th rule)
+
+    def parse_ym(d):
+        if isinstance(d, (datetime, date)):
+            return (d.year, d.month)
+        s = str(d)
+        try:
+            return (int(s[:4]), int(s[5:7]))
+        except (ValueError, IndexError):
+            return None
+
+    def is_income(acct, path):
+        return str(acct or "").strip().startswith("4") or "NON OPERATING INCOME" in path
+
+    def add(code, ym, p, val, off):
+        # off=0 writes the ACTUAL slots, off=1 writes the BUDGET slots
+        sl = acc[code][ym]
+        if "NET OPERATING INCOME" in p: sl[0 + off] += val
+        sl[2 + off] += val                                          # every leaf -> Net Income
+        if "INTEREST" in p and "EXPENSE" in p: sl[4 + off] += val
+        if "IMPROVEMENTS" in p: sl[6 + off] += val                  # CapEx = all capital improvements
+        if "TOTAL POTENTIAL INCOME" in p: sl[8 + off] += val
+
+    # ---- ACTUALS: newest income statement (accrual; expenses stored POSITIVE -> negate) ----
+    wb = load(ist_files[-1]); ws = wb.worksheets[0]
+    seen = False
     for row in ws.iter_rows(values_only=True):
-        if not header_seen:
-            if row and row[0] == "property_code":
-                header_seen = True
+        if not seen:
+            if row and row[0] == "property_name":
+                seen = True
             continue
-        if not row or not row[0]:
+        if not row or not row[0] or str(row[1]).strip().lower() != "accrual":
             continue
         code = code_from(row[0])
         if not code or not code.startswith("RG"):     # skip ap-jr / ap-ss / ap-unkwn / ap-yl
             continue
-        d = row[3]
-        if isinstance(d, (datetime, date)):
-            ym = (d.year, d.month)
-        else:
-            s = str(d)
-            try:
-                ym = (int(s[:4]), int(s[5:7]))
-            except (ValueError, IndexError):
-                continue
-        months.add(ym)
+        ym = parse_ym(row[4])
+        if not ym:
+            continue
         p = row[6] or ""
-        acct = str(row[1] or "").strip()
-        a = _ibc_num(row[4])
-        b = _ibc_num(row[5])
-        # Budget column stores -(signed P&L), so re-sign it to match the signed actual and tie to
-        # Yardi's official Budget Comparison. INCOME keeps its budget sign; everything else
-        # (operating expenses, interest, non-op expenses, capex) flips. Classify by account number:
-        # 4xxx = revenue; 6299-09xx = non-operating income (matched via the path, since its account
-        # is 6xxx but it nests under 'NON OPERATING EXPENSES'). This correctly handles contras
-        # (Contra Real Estate Tax -> +) and income-nested-under-expenses (Other Income -> +).
-        is_income = acct.startswith("4") or "NON OPERATING INCOME" in p
-        if not is_income:
-            b = -b
-        sl = acc[code][ym]
-        if "NET OPERATING INCOME" in p: sl[0] += a; sl[1] += b
-        sl[2] += a; sl[3] += b                                       # every leaf -> Net Income
-        if "INTEREST" in p and "EXPENSE" in p: sl[4] += a; sl[5] += b
-        if "IMPROVEMENTS" in p: sl[6] += a; sl[7] += b   # CapEx = ALL capital improvements (Building + Unit)
-        if "TOTAL POTENTIAL INCOME" in p: sl[8] += a; sl[9] += b
+        v = _ibc_num(row[5])
+        months.add(ym)
+        add(code, ym, p, v if is_income(row[2], p) else -v, 0)
     wb.close()
 
+    # ---- BUDGET: newest income/budget comparison (-(signed P&L) -> flip non-income) ----
+    if bud_files:
+        wb = load(bud_files[-1]); ws = wb["Report"]
+        seen = False
+        for row in ws.iter_rows(values_only=True):
+            if not seen:
+                if row and row[0] == "property_code":
+                    seen = True
+                continue
+            if not row or not row[0]:
+                continue
+            code = code_from(row[0])
+            if not code or not code.startswith("RG"):
+                continue
+            ym = parse_ym(row[3])
+            if not ym:
+                continue
+            p = row[6] or ""
+            rb = _ibc_num(row[5])
+            add(code, ym, p, rb if is_income(row[1], p) else -rb, 1)
+        wb.close()
+
     if not months:
-        return {"error": "no property rows in income/budget file"}
+        return {"error": "no property rows in income statement"}
     target = latest_fin_month(now)
     elig = sorted(ym for ym in months if ym <= target) or sorted(months)
     as_of = elig[-1]
@@ -515,6 +549,8 @@ def get_financials(units, now=None):
         "rent_budget_portfolio": (rb_ws / rb_wu) if rb_wu else None,
         "noi_distribution": dict(noi_buckets),       # raw counts
         "net_income_distribution": dict(ni_buckets), # raw counts
+        "actuals_source": actuals_file,              # daily income statement
+        "budget_source": budget_file,                # latest budget-comparison reforecast
         "_per_property": per,
         "_noi_var_by_code": {c: v["noi_var"] for c, v in per.items()},
     }
