@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T12:51:04.920274",
+  "generated_at": "2026-06-30T13:15:11.233541",
   "as_of": {
     "occupancy": "06/30/2026",
     "collections": "06/30/2026",
@@ -39,37 +39,37 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.027045957435528623,
+          "value": 0.0005957737357338289,
           "actual": 46562723.0,
-          "budget": 45336552.53000001,
+          "budget": 46534998.67,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.049969328244383604,
+          "value": 0.051458370694056565,
           "actual": 6614582.1899999995,
-          "budget": 6299786.110000001,
+          "budget": 6290864.55,
           "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
           "actual": 46562723.0,
-          "budget": 45336552.53000001,
-          "variance": 0.027045957435528623,
+          "budget": 46534998.67,
+          "variance": 0.0005957737357338289,
           "dist": {
-            "above": 16,
-            "online": 3,
-            "below": 4
+            "above": 10,
+            "online": 4,
+            "below": 9
           }
         },
         "net_income": {
           "actual": 38870594.95,
-          "budget": 37597227.15000001,
-          "variance": 0.0338686625723672,
+          "budget": 38804594.85000001,
+          "variance": 0.0017008320858682424,
           "dist": {
-            "above": 8,
-            "at": 13,
-            "below": 2
+            "above": 1,
+            "at": 19,
+            "below": 3
           }
         },
         "as_of": "May 2026"
@@ -142,9 +142,9 @@
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.06777018030980864,
+          "value": -0.05746834675176293,
           "actual": 285582.35,
-          "budget": 306343.29,
+          "budget": 302994.97,
           "as_of": "May 2026"
         }
       },
@@ -161,8 +161,8 @@
         },
         "net_income": {
           "actual": 923412.9900000002,
-          "budget": 946970.050000001,
-          "variance": -0.024876246086136256,
+          "budget": 950318.370000001,
+          "variance": -0.0283119645472083,
           "dist": {
             "above": 0,
             "at": 1,
@@ -524,9 +524,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.05666039198305284,
+          "value": 0.004785771048876564,
           "actual": 2014643.5599999998,
-          "budget": 1906614.06,
+          "budget": 2005047.8599999999,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -539,21 +539,21 @@
       "charts": {
         "noi": {
           "actual": 2014643.5599999998,
-          "budget": 1906614.06,
-          "variance": 0.05666039198305284,
+          "budget": 2005047.8599999999,
+          "variance": 0.004785771048876564,
           "dist": {
-            "above": 1,
-            "online": 0,
+            "above": 0,
+            "online": 1,
             "below": 0
           }
         },
         "net_income": {
           "actual": 1897705.5899999999,
-          "budget": 1791586.94,
-          "variance": 0.05923164967925021,
+          "budget": 1890020.74,
+          "variance": 0.00406601358247527,
           "dist": {
-            "above": 1,
-            "at": 0,
+            "above": 0,
+            "at": 1,
             "below": 0
           }
         },
@@ -621,9 +621,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.03386759659982164,
+          "value": 0.03010436482759804,
           "actual": 1937214.32,
-          "budget": 1873754.7500000005,
+          "budget": 1880600.0500000007,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -636,8 +636,8 @@
       "charts": {
         "noi": {
           "actual": 1937214.32,
-          "budget": 1873754.7500000005,
-          "variance": 0.03386759659982164,
+          "budget": 1880600.0500000007,
+          "variance": 0.03010436482759804,
           "dist": {
             "above": 1,
             "online": 0,
@@ -646,8 +646,8 @@
         },
         "net_income": {
           "actual": 1581922.0500000003,
-          "budget": 1539083.3600000003,
-          "variance": 0.027833898483575314,
+          "budget": 1545928.6600000006,
+          "variance": 0.02328269792216653,
           "dist": {
             "above": 0,
             "at": 1,
@@ -718,9 +718,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.025237071226872132,
+          "value": -0.02953763845713775,
           "actual": 1815716.2999999998,
-          "budget": 1862726.05,
+          "budget": 1870980.6500000004,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -733,8 +733,8 @@
       "charts": {
         "noi": {
           "actual": 1815716.2999999998,
-          "budget": 1862726.05,
-          "variance": -0.025237071226872132,
+          "budget": 1870980.6500000004,
+          "variance": -0.02953763845713775,
           "dist": {
             "above": 0,
             "online": 0,
@@ -743,8 +743,8 @@
         },
         "net_income": {
           "actual": 1617337.8799999997,
-          "budget": 1707688.67,
-          "variance": -0.052908232974339664,
+          "budget": 1715943.2700000005,
+          "variance": -0.05746424822074725,
           "dist": {
             "above": 0,
             "at": 0,
@@ -815,36 +815,36 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.019584366362853434,
+          "value": 0.004608098451837073,
           "actual": 1499986.5000000002,
-          "budget": 1471174.48,
+          "budget": 1493106.1199999999,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.04583276136692316,
+          "value": -0.04176920189682254,
           "actual": 302295.82,
-          "budget": 316816.3900000001,
+          "budget": 315472.87000000005,
           "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
           "actual": 1499986.5000000002,
-          "budget": 1471174.48,
-          "variance": 0.019584366362853434,
+          "budget": 1493106.1199999999,
+          "variance": 0.004608098451837073,
           "dist": {
-            "above": 1,
-            "online": 0,
+            "above": 0,
+            "online": 1,
             "below": 0
           }
         },
         "net_income": {
           "actual": 1165595.1200000003,
-          "budget": 1100729.2100000002,
-          "variance": 0.058929943360002346,
+          "budget": 1124004.37,
+          "variance": 0.03700230275795113,
           "dist": {
-            "above": 1,
-            "at": 0,
+            "above": 0,
+            "at": 1,
             "below": 0
           }
         },
@@ -912,9 +912,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.020200717949785507,
+          "value": -0.02419551315640245,
           "actual": 1495960.6399999997,
-          "budget": 1526803.1600000008,
+          "budget": 1533053.6600000006,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -927,8 +927,8 @@
       "charts": {
         "noi": {
           "actual": 1495960.6399999997,
-          "budget": 1526803.1600000008,
-          "variance": -0.020200717949785507,
+          "budget": 1533053.6600000006,
+          "variance": -0.02419551315640245,
           "dist": {
             "above": 0,
             "online": 0,
@@ -937,8 +937,8 @@
         },
         "net_income": {
           "actual": 1128155.9400000002,
-          "budget": 1181064.2000000007,
-          "variance": -0.04479710755774369,
+          "budget": 1187314.700000001,
+          "variance": -0.04982567806159621,
           "dist": {
             "above": 0,
             "at": 1,
@@ -1009,9 +1009,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.024119865565636722,
+          "value": 0.019083531036671264,
           "actual": 2371773.3500000006,
-          "budget": 2315913.8200000003,
+          "budget": 2327359.1200000006,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -1024,8 +1024,8 @@
       "charts": {
         "noi": {
           "actual": 2371773.3500000006,
-          "budget": 2315913.8200000003,
-          "variance": 0.024119865565636722,
+          "budget": 2327359.1200000006,
+          "variance": 0.019083531036671264,
           "dist": {
             "above": 1,
             "online": 0,
@@ -1034,8 +1034,8 @@
         },
         "net_income": {
           "actual": 2045132.9000000008,
-          "budget": 1948310.4300000002,
-          "variance": 0.04969560728574485,
+          "budget": 1959755.7300000004,
+          "variance": 0.04356521003768177,
           "dist": {
             "above": 0,
             "at": 1,
@@ -1106,9 +1106,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.03951020549394246,
+          "value": 0.03573150637517908,
           "actual": 1308641.3,
-          "budget": 1258901.8299999998,
+          "budget": 1263494.73,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -1121,8 +1121,8 @@
       "charts": {
         "noi": {
           "actual": 1308641.3,
-          "budget": 1258901.8299999998,
-          "variance": 0.03951020549394246,
+          "budget": 1263494.73,
+          "variance": 0.03573150637517908,
           "dist": {
             "above": 1,
             "online": 0,
@@ -1131,8 +1131,8 @@
         },
         "net_income": {
           "actual": 864837.2800000001,
-          "budget": 843573.4400000001,
-          "variance": 0.025206862842908073,
+          "budget": 848166.3400000001,
+          "variance": 0.019655271865657964,
           "dist": {
             "above": 0,
             "at": 1,
@@ -1203,23 +1203,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.03033231260979008,
+          "value": 0.027858980536322298,
           "actual": 2615121.6799999997,
-          "budget": 2538134.2,
+          "budget": 2544241.7,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.9236037963279413,
+          "value": 0.9240999408280601,
           "actual": 109810.25,
-          "budget": 57085.69,
+          "budget": 57070.97,
           "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
           "actual": 2615121.6799999997,
-          "budget": 2538134.2,
-          "variance": 0.03033231260979008,
+          "budget": 2544241.7,
+          "variance": 0.027858980536322298,
           "dist": {
             "above": 1,
             "online": 0,
@@ -1228,8 +1228,8 @@
         },
         "net_income": {
           "actual": 2458798.909999999,
-          "budget": 2405953.3199999994,
-          "variance": 0.021964511763677974,
+          "budget": 2412075.5399999996,
+          "variance": 0.019370608102928566,
           "dist": {
             "above": 0,
             "at": 1,
@@ -1300,33 +1300,33 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.0011914753581508952,
+          "value": -0.024052345077013926,
           "actual": 1606065.35,
-          "budget": 1607981.2199999995,
+          "budget": 1645647.0199999998,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.15083652840711048,
+          "value": -0.1507007081696934,
           "actual": 237778.00000000003,
-          "budget": 280014.4,
+          "budget": 279969.62,
           "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
           "actual": 1606065.35,
-          "budget": 1607981.2199999995,
-          "variance": -0.0011914753581508952,
+          "budget": 1645647.0199999998,
+          "variance": -0.024052345077013926,
           "dist": {
             "above": 0,
-            "online": 1,
-            "below": 0
+            "online": 0,
+            "below": 1
           }
         },
         "net_income": {
           "actual": 1330272.6400000001,
-          "budget": 1282553.1500000001,
-          "variance": 0.03720663740134267,
+          "budget": 1320263.7300000002,
+          "variance": 0.007580992927829655,
           "dist": {
             "above": 0,
             "at": 1,
@@ -1397,9 +1397,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.052291943584795275,
+          "value": 0.01731573348606763,
           "actual": 4087434.37,
-          "budget": 3884315.9399999995,
+          "budget": 4017862.139999999,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -1412,8 +1412,8 @@
       "charts": {
         "noi": {
           "actual": 4087434.37,
-          "budget": 3884315.9399999995,
-          "variance": 0.052291943584795275,
+          "budget": 4017862.139999999,
+          "variance": 0.01731573348606763,
           "dist": {
             "above": 1,
             "online": 0,
@@ -1422,11 +1422,11 @@
         },
         "net_income": {
           "actual": 3107358.25,
-          "budget": 2833023.7699999996,
-          "variance": 0.09683451402880405,
+          "budget": 2966569.9699999993,
+          "variance": 0.047458270468503594,
           "dist": {
-            "above": 1,
-            "at": 0,
+            "above": 0,
+            "at": 1,
             "below": 0
           }
         },
@@ -1494,9 +1494,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.04426155212703331,
+          "value": -0.01620439079616376,
           "actual": 3431804.190000001,
-          "budget": 3286345.4400000023,
+          "budget": 3488330.4600000028,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -1509,21 +1509,21 @@
       "charts": {
         "noi": {
           "actual": 3431804.190000001,
-          "budget": 3286345.4400000023,
-          "variance": 0.04426155212703331,
+          "budget": 3488330.4600000028,
+          "variance": -0.01620439079616376,
           "dist": {
-            "above": 1,
+            "above": 0,
             "online": 0,
-            "below": 0
+            "below": 1
           }
         },
         "net_income": {
           "actual": 3003206.5400000005,
-          "budget": 2807555.780000002,
-          "variance": 0.06968722096057456,
+          "budget": 3009540.8000000026,
+          "variance": -0.002104726408760471,
           "dist": {
-            "above": 1,
-            "at": 0,
+            "above": 0,
+            "at": 1,
             "below": 0
           }
         },
@@ -1591,9 +1591,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.045700232061211876,
+          "value": 0.010412698724409974,
           "actual": 1103139.0399999998,
-          "budget": 1054928.5599999998,
+          "budget": 1091770.7599999998,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -1606,8 +1606,8 @@
       "charts": {
         "noi": {
           "actual": 1103139.0399999998,
-          "budget": 1054928.5599999998,
-          "variance": 0.045700232061211876,
+          "budget": 1091770.7599999998,
+          "variance": 0.010412698724409974,
           "dist": {
             "above": 1,
             "online": 0,
@@ -1616,11 +1616,11 @@
         },
         "net_income": {
           "actual": 967672.8599999999,
-          "budget": 913021.3099999998,
-          "variance": 0.05985791284542974,
+          "budget": 949863.5099999998,
+          "variance": 0.01874937800274079,
           "dist": {
-            "above": 1,
-            "at": 0,
+            "above": 0,
+            "at": 1,
             "below": 0
           }
         },
@@ -1688,33 +1688,33 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.0067082654488662685,
+          "value": -0.010041823612610634,
           "actual": 1398035.3699999999,
-          "budget": 1407477.1000000003,
+          "budget": 1412216.6000000006,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.041295317403255094,
+          "value": 0.046323502179997034,
           "actual": 287324.19,
-          "budget": 275929.58999999997,
+          "budget": 274603.58999999997,
           "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
           "actual": 1398035.3699999999,
-          "budget": 1407477.1000000003,
-          "variance": -0.0067082654488662685,
+          "budget": 1412216.6000000006,
+          "variance": -0.010041823612610634,
           "dist": {
             "above": 0,
-            "online": 1,
-            "below": 0
+            "online": 0,
+            "below": 1
           }
         },
         "net_income": {
           "actual": 1063107.5299999998,
-          "budget": 1074894.2800000003,
-          "variance": -0.010965496997528357,
+          "budget": 1080959.7800000005,
+          "variance": -0.016515184311483577,
           "dist": {
             "above": 0,
             "at": 1,
@@ -1785,9 +1785,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.012070489881071067,
+          "value": -0.04831261855402447,
           "actual": 4373007.609999999,
-          "budget": 4320852.800000002,
+          "budget": 4595004.300000002,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -1800,18 +1800,18 @@
       "charts": {
         "noi": {
           "actual": 4373007.609999999,
-          "budget": 4320852.800000002,
-          "variance": 0.012070489881071067,
+          "budget": 4595004.300000002,
+          "variance": -0.04831261855402447,
           "dist": {
-            "above": 1,
+            "above": 0,
             "online": 0,
-            "below": 0
+            "below": 1
           }
         },
         "net_income": {
           "actual": 4093581.81,
-          "budget": 3987858.7600000007,
-          "variance": 0.026511232308538357,
+          "budget": 4262010.260000001,
+          "variance": -0.03951854634906504,
           "dist": {
             "above": 0,
             "at": 1,
@@ -1882,36 +1882,36 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.04488382538870095,
+          "value": -0.04260050822925232,
           "actual": 2107905.81,
-          "budget": 2017359.0199999993,
+          "budget": 2201699.3199999994,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.04294603768603533,
+          "value": -0.04009320895165669,
           "actual": 176321.65000000002,
-          "budget": 184233.76,
+          "budget": 183686.22,
           "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
           "actual": 2107905.81,
-          "budget": 2017359.0199999993,
-          "variance": 0.04488382538870095,
+          "budget": 2201699.3199999994,
+          "variance": -0.04260050822925232,
           "dist": {
-            "above": 1,
+            "above": 0,
             "online": 0,
-            "below": 0
+            "below": 1
           }
         },
         "net_income": {
           "actual": 1904567.2200000007,
-          "budget": 1767469.4499999997,
-          "variance": 0.07756726431678973,
+          "budget": 1952357.2899999993,
+          "variance": -0.024478137400761657,
           "dist": {
-            "above": 1,
-            "at": 0,
+            "above": 0,
+            "at": 1,
             "below": 0
           }
         },
@@ -1979,23 +1979,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.10202813810395117,
+          "value": 0.021923772800663377,
           "actual": 1627729.2599999993,
-          "budget": 1477030.58,
+          "budget": 1592808.8800000001,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": -0.17457195948651327,
+          "value": -0.17403333292744416,
           "actual": 155335.0,
-          "budget": 188187.20999999996,
+          "budget": 188064.49,
           "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
           "actual": 1627729.2599999993,
-          "budget": 1477030.58,
-          "variance": 0.10202813810395117,
+          "budget": 1592808.8800000001,
+          "variance": 0.021923772800663377,
           "dist": {
             "above": 1,
             "online": 0,
@@ -2004,8 +2004,8 @@
         },
         "net_income": {
           "actual": 1441488.3099999996,
-          "budget": 1233977.5400000003,
-          "variance": 0.1681641385466377,
+          "budget": 1349878.56,
+          "variance": 0.06786517892394661,
           "dist": {
             "above": 1,
             "at": 0,
@@ -2076,9 +2076,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.21360745429636507,
+          "value": -0.005808592162921622,
           "actual": 232659.52,
-          "budget": 191709.03999999998,
+          "budget": 234018.84,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -2091,22 +2091,22 @@
       "charts": {
         "noi": {
           "actual": 232659.52,
-          "budget": 191709.03999999998,
-          "variance": 0.21360745429636507,
+          "budget": 234018.84,
+          "variance": -0.005808592162921622,
           "dist": {
-            "above": 1,
-            "online": 0,
+            "above": 0,
+            "online": 1,
             "below": 0
           }
         },
         "net_income": {
           "actual": 112453.46000000008,
-          "budget": 94153.32999999994,
-          "variance": 0.19436519133205543,
+          "budget": 136463.12999999995,
+          "variance": -0.17594254213573934,
           "dist": {
-            "above": 1,
+            "above": 0,
             "at": 0,
-            "below": 0
+            "below": 1
           }
         },
         "as_of": "May 2026"
@@ -2173,23 +2173,23 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": -0.0035166099828438657,
+          "value": -0.0035895242114419856,
           "actual": 1180633.6600000001,
-          "budget": 1184800.139999999,
+          "budget": 1184886.8399999992,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
-          "value": 0.22514400832999848,
+          "value": 0.24017888895788309,
           "actual": 219696.45,
-          "budget": 179322.96000000002,
+          "budget": 177149.0,
           "as_of": "May 2026"
         }
       },
       "charts": {
         "noi": {
           "actual": 1180633.6600000001,
-          "budget": 1184800.139999999,
-          "variance": -0.0035166099828438657,
+          "budget": 1184886.8399999992,
+          "variance": -0.0035895242114419856,
           "dist": {
             "above": 0,
             "online": 1,
@@ -2198,8 +2198,8 @@
         },
         "net_income": {
           "actual": 903976.2100000002,
-          "budget": 961425.0399999993,
-          "variance": -0.05975383166637638,
+          "budget": 963685.6999999995,
+          "variance": -0.0619595060920789,
           "dist": {
             "above": 0,
             "at": 0,
@@ -2270,9 +2270,9 @@
           "prior_month": null
         },
         "noi_variance": {
-          "value": 0.04991396930121983,
+          "value": 0.04735270735067587,
           "actual": 1347791.5499999998,
-          "budget": 1283716.1800000006,
+          "budget": 1286855.4600000004,
           "as_of": "May 2026"
         },
         "capex_vs_budget": {
@@ -2285,8 +2285,8 @@
       "charts": {
         "noi": {
           "actual": 1347791.5499999998,
-          "budget": 1283716.1800000006,
-          "variance": 0.04991396930121983,
+          "budget": 1286855.4600000004,
+          "variance": 0.04735270735067587,
           "dist": {
             "above": 1,
             "online": 0,
@@ -2295,8 +2295,8 @@
         },
         "net_income": {
           "actual": 1223091.8999999994,
-          "budget": 1199494.5100000002,
-          "variance": 0.01967277866073691,
+          "budget": 1202633.7900000005,
+          "variance": 0.017011088637380656,
           "dist": {
             "above": 0,
             "at": 1,
@@ -2368,15 +2368,15 @@
       "prior_month": null
     },
     "noi_variance": {
-      "value": 0.027045957435528623,
+      "value": 0.0005957737357338289,
       "actual": 46562723.0,
-      "budget": 45336552.53000001,
+      "budget": 46534998.67,
       "as_of": "May 2026"
     },
     "capex_vs_budget": {
-      "value": 0.049969328244383604,
+      "value": 0.051458370694056565,
       "actual": 6614582.1899999995,
-      "budget": 6299786.110000001,
+      "budget": 6290864.55,
       "as_of": "May 2026"
     }
   },
@@ -2402,7 +2402,7 @@
       "occupancy": 0.9275,
       "eff_growth": -0.007175918755154664,
       "collected": 0.999538165469454,
-      "noi_variance": -0.0067082654488662685,
+      "noi_variance": -0.010041823612610634,
       "concern": "occupancy"
     },
     {
@@ -2410,8 +2410,8 @@
       "occupancy": 0.9303,
       "eff_growth": -0.008365622705601483,
       "collected": 0.9840048582576578,
-      "noi_variance": 0.04488382538870095,
-      "concern": "eff_growth"
+      "noi_variance": -0.04260050822925232,
+      "concern": "noi_variance"
     },
     {
       "name": "Steward's Crossing",
@@ -2438,14 +2438,14 @@
   ],
   "focus_as_of": "June vs May 2026",
   "noi_distribution": {
-    "above": 16,
-    "online": 3,
-    "below": 4
+    "above": 10,
+    "online": 4,
+    "below": 9
   },
   "net_income_distribution": {
-    "above": 8,
-    "at": 13,
-    "below": 2
+    "above": 1,
+    "at": 19,
+    "below": 3
   },
   "takeaways": [
     "Schedule a meeting with Minna to discuss approval and handling of checks over $100,000.",
