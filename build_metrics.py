@@ -50,8 +50,19 @@ def revmgmt_path():
     env = os.environ.get("AFTON_REVMGMT_FILE")
     if env:
         return Path(env)
+    # Best-effort live pull via Microsoft Graph (no-op + instant if not signed in / offline).
+    if os.environ.get("AFTON_REVMGMT_GRAPH", "1") not in ("0", "false", "False"):
+        try:
+            import graph_revmgmt
+            p = graph_revmgmt.fetch()
+            if p and p.exists():
+                return p
+        except Exception:
+            pass
     onedrive = Path(r"C:\Users\MichaelOzery\OneDrive - Afton Properties")
-    candidates = [onedrive / REVMGMT_NAME,                       # OneDrive root (shortcut target) -> live
+    candidates = [onedrive / REVMGMT_NAME,                       # file shortcut at OneDrive root -> live
+                  onedrive / "Analyses" / REVMGMT_NAME,          # folder shortcut: "Analyses"
+                  onedrive / "Revenue Management" / "Analyses" / REVMGMT_NAME,
                   onedrive / "Revenue Management" / REVMGMT_NAME,
                   MO / REVMGMT_NAME,
                   DD / REVMGMT_NAME]                             # static bridge copy (frozen)

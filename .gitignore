@@ -30,5 +30,8 @@ chromedriver-win64/
 dashboard_test.html
 data/dashboard_test.json
 
+# Graph-downloaded source cache (Revenue Management Dashboard live pull)
+.cache/
+
 # Generated outputs (contains its own nested git repo)
 extraction_system/outputs/
