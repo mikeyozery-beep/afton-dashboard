@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-29T22:45:35.281568",
+  "generated_at": "2026-06-30T07:00:05.965914",
   "as_of": {
     "occupancy": "06/29/2026",
     "collections": "06/29/2026",
     "financials": "May 2026",
-    "boxscore": "06/23-06/29/2026"
+    "boxscore": "06/24-06/30/2026"
   },
   "views": {
     "PORTFOLIO": {
@@ -75,29 +75,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 724,
-        "tours": 200,
+        "traffic": 704,
+        "tours": 188,
         "applications": 66,
-        "tours_over_traffic": 0.27624309392265195,
-        "conversions": 0.33,
-        "period": "06/23-06/29/2026",
+        "tours_over_traffic": 0.26704545454545453,
+        "conversions": 0.35106382978723405,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.15911730545876887,
-          "tours": -0.09194097616345062,
-          "applications": -0.05714285714285714,
-          "tours_over_traffic": 0.08045069512492838,
-          "conversions": 0.04204573778344825
+          "traffic": -0.19772079772079773,
+          "tours": -0.1616499442586399,
+          "applications": -0.0896551724137931,
+          "tours_over_traffic": 0.04772048383462689,
+          "conversions": 0.09338941718495494
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +1.5% vs +2.5% in prior month"
+          "summary": "Tradeouts averaging -1.0% vs +2.9% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.6% vs +2.6% in prior month"
+          "summary": "Renewals averaging +3.3% vs +2.8% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -172,29 +172,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 37,
-        "tours": 9,
-        "applications": 3,
-        "tours_over_traffic": 0.24324324324324326,
-        "conversions": 0.3333333333333333,
-        "period": "06/23-06/29/2026",
+        "traffic": 25,
+        "tours": 6,
+        "applications": 1,
+        "tours_over_traffic": 0.24,
+        "conversions": 0.16666666666666666,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.04516129032258064,
-          "tours": 0.02857142857142857,
-          "applications": 0.0,
-          "tours_over_traffic": 0.03100092637657538,
-          "conversions": -0.06180987434953674
+          "traffic": -0.375,
+          "tours": -0.3333333333333333,
+          "applications": -0.7142857142857143,
+          "tours_over_traffic": 0.06949334818655062,
+          "conversions": -0.5540540540540541
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -7.0% vs +9.0% in prior month"
+          "summary": "Tradeouts averaging -16.2% vs +1.5% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.6% vs +2.6% in prior month"
+          "summary": "Renewals averaging +3.5% vs +2.2% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -269,17 +269,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 15,
+        "traffic": 19,
         "tours": 1,
         "applications": 0,
-        "tours_over_traffic": 0.06666666666666667,
+        "tours_over_traffic": 0.05263157894736842,
         "conversions": 0.0,
-        "period": "06/23-06/29/2026",
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": 0.1111111111111111,
+          "traffic": 0.35714285714285715,
           "tours": 1.0,
           "applications": -1.0,
-          "tours_over_traffic": 1.4000000000000001,
+          "tours_over_traffic": 0.47368421052631576,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -291,7 +291,7 @@
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.5% vs +1.9% in prior month"
+          "summary": "Renewals averaging +1.7% vs +1.8% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -366,29 +366,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 48,
-        "tours": 19,
-        "applications": 8,
-        "tours_over_traffic": 0.3958333333333333,
-        "conversions": 0.42105263157894735,
-        "period": "06/23-06/29/2026",
+        "traffic": 47,
+        "tours": 21,
+        "applications": 6,
+        "tours_over_traffic": 0.44680851063829785,
+        "conversions": 0.2857142857142857,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.10697674418604651,
-          "tours": 0.0,
-          "applications": 1.0,
-          "tours_over_traffic": 0.08597343811973295,
-          "conversions": 0.9525045519699377
+          "traffic": -0.1415525114155251,
+          "tours": 0.06329113924050633,
+          "applications": 0.2,
+          "tours_over_traffic": 0.21635933147005987,
+          "conversions": 0.15243621626600345
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +1.7% vs +10.2% in prior month"
+          "summary": "Tradeouts averaging +0.7% vs +9.6% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.0% vs +1.5% in prior month"
+          "summary": "Renewals averaging +1.9% vs +1.6% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -463,17 +463,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 14,
-        "tours": 3,
+        "traffic": 12,
+        "tours": 2,
         "applications": 0,
-        "tours_over_traffic": 0.21428571428571427,
+        "tours_over_traffic": 0.16666666666666666,
         "conversions": 0.0,
-        "period": "06/23-06/29/2026",
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.5483870967741935,
-          "tours": -0.5555555555555556,
+          "traffic": -0.6097560975609756,
+          "tours": -0.7241379310344828,
           "applications": -1.0,
-          "tours_over_traffic": -0.04591935124359182,
+          "tours_over_traffic": -0.3496973065541018,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -481,11 +481,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +5.1% vs -0.3% in prior month"
+          "summary": "Tradeouts averaging +6.7% vs -1.3% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.7% vs +2.0% in prior month"
+          "summary": "Renewals averaging +1.6% vs +2.0% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -561,28 +561,28 @@
       },
       "marketing": {
         "traffic": 19,
-        "tours": 7,
+        "tours": 10,
         "applications": 4,
-        "tours_over_traffic": 0.3684210526315789,
-        "conversions": 0.5714285714285714,
-        "period": "06/23-06/29/2026",
+        "tours_over_traffic": 0.5263157894736842,
+        "conversions": 0.4,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": 0.22580645161290322,
-          "tours": 0.4,
+          "traffic": 0.20634920634920634,
+          "tours": 1.105263157894737,
           "applications": 1.6666666666666667,
-          "tours_over_traffic": 0.1872391977385919,
-          "conversions": 0.5763546798029556
+          "tours_over_traffic": 0.7650053742150816,
+          "conversions": 0.3575757575757576
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +1.5% vs +1.2% in prior month"
+          "summary": "Tradeouts averaging +0.9%"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.3% vs +2.1% in prior month"
+          "summary": "Renewals averaging +1.9% vs +2.2% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -657,29 +657,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 34,
-        "tours": 19,
-        "applications": 5,
-        "tours_over_traffic": 0.5588235294117647,
-        "conversions": 0.2631578947368421,
-        "period": "06/23-06/29/2026",
+        "traffic": 32,
+        "tours": 15,
+        "applications": 3,
+        "tours_over_traffic": 0.46875,
+        "conversions": 0.2,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.04895104895104895,
-          "tours": 0.5833333333333334,
-          "applications": 1.0,
-          "tours_over_traffic": 0.6533470460997096,
-          "conversions": 0.31088765020587644
+          "traffic": -0.14093959731543623,
+          "tours": 0.1111111111111111,
+          "applications": 0.0,
+          "tours_over_traffic": 0.2675025823482152,
+          "conversions": -0.0351758793969848
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +4.8% vs +5.3% in prior month"
+          "summary": "Tradeouts averaging +5.2% vs +4.8% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.7% vs +2.7% in prior month"
+          "summary": "Renewals averaging +3.3% vs +3.5% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -754,29 +754,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 18,
+        "traffic": 11,
         "tours": 7,
         "applications": 3,
-        "tours_over_traffic": 0.3888888888888889,
+        "tours_over_traffic": 0.6363636363636364,
         "conversions": 0.42857142857142855,
-        "period": "06/23-06/29/2026",
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.0136986301369863,
+          "traffic": -0.45,
           "tours": 0.6470588235294118,
-          "applications": 2.0,
-          "tours_over_traffic": 0.5326651027226845,
-          "conversions": 0.9780219780219779
+          "applications": 1.4,
+          "tours_over_traffic": 1.9005405627607752,
+          "conversions": 0.5584415584415582
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -0.2% vs -4.0% in prior month"
+          "summary": "Tradeouts averaging -0.2% vs +1.7% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.9% vs +2.1% in prior month"
+          "summary": "Renewals averaging +1.8% vs +2.1% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -851,29 +851,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 14,
-        "tours": 2,
+        "traffic": 11,
+        "tours": 0,
         "applications": 0,
-        "tours_over_traffic": 0.14285714285714285,
-        "conversions": 0.0,
-        "period": "06/23-06/29/2026",
+        "tours_over_traffic": 0.0,
+        "conversions": null,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.2727272727272727,
-          "tours": -0.6,
+          "traffic": -0.4430379746835443,
+          "tours": -1.0,
           "applications": -1.0,
-          "tours_over_traffic": -0.42251388187783956,
-          "conversions": -1.0
+          "tours_over_traffic": -1.0,
+          "conversions": null
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +17.0% vs +10.7% in prior month"
+          "summary": "Tradeouts averaging +14.6% vs +8.3% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.5% vs +3.5% in prior month"
+          "summary": "Renewals averaging +3.5% vs +1.8% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -948,29 +948,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 37,
-        "tours": 17,
+        "traffic": 39,
+        "tours": 12,
         "applications": 5,
-        "tours_over_traffic": 0.4594594594594595,
-        "conversions": 0.29411764705882354,
-        "period": "06/23-06/29/2026",
+        "tours_over_traffic": 0.3076923076923077,
+        "conversions": 0.4166666666666667,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.23316062176165803,
-          "tours": 0.014925373134328358,
+          "traffic": -0.20812182741116753,
+          "tours": -0.323943661971831,
           "applications": 0.0,
-          "tours_over_traffic": 0.3388637959401823,
-          "conversions": -0.11909591422776003
+          "tours_over_traffic": -0.1432234792856389,
+          "conversions": 0.2597480503899221
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +0.8% vs +2.5% in prior month"
+          "summary": "Tradeouts averaging -1.5% vs +3.5% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.9% vs +3.0% in prior month"
+          "summary": "Renewals averaging +3.0% vs +3.1% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1045,17 +1045,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 12,
-        "tours": 1,
+        "traffic": 13,
+        "tours": 4,
         "applications": 0,
-        "tours_over_traffic": 0.08333333333333333,
+        "tours_over_traffic": 0.3076923076923077,
         "conversions": 0.0,
-        "period": "06/23-06/29/2026",
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.26153846153846155,
-          "tours": -0.6923076923076923,
+          "traffic": -0.1746031746031746,
+          "tours": 0.45454545454545453,
           "applications": -1.0,
-          "tours_over_traffic": -0.6032010670223408,
+          "tours_over_traffic": 0.712756467439786,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -1063,11 +1063,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +10.0% vs +3.6% in prior month"
+          "summary": "Tradeouts averaging +15.1% vs +4.7% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.0% vs +1.5% in prior month"
+          "summary": "Renewals averaging +1.7% vs +2.5% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1142,29 +1142,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 29,
-        "tours": 7,
-        "applications": 3,
-        "tours_over_traffic": 0.2413793103448276,
-        "conversions": 0.42857142857142855,
-        "period": "06/23-06/29/2026",
+        "traffic": 27,
+        "tours": 9,
+        "applications": 4,
+        "tours_over_traffic": 0.3333333333333333,
+        "conversions": 0.4444444444444444,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.22666666666666666,
-          "tours": -0.3,
-          "applications": -0.2,
-          "tours_over_traffic": -0.0742357733691134,
-          "conversions": -0.0010405827263267394
+          "traffic": -0.29411764705882354,
+          "tours": -0.14285714285714285,
+          "applications": 0.06666666666666667,
+          "tours_over_traffic": 0.24181780279341236,
+          "conversions": 0.1410048622366289
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +2.6% vs -6.5% in prior month"
+          "summary": "Tradeouts averaging +0.6% vs -9.5% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.6% vs +1.9% in prior month"
+          "summary": "Renewals averaging +3.2% vs +2.6% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1239,29 +1239,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 29,
-        "tours": 7,
-        "applications": 6,
-        "tours_over_traffic": 0.2413793103448276,
-        "conversions": 0.8571428571428571,
-        "period": "06/23-06/29/2026",
+        "traffic": 32,
+        "tours": 6,
+        "applications": 7,
+        "tours_over_traffic": 0.1875,
+        "conversions": 1.1666666666666667,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": 0.008695652173913044,
-          "tours": -0.06666666666666667,
-          "applications": 0.7142857142857143,
-          "tours_over_traffic": -0.07574417919245507,
-          "conversions": 0.8588640275387261
+          "traffic": 0.07563025210084033,
+          "tours": -0.2,
+          "applications": 1.0,
+          "tours_over_traffic": -0.2791706846673096,
+          "conversions": 1.6490825688073396
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -2.2% vs -3.3% in prior month"
+          "summary": "Tradeouts averaging -5.3% vs -6.1% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.0% vs +1.6% in prior month"
+          "summary": "Renewals averaging +1.9% vs +1.4% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1337,28 +1337,28 @@
       },
       "marketing": {
         "traffic": 35,
-        "tours": 1,
-        "applications": 2,
-        "tours_over_traffic": 0.02857142857142857,
+        "tours": 2,
+        "applications": 4,
+        "tours_over_traffic": 0.05714285714285714,
         "conversions": 2.0,
-        "period": "06/23-06/29/2026",
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.14634146341463414,
-          "tours": -0.8,
-          "applications": 1.6666666666666667,
-          "tours_over_traffic": -0.7692872121389726,
-          "conversions": 4.485714285714286
+          "traffic": -0.13580246913580246,
+          "tours": -0.6,
+          "applications": 4.333333333333333,
+          "tours_over_traffic": -0.5636093644207874,
+          "conversions": 13.933333333333334
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +12.8% vs +3.3% in prior month"
+          "summary": "Tradeouts averaging +9.9% vs +2.0% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.7% vs +4.1% in prior month"
+          "summary": "Renewals averaging +4.1% vs +4.2% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1433,25 +1433,25 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 29,
-        "tours": 14,
+        "traffic": 27,
+        "tours": 13,
         "applications": 1,
-        "tours_over_traffic": 0.4827586206896552,
-        "conversions": 0.07142857142857142,
-        "period": "06/23-06/29/2026",
+        "tours_over_traffic": 0.48148148148148145,
+        "conversions": 0.07692307692307693,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.25161290322580643,
-          "tours": -0.034482758620689655,
+          "traffic": -0.29411764705882354,
+          "tours": -0.08771929824561403,
           "applications": -0.84,
-          "tours_over_traffic": 0.3153948157204219,
-          "conversions": -0.8259328541892291
+          "tours_over_traffic": 0.3406630566408481,
+          "conversions": -0.7982003060419789
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +6.7% vs +5.6% in prior month"
+          "summary": "Tradeouts averaging +7.7% vs +6.1% in prior month"
         },
         {
           "theme": "Renewals",
@@ -1530,29 +1530,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 31,
+        "traffic": 32,
         "tours": 9,
-        "applications": 3,
-        "tours_over_traffic": 0.2903225806451613,
-        "conversions": 0.3333333333333333,
-        "period": "06/23-06/29/2026",
+        "applications": 5,
+        "tours_over_traffic": 0.28125,
+        "conversions": 0.5555555555555556,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.4439461883408072,
+          "traffic": -0.4260089686098655,
           "tours": -0.32075471698113206,
-          "applications": 0.0,
-          "tours_over_traffic": 0.2430447495156645,
-          "conversions": 0.4501510574018125
+          "applications": 0.6666666666666666,
+          "tours_over_traffic": 0.19561972914577982,
+          "conversions": 1.6224450443501737
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -0.9% vs +0.2% in prior month"
+          "summary": "Tradeouts averaging -7.5% vs -0.0% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.4% vs +2.6% in prior month"
+          "summary": "Renewals averaging +1.4% vs +2.5% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1628,28 +1628,28 @@
       },
       "marketing": {
         "traffic": 19,
-        "tours": 9,
-        "applications": 2,
-        "tours_over_traffic": 0.47368421052631576,
-        "conversions": 0.2222222222222222,
-        "period": "06/23-06/29/2026",
+        "tours": 8,
+        "applications": 0,
+        "tours_over_traffic": 0.42105263157894735,
+        "conversions": 0.0,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.5159235668789809,
-          "tours": -0.23404255319148937,
-          "applications": 0.3333333333333333,
-          "tours_over_traffic": 0.4874052937837605,
-          "conversions": 0.39520398629710374
+          "traffic": -0.5128205128205128,
+          "tours": -0.3191489361702128,
+          "applications": -1.0,
+          "tours_over_traffic": 0.2934081431431818,
+          "conversions": -1.0
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -2.0% vs +9.0% in prior month"
+          "summary": "Tradeouts averaging +1.2% vs +8.7% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.5% vs +2.9% in prior month"
+          "summary": "Renewals averaging +2.6% vs +2.9% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1724,29 +1724,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 34,
-        "tours": 8,
-        "applications": 2,
-        "tours_over_traffic": 0.23529411764705882,
-        "conversions": 0.25,
-        "period": "06/23-06/29/2026",
+        "traffic": 38,
+        "tours": 6,
+        "applications": 1,
+        "tours_over_traffic": 0.15789473684210525,
+        "conversions": 0.16666666666666666,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.10526315789473684,
-          "tours": -0.08571428571428572,
-          "applications": -0.2,
-          "tours_over_traffic": 0.036485844350473556,
-          "conversions": -0.18316831683168325
+          "traffic": 0.013333333333333334,
+          "tours": -0.29411764705882354,
+          "applications": -0.6,
+          "tours_over_traffic": -0.32731236374961076,
+          "conversions": -0.40223192624939347
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -0.5% vs +5.3% in prior month"
+          "summary": "Tradeouts averaging -5.6% vs +6.2% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +0.5% vs +2.2% in prior month"
+          "summary": "Renewals averaging +0.5% vs +2.1% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1821,29 +1821,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 106,
-        "tours": 26,
-        "applications": 10,
-        "tours_over_traffic": 0.24528301886792453,
-        "conversions": 0.38461538461538464,
-        "period": "06/23-06/29/2026",
+        "traffic": 99,
+        "tours": 20,
+        "applications": 13,
+        "tours_over_traffic": 0.20202020202020202,
+        "conversions": 0.65,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.08026030368763558,
-          "tours": 0.0297029702970297,
-          "applications": -0.1111111111111111,
-          "tours_over_traffic": 0.10322564134986796,
-          "conversions": -0.10961168036290278
+          "traffic": -0.18181818181818182,
+          "tours": -0.24528301886792453,
+          "applications": 0.15555555555555556,
+          "tours_over_traffic": -0.10946655182172996,
+          "conversions": 0.5708713653547755
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -1.3% vs +4.7% in prior month"
+          "summary": "Tradeouts averaging -4.0% vs +4.0% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +4.2% vs +4.6% in prior month"
+          "summary": "Renewals averaging +5.2% vs +4.2% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1918,29 +1918,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 59,
-        "tours": 15,
+        "traffic": 62,
+        "tours": 18,
         "applications": 3,
-        "tours_over_traffic": 0.2542372881355932,
-        "conversions": 0.2,
-        "period": "06/23-06/29/2026",
+        "tours_over_traffic": 0.2903225806451613,
+        "conversions": 0.16666666666666666,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.0888030888030888,
-          "tours": -0.16666666666666666,
-          "applications": -0.3333333333333333,
-          "tours_over_traffic": -0.09011950821765824,
-          "conversions": -0.16325846463291988
+          "traffic": -0.05343511450381679,
+          "tours": 0.02857142857142857,
+          "applications": -0.3684210526315789,
+          "tours_over_traffic": 0.10990000492270526,
+          "conversions": -0.33665008291873977
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -5.5% vs +1.6% in prior month"
+          "summary": "Tradeouts averaging -12.2% vs +4.5% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.3% vs +2.4% in prior month"
+          "summary": "Renewals averaging +4.9% vs +2.2% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -2015,29 +2015,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 49,
-        "tours": 11,
+        "traffic": 48,
+        "tours": 10,
         "applications": 2,
-        "tours_over_traffic": 0.22448979591836735,
-        "conversions": 0.18181818181818182,
-        "period": "06/23-06/29/2026",
+        "tours_over_traffic": 0.20833333333333334,
+        "conversions": 0.2,
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.07547169811320754,
-          "tours": 0.29411764705882354,
-          "applications": -0.5294117647058824,
-          "tours_over_traffic": 0.3840226356029138,
-          "conversions": -0.6337741607324517
+          "traffic": -0.1111111111111111,
+          "tours": 0.25,
+          "applications": -0.4666666666666667,
+          "tours_over_traffic": 0.4009693561988185,
+          "conversions": -0.5725190839694656
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +0.0% vs +5.8% in prior month"
+          "summary": "Tradeouts averaging -7.0% vs +2.6% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +4.3% vs +4.2% in prior month"
+          "summary": "Renewals averaging +8.1% vs +4.6% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -2112,14 +2112,14 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 17,
+        "traffic": 19,
         "tours": 0,
         "applications": 1,
         "tours_over_traffic": 0.0,
         "conversions": null,
-        "period": "06/23-06/29/2026",
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": 0.7,
+          "traffic": 0.7674418604651163,
           "tours": null,
           "applications": 1.0,
           "tours_over_traffic": null,
@@ -2130,11 +2130,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -24.0% vs -19.2% in prior month"
+          "summary": "Tradeouts averaging -47.7% vs -16.4% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals: no current data"
+          "summary": "Renewals averaging +8.0% vs +9.8% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -2209,29 +2209,29 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 19,
+        "traffic": 20,
         "tours": 4,
         "applications": 3,
-        "tours_over_traffic": 0.21052631578947367,
+        "tours_over_traffic": 0.2,
         "conversions": 0.75,
-        "period": "06/23-06/29/2026",
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": -0.4722222222222222,
+          "traffic": -0.4405594405594406,
           "tours": -0.7037037037037037,
           "applications": -0.25,
-          "tours_over_traffic": -0.44019672124397985,
-          "conversions": 1.5390428211586902
+          "tours_over_traffic": -0.46580325584995225,
+          "conversions": 1.6351351351351353
         },
         "benchmark_weeks": 4
       },
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +7.9% vs +0.9% in prior month"
+          "summary": "Tradeouts averaging +4.0% vs +0.9% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.6% vs +3.8% in prior month"
+          "summary": "Renewals averaging +4.6% vs +3.5% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -2306,17 +2306,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 20,
-        "tours": 4,
+        "traffic": 18,
+        "tours": 5,
         "applications": 0,
-        "tours_over_traffic": 0.2,
+        "tours_over_traffic": 0.2777777777777778,
         "conversions": 0.0,
-        "period": "06/23-06/29/2026",
+        "period": "06/24-06/30/2026",
         "benchmark_pct": {
-          "traffic": 0.5686274509803921,
-          "tours": 0.3333333333333333,
+          "traffic": 0.2631578947368421,
+          "tours": 0.6666666666666666,
           "applications": -1.0,
-          "tours_over_traffic": -0.1718264276284972,
+          "tours_over_traffic": 0.37457044673539525,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -2324,11 +2324,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +5.2% vs +8.2% in prior month"
+          "summary": "Tradeouts averaging +7.8% vs +8.4% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.2% vs +1.0% in prior month"
+          "summary": "Renewals averaging +2.1% vs +1.0% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -2381,55 +2381,58 @@
     }
   },
   "marketing": {
-    "traffic": 724,
-    "tours": 200,
+    "traffic": 704,
+    "tours": 188,
     "applications": 66,
-    "tours_over_traffic": 0.27624309392265195,
-    "conversions": 0.33,
-    "period": "06/23-06/29/2026",
+    "tours_over_traffic": 0.26704545454545453,
+    "conversions": 0.35106382978723405,
+    "period": "06/24-06/30/2026",
     "benchmark_pct": {
-      "traffic": -0.15911730545876887,
-      "tours": -0.09194097616345062,
-      "applications": -0.05714285714285714,
-      "tours_over_traffic": 0.08045069512492838,
-      "conversions": 0.04204573778344825
+      "traffic": -0.19772079772079773,
+      "tours": -0.1616499442586399,
+      "applications": -0.0896551724137931,
+      "tours_over_traffic": 0.04772048383462689,
+      "conversions": 0.09338941718495494
     },
     "benchmark_weeks": 4
   },
   "bottom_performers": [
     {
+      "name": "Sienna Heights",
+      "occupancy": 0.9268,
+      "leased": 0.949,
+      "collected": 0.996038307746992,
+      "noi_variance": 0.10202813810395117,
+      "rent_growth": null,
+      "concern": "occupancy"
+    },
+    {
       "name": "Dylan Apartments",
       "occupancy": 0.9275,
-      "eff_growth": -0.007175918755154664,
+      "leased": 0.9565,
       "collected": 0.9995085697970978,
       "noi_variance": -0.0067082654488662685,
+      "rent_growth": null,
       "concern": "occupancy"
     },
     {
       "name": "Cordova Park",
       "occupancy": 0.9303,
-      "eff_growth": -0.008365622705601483,
+      "leased": 0.9519,
       "collected": 0.984039553360862,
       "noi_variance": 0.04488382538870095,
-      "concern": "eff_growth"
-    },
-    {
-      "name": "Steward's Crossing",
-      "occupancy": 0.95,
-      "eff_growth": -0.028527562706929355,
-      "collected": 0.9910329467535037,
-      "noi_variance": -0.04298488252504673,
-      "concern": "eff_growth"
+      "rent_growth": null,
+      "concern": "occupancy"
     }
   ],
   "focus_areas": [
     {
       "theme": "Tradeouts",
-      "summary": "Tradeouts averaging +1.5% vs +2.5% in prior month"
+      "summary": "Tradeouts averaging -1.0% vs +2.9% in prior month"
     },
     {
       "theme": "Renewals",
-      "summary": "Renewals averaging +2.6% vs +2.6% in prior month"
+      "summary": "Renewals averaging +3.3% vs +2.8% in prior month"
     },
     {
       "theme": "Effective Rent",
