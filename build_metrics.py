@@ -382,7 +382,8 @@ def get_financials(units, now=None):
       Net Income     = every leaf (all paths roll up to NET INCOME)
       Interest exp.  = leaves with both 'INTEREST' and 'EXPENSE' in the path (excludes Interest Income)
       Net Income ex-interest = Net Income - Interest expense  (interest is negative, so this adds it back)
-      CapEx          = leaves under 'TOTAL BUILDING IMPROVEMENTS' (shown as positive spend)
+      CapEx          = leaves under ANY capital-improvement rollup -- 'TOTAL BUILDING IMPROVEMENTS'
+                       AND 'TOTAL UNIT IMPROVEMENTS' (match 'IMPROVEMENTS'); shown as positive spend
       Rent           = leaves under 'TOTAL POTENTIAL INCOME'
 
     Dollar figures are YTD (Jan..as-of month). Rent growth is the annualized month-over-month
@@ -428,7 +429,7 @@ def get_financials(units, now=None):
         if "NET OPERATING INCOME" in p: sl[0] += a; sl[1] += b
         sl[2] += a; sl[3] += b                                       # every leaf -> Net Income
         if "INTEREST" in p and "EXPENSE" in p: sl[4] += a; sl[5] += b
-        if "BUILDING IMPROVEMENTS" in p: sl[6] += a; sl[7] += b
+        if "IMPROVEMENTS" in p: sl[6] += a; sl[7] += b   # CapEx = ALL capital improvements (Building + Unit)
         if "TOTAL POTENTIAL INCOME" in p: sl[8] += a; sl[9] += b
     wb.close()
 
