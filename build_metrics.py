@@ -76,6 +76,7 @@ def revmgmt_path():
 
 SCRIPT_DIR = Path(__file__).parent
 OUT_FILE   = Path(os.environ.get("AFTON_OUT") or (SCRIPT_DIR / "data" / "dashboard.json"))
+RATES_JSON = SCRIPT_DIR / "data" / "revmgmt_rates.json"   # committed Tradeout/Renewal snapshot (cross-clone source of truth)
 HISTORY    = SCRIPT_DIR / "metrics_history.json"   # monthly snapshots (local, gitignored)
 MKT_LOG    = SCRIPT_DIR / "marketing_prospects_log.json"   # running prospect log (local, gitignored)
 
@@ -716,6 +717,29 @@ def get_takeaways():
     return {"items": bullets, "source_file": docs[-1].name}
 
 def get_revmgmt_rates():
+    """Tradeout & Renewal rates for the dashboard. Prefers a freshly-readable workbook
+    (Graph/OneDrive/Downloads via revmgmt_path) and caches the result to the COMMITTED
+    snapshot data/revmgmt_rates.json so every clone/machine stays correct even when the
+    workbook isn't reachable there. Falls back to that committed snapshot otherwise. This
+    is what keeps the daily build (a separate clone) from reverting to the old source when
+    the file is a OneDrive placeholder / absent."""
+    try:
+        data = _revmgmt_rates_from_workbook()
+        if data and data.get("by_property"):
+            try:
+                RATES_JSON.parent.mkdir(parents=True, exist_ok=True)
+                RATES_JSON.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
+            except Exception:
+                pass
+            return data
+        raise ValueError("workbook produced no rates")
+    except Exception as e:
+        if RATES_JSON.exists():
+            print(f"revmgmt: workbook unavailable ({e}); using committed snapshot {RATES_JSON.name}", flush=True)
+            return json.loads(RATES_JSON.read_text(encoding="utf-8"))
+        raise
+
+def _revmgmt_rates_from_workbook():
     """Tradeout & Renewal ACTUAL rates from Kylie's Revenue Management Dashboard workbook
     (sheets 'Tradeouts' and 'Renewal Rates'; identical layout). Each sheet has a
     'Portfolio Average' block at row 15 and 23 per-property blocks every 7 rows from row 22.

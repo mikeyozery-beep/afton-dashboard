@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-30T07:00:05.965914",
+  "generated_at": "2026-06-30T11:55:39.535365",
   "as_of": {
-    "occupancy": "06/29/2026",
-    "collections": "06/29/2026",
+    "occupancy": "06/30/2026",
+    "collections": "06/30/2026",
     "financials": "May 2026",
     "boxscore": "06/24-06/30/2026"
   },
@@ -11,16 +11,16 @@
       "label": "Portfolio (23 properties)",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9613695652173911,
+          "value": 0.9600043478260869,
           "prior_week": 0.9607521739130435,
           "budget": 0.9532503414240382
         },
         "leased_occupancy": {
-          "value": 0.9759478260869565,
+          "value": 0.9754304347826088,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9884566896929057,
+          "value": 0.9886103231738653,
           "prior_month": 0.9873007130534452,
           "budget": 0.987692536749083
         },
@@ -31,7 +31,7 @@
           "yoy_effective": 0.024159403128736656
         },
         "trend_occupancy_30d": {
-          "value": 0.9520024631149038,
+          "value": 0.9490356003857002,
           "budget": 0.9532503414240382
         },
         "staffing_vacancies": {
@@ -93,11 +93,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -1.0% vs +2.9% in prior month"
+          "summary": "Tradeouts averaging +1.5% vs +2.5% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.3% vs +2.8% in prior month"
+          "summary": "Renewals averaging +2.6% vs +2.6% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -109,7 +109,7 @@
       "label": "Steward's Crossing",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.95,
+          "value": 0.9542,
           "prior_week": 0.9583,
           "budget": 0.955
         },
@@ -118,7 +118,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9910329467535037,
+          "value": 0.9897345700196882,
           "prior_month": 0.9715954072942417,
           "budget": 0.9906043326532531
         },
@@ -128,7 +128,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9708333333333333,
+          "value": 0.9708666666666667,
           "budget": 0.955
         },
         "staffing_vacancies": {
@@ -190,11 +190,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -16.2% vs +1.5% in prior month"
+          "summary": "Tradeouts averaging -7.0% vs +9.0% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.5% vs +2.2% in prior month"
+          "summary": "Renewals averaging +3.6% vs +2.6% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -291,7 +291,7 @@
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.7% vs +1.8% in prior month"
+          "summary": "Renewals averaging +2.5% vs +1.9% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -303,7 +303,7 @@
       "label": "Artisan at Lawrenceville",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9589,
+          "value": 0.9557,
           "prior_week": 0.9541,
           "budget": 0.95
         },
@@ -312,7 +312,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9919560827854146,
+          "value": 0.9928328297176697,
           "prior_month": 0.9895390438172494,
           "budget": 0.9937364399027843
         },
@@ -322,7 +322,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9414949367088608,
+          "value": 0.9382949367088607,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -384,11 +384,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +0.7% vs +9.6% in prior month"
+          "summary": "Tradeouts averaging +1.7% vs +10.2% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.9% vs +1.6% in prior month"
+          "summary": "Renewals averaging +2.0% vs +1.5% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -409,7 +409,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9700688757420114,
+          "value": 0.9736702035353311,
           "prior_month": 0.9876450845521396,
           "budget": 0.98
         },
@@ -481,11 +481,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +6.7% vs -1.3% in prior month"
+          "summary": "Tradeouts averaging +5.1% vs -0.3% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.6% vs +2.0% in prior month"
+          "summary": "Renewals averaging +1.7% vs +2.0% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -497,16 +497,16 @@
       "label": "Landing at Arroyo",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9434,
+          "value": 0.9481,
           "prior_week": 0.9434,
           "budget": 0.96
         },
         "leased_occupancy": {
-          "value": 0.9623,
+          "value": 0.967,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9915262938811715,
+          "value": 0.9909444092606772,
           "prior_month": 0.9765571821309769,
           "budget": 0.9930170135331589
         },
@@ -516,7 +516,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9434,
+          "value": 0.9433830188679246,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -578,11 +578,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +0.9%"
+          "summary": "Tradeouts averaging +1.5% vs +1.2% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.9% vs +2.2% in prior month"
+          "summary": "Renewals averaging +1.3% vs +2.1% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -594,7 +594,7 @@
       "label": "Sycamore Canyons",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9549,
+          "value": 0.9514,
           "prior_week": 0.9514,
           "budget": 0.95
         },
@@ -603,7 +603,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9930896445332215,
+          "value": 0.991946866539682,
           "prior_month": 0.9928377499943869,
           "budget": 0.9896009208248725
         },
@@ -613,7 +613,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9340666666666666,
+          "value": 0.9270944444444444,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -675,11 +675,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +5.2% vs +4.8% in prior month"
+          "summary": "Tradeouts averaging +4.8% vs +5.3% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.3% vs +3.5% in prior month"
+          "summary": "Renewals averaging +2.7% vs +2.7% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -700,7 +700,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 1.0000206520576707,
+          "value": 1.0000152363082815,
           "prior_month": 0.9939136737209803,
           "budget": 0.995
         },
@@ -710,7 +710,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9120333333333334,
+          "value": 0.9074037037037037,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -772,11 +772,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -0.2% vs +1.7% in prior month"
+          "summary": "Tradeouts averaging -0.2% vs -4.0% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.8% vs +2.1% in prior month"
+          "summary": "Renewals averaging +1.9% vs +2.1% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -869,11 +869,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +14.6% vs +8.3% in prior month"
+          "summary": "Tradeouts averaging +17.0% vs +10.7% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.5% vs +1.8% in prior month"
+          "summary": "Renewals averaging +3.5% vs +3.5% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -885,7 +885,7 @@
       "label": "Hills of Corona",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9516,
+          "value": 0.9476,
           "prior_week": 0.9476,
           "budget": 0.955
         },
@@ -894,7 +894,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9906272235385262,
+          "value": 0.9909371045982277,
           "prior_month": 0.9960423048958286,
           "budget": 0.9893313436579318
         },
@@ -904,7 +904,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9516,
+          "value": 0.9476,
           "budget": 0.955
         },
         "staffing_vacancies": {
@@ -966,11 +966,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -1.5% vs +3.5% in prior month"
+          "summary": "Tradeouts averaging +0.8% vs +2.5% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.0% vs +3.1% in prior month"
+          "summary": "Renewals averaging +2.9% vs +3.0% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -982,16 +982,16 @@
       "label": "Artisan at East Village",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9779,
+          "value": 0.9743,
           "prior_week": 0.9779,
           "budget": 0.9630149910130719
         },
         "leased_occupancy": {
-          "value": 0.989,
+          "value": 0.9853,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9982073121153664,
+          "value": 0.9978846936331527,
           "prior_month": 0.9944690223305316,
           "budget": 0.995
         },
@@ -1001,7 +1001,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9558411764705881,
+          "value": 0.9522411764705884,
           "budget": 0.9630149910130719
         },
         "staffing_vacancies": {
@@ -1063,11 +1063,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +15.1% vs +4.7% in prior month"
+          "summary": "Tradeouts averaging +10.0% vs +3.6% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.7% vs +2.5% in prior month"
+          "summary": "Renewals averaging +2.0% vs +1.5% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1084,11 +1084,11 @@
           "budget": 0.95
         },
         "leased_occupancy": {
-          "value": 0.9712,
+          "value": 0.976,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9617621684202445,
+          "value": 0.962294448743175,
           "prior_month": 0.9912829141424337,
           "budget": 0.98
         },
@@ -1160,11 +1160,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +0.6% vs -9.5% in prior month"
+          "summary": "Tradeouts averaging +2.6% vs -6.5% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +3.2% vs +2.6% in prior month"
+          "summary": "Renewals averaging +2.6% vs +1.9% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1176,16 +1176,16 @@
       "label": "Azure Apartments",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.956,
+          "value": 0.9528,
           "prior_week": 0.9623,
           "budget": 0.95
         },
         "leased_occupancy": {
-          "value": 0.978,
+          "value": 0.9811,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9864883130268084,
+          "value": 0.9829495303463449,
           "prior_month": 0.9839909436848696,
           "budget": 0.9895134053335068
         },
@@ -1195,7 +1195,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9402767295597484,
+          "value": 0.9307874213836477,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -1257,11 +1257,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -5.3% vs -6.1% in prior month"
+          "summary": "Tradeouts averaging -2.2% vs -3.3% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.9% vs +1.4% in prior month"
+          "summary": "Renewals averaging +2.0% vs +1.6% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1273,16 +1273,16 @@
       "label": "Creekside Apartments",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9704,
+          "value": 0.9671,
           "prior_week": 0.9671,
           "budget": 0.955
         },
         "leased_occupancy": {
-          "value": 0.9737,
+          "value": 0.9704,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9874825965690869,
+          "value": 0.9942070821153745,
           "prior_month": 0.9961380606427942,
           "budget": 0.98
         },
@@ -1292,7 +1292,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9605315789473684,
+          "value": 0.9572315789473684,
           "budget": 0.955
         },
         "staffing_vacancies": {
@@ -1354,11 +1354,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +9.9% vs +2.0% in prior month"
+          "summary": "Tradeouts averaging +12.8% vs +3.3% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +4.1% vs +4.2% in prior month"
+          "summary": "Renewals averaging +3.7% vs +4.1% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1375,11 +1375,11 @@
           "budget": 0.96
         },
         "leased_occupancy": {
-          "value": 0.9875,
+          "value": 0.9857,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9989572098582165,
+          "value": 0.9991664198560767,
           "prior_month": 0.9931377537341903,
           "budget": 0.995
         },
@@ -1389,7 +1389,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9588157706093191,
+          "value": 0.9498551971326166,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -1451,7 +1451,7 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +7.7% vs +6.1% in prior month"
+          "summary": "Tradeouts averaging +6.7% vs +5.6% in prior month"
         },
         {
           "theme": "Renewals",
@@ -1467,16 +1467,16 @@
       "label": "Redlands Lawn and Tennis",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9698,
+          "value": 0.9617,
           "prior_week": 0.9698,
           "budget": 0.95
         },
         "leased_occupancy": {
-          "value": 0.9899,
+          "value": 0.9839,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9969784318654877,
+          "value": 0.9969684689273689,
           "prior_month": 0.9974403856046896,
           "budget": 0.995
         },
@@ -1486,7 +1486,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9516548387096775,
+          "value": 0.9435548387096774,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -1548,11 +1548,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -7.5% vs -0.0% in prior month"
+          "summary": "Tradeouts averaging -0.9% vs +0.2% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +1.4% vs +2.5% in prior month"
+          "summary": "Renewals averaging +1.4% vs +2.6% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1564,16 +1564,16 @@
       "label": "Sierra Vista",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9578,
+          "value": 0.9518,
           "prior_week": 0.9578,
           "budget": 0.95
         },
         "leased_occupancy": {
-          "value": 0.9639,
+          "value": 0.9578,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9933095815640053,
+          "value": 0.993358084158115,
           "prior_month": 0.99394591845835,
           "budget": 0.995
         },
@@ -1583,7 +1583,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9276795180722891,
+          "value": 0.915655421686747,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -1645,11 +1645,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +1.2% vs +8.7% in prior month"
+          "summary": "Tradeouts averaging -2.0% vs +9.0% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.6% vs +2.9% in prior month"
+          "summary": "Renewals averaging +3.5% vs +2.9% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1670,7 +1670,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9995085697970978,
+          "value": 0.999538165469454,
           "prior_month": 0.973748028534742,
           "budget": 0.9859450770901557
         },
@@ -1742,11 +1742,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -5.6% vs +6.2% in prior month"
+          "summary": "Tradeouts averaging -0.5% vs +5.3% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +0.5% vs +2.1% in prior month"
+          "summary": "Renewals averaging +0.5% vs +2.2% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1758,7 +1758,7 @@
       "label": "Sunset Ridge",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9638,
+          "value": 0.9613,
           "prior_week": 0.96,
           "budget": 0.95
         },
@@ -1767,7 +1767,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9710134055103823,
+          "value": 0.9706662562744639,
           "prior_month": 0.9719086704118216,
           "budget": 0.9775
         },
@@ -1777,7 +1777,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.96505,
+          "value": 0.9638000000000001,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -1839,11 +1839,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -4.0% vs +4.0% in prior month"
+          "summary": "Tradeouts averaging -1.3% vs +4.7% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +5.2% vs +4.2% in prior month"
+          "summary": "Renewals averaging +4.2% vs +4.6% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1860,11 +1860,11 @@
           "budget": 0.95
         },
         "leased_occupancy": {
-          "value": 0.9519,
+          "value": 0.9543,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.984039553360862,
+          "value": 0.9840048582576578,
           "prior_month": 0.9757741505386954,
           "budget": 0.9795607803066336
         },
@@ -1936,11 +1936,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -12.2% vs +4.5% in prior month"
+          "summary": "Tradeouts averaging -5.5% vs +1.6% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +4.9% vs +2.2% in prior month"
+          "summary": "Renewals averaging +2.3% vs +2.4% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -1952,7 +1952,7 @@
       "label": "Sienna Heights",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9268,
+          "value": 0.9299,
           "prior_week": 0.9236,
           "budget": 0.95
         },
@@ -1961,7 +1961,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.996038307746992,
+          "value": 0.996036800647491,
           "prior_month": 0.9887863835973617,
           "budget": 0.9867877080498475
         },
@@ -1971,7 +1971,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9236152866242038,
+          "value": 0.9235305732484075,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -2033,11 +2033,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -7.0% vs +2.6% in prior month"
+          "summary": "Tradeouts averaging +0.0% vs +5.8% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +8.1% vs +4.6% in prior month"
+          "summary": "Renewals averaging +4.3% vs +4.2% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -2068,7 +2068,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9621242424242425,
+          "value": 0.9697000000000001,
           "budget": 0.97
         },
         "staffing_vacancies": {
@@ -2130,11 +2130,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging -47.7% vs -16.4% in prior month"
+          "summary": "Tradeouts averaging -24.0% vs -19.2% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +8.0% vs +9.8% in prior month"
+          "summary": "Renewals: no current data"
         },
         {
           "theme": "Effective Rent",
@@ -2155,7 +2155,7 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.965250411355855,
+          "value": 0.9652655985252452,
           "prior_month": 0.9660542419525618,
           "budget": 0.9791679013729963
         },
@@ -2165,7 +2165,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9662194092827004,
+          "value": 0.962,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -2227,11 +2227,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +4.0% vs +0.9% in prior month"
+          "summary": "Tradeouts averaging +7.9% vs +0.9% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +4.6% vs +3.5% in prior month"
+          "summary": "Renewals averaging +3.6% vs +3.8% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -2243,16 +2243,16 @@
       "label": "Parador Townhomes",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.994,
+          "value": 0.988,
           "prior_week": 0.994,
           "budget": 0.95
         },
         "leased_occupancy": {
-          "value": 0.994,
+          "value": 0.988,
           "budget": null
         },
         "percent_collected": {
-          "value": 1.0000806824856587,
+          "value": 1.0000848344031052,
           "prior_month": 1.0,
           "budget": 0.9935521253140442
         },
@@ -2262,7 +2262,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9701904761904762,
+          "value": 0.9641904761904763,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -2324,11 +2324,11 @@
       "focus": [
         {
           "theme": "Tradeouts",
-          "summary": "Tradeouts averaging +7.8% vs +8.4% in prior month"
+          "summary": "Tradeouts averaging +5.2% vs +8.2% in prior month"
         },
         {
           "theme": "Renewals",
-          "summary": "Renewals averaging +2.1% vs +1.0% in prior month"
+          "summary": "Renewals averaging +2.2% vs +1.0% in prior month"
         },
         {
           "theme": "Effective Rent",
@@ -2340,16 +2340,16 @@
   "default_view": "PORTFOLIO",
   "kpis": {
     "portfolio_occupancy": {
-      "value": 0.9613695652173911,
+      "value": 0.9600043478260869,
       "prior_week": 0.9607521739130435,
       "budget": 0.9532503414240382
     },
     "leased_occupancy": {
-      "value": 0.9759478260869565,
+      "value": 0.9754304347826088,
       "budget": null
     },
     "percent_collected": {
-      "value": 0.9884566896929057,
+      "value": 0.9886103231738653,
       "prior_month": 0.9873007130534452,
       "budget": 0.987692536749083
     },
@@ -2360,7 +2360,7 @@
       "yoy_effective": 0.024159403128736656
     },
     "trend_occupancy_30d": {
-      "value": 0.9520024631149038,
+      "value": 0.9490356003857002,
       "budget": 0.9532503414240382
     },
     "staffing_vacancies": {
@@ -2398,41 +2398,38 @@
   },
   "bottom_performers": [
     {
-      "name": "Sienna Heights",
-      "occupancy": 0.9268,
-      "leased": 0.949,
-      "collected": 0.996038307746992,
-      "noi_variance": 0.10202813810395117,
-      "rent_growth": null,
-      "concern": "occupancy"
-    },
-    {
       "name": "Dylan Apartments",
       "occupancy": 0.9275,
-      "leased": 0.9565,
-      "collected": 0.9995085697970978,
+      "eff_growth": -0.007175918755154664,
+      "collected": 0.999538165469454,
       "noi_variance": -0.0067082654488662685,
-      "rent_growth": null,
       "concern": "occupancy"
     },
     {
       "name": "Cordova Park",
       "occupancy": 0.9303,
-      "leased": 0.9519,
-      "collected": 0.984039553360862,
+      "eff_growth": -0.008365622705601483,
+      "collected": 0.9840048582576578,
       "noi_variance": 0.04488382538870095,
-      "rent_growth": null,
-      "concern": "occupancy"
+      "concern": "eff_growth"
+    },
+    {
+      "name": "Steward's Crossing",
+      "occupancy": 0.9542,
+      "eff_growth": -0.028527562706929355,
+      "collected": 0.9897345700196882,
+      "noi_variance": -0.04298488252504673,
+      "concern": "eff_growth"
     }
   ],
   "focus_areas": [
     {
       "theme": "Tradeouts",
-      "summary": "Tradeouts averaging -1.0% vs +2.9% in prior month"
+      "summary": "Tradeouts averaging +1.5% vs +2.5% in prior month"
     },
     {
       "theme": "Renewals",
-      "summary": "Renewals averaging +3.3% vs +2.8% in prior month"
+      "summary": "Renewals averaging +2.6% vs +2.6% in prior month"
     },
     {
       "theme": "Effective Rent",

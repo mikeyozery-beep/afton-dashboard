@@ -40,11 +40,12 @@ def main():
     if out.get("errors"):
         log.warning("Extractor warnings: %s", out["errors"])
 
-    # stage the data + any code changes
-    git("add", "data/dashboard.json")
+    # stage the published data + the Tradeout/Renewal snapshot (so a refresh on whichever
+    # clone can read the workbook propagates to the others and never reverts).
+    git("add", "data/dashboard.json", "data/revmgmt_rates.json")
     status = git("status", "--short").stdout.strip()
-    if "data/dashboard.json" not in status:
-        log.info("No change in dashboard.json - nothing to publish.")
+    if "data/dashboard.json" not in status and "data/revmgmt_rates.json" not in status:
+        log.info("No change in dashboard.json / revmgmt_rates.json - nothing to publish.")
         return
 
     msg = f"Auto-update dashboard data - {datetime.now():%Y-%m-%d %H:%M}"
