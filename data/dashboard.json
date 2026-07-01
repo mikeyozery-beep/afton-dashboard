@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-30T15:59:47.661705",
+  "generated_at": "2026-07-01T07:00:07.186195",
   "as_of": {
     "occupancy": "06/30/2026",
     "collections": "06/30/2026",
     "financials": "May 2026",
-    "boxscore": "06/24-06/30/2026"
+    "boxscore": "06/25-07/01/2026"
   },
   "views": {
     "PORTFOLIO": {
@@ -13,7 +13,7 @@
         "portfolio_occupancy": {
           "value": 0.9600043478260869,
           "prior_week": 0.9607521739130435,
-          "budget": 0.9532503414240382
+          "budget": 0.959144948620656
         },
         "leased_occupancy": {
           "value": 0.9754304347826088,
@@ -32,11 +32,11 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9490356003857002,
-          "budget": 0.9532503414240382
+          "budget": 0.959144948620656
         },
         "staffing_vacancies": {
           "value": 7,
-          "prior_month": null
+          "prior_month": 7
         },
         "noi_variance": {
           "value": -0.005143646160069237,
@@ -75,18 +75,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 704,
-        "tours": 188,
-        "applications": 66,
-        "tours_over_traffic": 0.26704545454545453,
-        "conversions": 0.35106382978723405,
-        "period": "06/24-06/30/2026",
+        "traffic": 702,
+        "tours": 192,
+        "applications": 64,
+        "tours_over_traffic": 0.27350427350427353,
+        "conversions": 0.3333333333333333,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.19772079772079773,
-          "tours": -0.1616499442586399,
-          "applications": -0.0896551724137931,
-          "tours_over_traffic": 0.04772048383462689,
-          "conversions": 0.09338941718495494
+          "traffic": -0.21079258010118043,
+          "tours": -0.14285714285714285,
+          "applications": -0.11724137931034483,
+          "tours_over_traffic": 0.08897512127038863,
+          "conversions": 0.036923370512364904
         },
         "benchmark_weeks": 4
       },
@@ -172,18 +172,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 25,
-        "tours": 6,
+        "traffic": 21,
+        "tours": 8,
         "applications": 1,
-        "tours_over_traffic": 0.24,
-        "conversions": 0.16666666666666666,
-        "period": "06/24-06/30/2026",
+        "tours_over_traffic": 0.38095238095238093,
+        "conversions": 0.125,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.375,
-          "tours": -0.3333333333333333,
-          "applications": -0.7142857142857143,
-          "tours_over_traffic": 0.06949334818655062,
-          "conversions": -0.5540540540540541
+          "traffic": -0.46835443037974683,
+          "tours": -0.058823529411764705,
+          "applications": -0.6923076923076923,
+          "tours_over_traffic": 0.8386001566988768,
+          "conversions": -0.6851376146788991
         },
         "benchmark_weeks": 4
       },
@@ -208,7 +208,7 @@
         "portfolio_occupancy": {
           "value": 0.9944,
           "prior_week": 0.9944,
-          "budget": 0.96
+          "budget": 0.97
         },
         "leased_occupancy": {
           "value": 0.9944,
@@ -226,7 +226,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9888444444444444,
-          "budget": 0.96
+          "budget": 0.97
         },
         "staffing_vacancies": {
           "value": 0,
@@ -269,18 +269,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 19,
-        "tours": 1,
+        "traffic": 17,
+        "tours": 0,
         "applications": 0,
-        "tours_over_traffic": 0.05263157894736842,
-        "conversions": 0.0,
-        "period": "06/24-06/30/2026",
+        "tours_over_traffic": 0.0,
+        "conversions": null,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": 0.35714285714285715,
-          "tours": 1.0,
+          "traffic": 0.15254237288135594,
+          "tours": -1.0,
           "applications": -1.0,
-          "tours_over_traffic": 0.47368421052631576,
-          "conversions": -1.0
+          "tours_over_traffic": -1.0,
+          "conversions": null
         },
         "benchmark_weeks": 4
       },
@@ -305,7 +305,7 @@
         "portfolio_occupancy": {
           "value": 0.9557,
           "prior_week": 0.9541,
-          "budget": 0.95
+          "budget": 0.9718579556962026
         },
         "leased_occupancy": {
           "value": 0.9699,
@@ -323,7 +323,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9382949367088607,
-          "budget": 0.95
+          "budget": 0.9718579556962026
         },
         "staffing_vacancies": {
           "value": 0,
@@ -371,13 +371,13 @@
         "applications": 6,
         "tours_over_traffic": 0.44680851063829785,
         "conversions": 0.2857142857142857,
-        "period": "06/24-06/30/2026",
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.1415525114155251,
-          "tours": 0.06329113924050633,
+          "traffic": -0.12962962962962962,
+          "tours": 0.05,
           "applications": 0.2,
-          "tours_over_traffic": 0.21635933147005987,
-          "conversions": 0.15243621626600345
+          "tours_over_traffic": 0.194923726536236,
+          "conversions": 0.1712677566336102
         },
         "benchmark_weeks": 4
       },
@@ -402,7 +402,7 @@
         "portfolio_occupancy": {
           "value": 0.9868,
           "prior_week": 0.9835,
-          "budget": 0.955
+          "budget": 0.96
         },
         "leased_occupancy": {
           "value": 0.9967,
@@ -420,7 +420,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9966684210526316,
-          "budget": 0.955
+          "budget": 0.96
         },
         "staffing_vacancies": {
           "value": 0,
@@ -468,12 +468,12 @@
         "applications": 0,
         "tours_over_traffic": 0.16666666666666666,
         "conversions": 0.0,
-        "period": "06/24-06/30/2026",
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.6097560975609756,
-          "tours": -0.7241379310344828,
+          "traffic": -0.6033057851239669,
+          "tours": -0.7037037037037037,
           "applications": -1.0,
-          "tours_over_traffic": -0.3496973065541018,
+          "tours_over_traffic": -0.2568837775074644,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -499,7 +499,7 @@
         "portfolio_occupancy": {
           "value": 0.9481,
           "prior_week": 0.9434,
-          "budget": 0.96
+          "budget": 0.95
         },
         "leased_occupancy": {
           "value": 0.967,
@@ -517,7 +517,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9433830188679246,
-          "budget": 0.96
+          "budget": 0.95
         },
         "staffing_vacancies": {
           "value": 0,
@@ -560,18 +560,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 19,
-        "tours": 10,
-        "applications": 4,
-        "tours_over_traffic": 0.5263157894736842,
-        "conversions": 0.4,
-        "period": "06/24-06/30/2026",
+        "traffic": 15,
+        "tours": 6,
+        "applications": 2,
+        "tours_over_traffic": 0.4,
+        "conversions": 0.3333333333333333,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": 0.20634920634920634,
-          "tours": 1.105263157894737,
-          "applications": 1.6666666666666667,
-          "tours_over_traffic": 0.7650053742150816,
-          "conversions": 0.3575757575757576
+          "traffic": -0.11764705882352941,
+          "tours": 0.14285714285714285,
+          "applications": 0.14285714285714285,
+          "tours_over_traffic": 0.40724316334072447,
+          "conversions": -0.045553145336225655
         },
         "benchmark_weeks": 4
       },
@@ -596,7 +596,7 @@
         "portfolio_occupancy": {
           "value": 0.9514,
           "prior_week": 0.9514,
-          "budget": 0.95
+          "budget": 0.96
         },
         "leased_occupancy": {
           "value": 0.9583,
@@ -614,7 +614,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9270944444444444,
-          "budget": 0.95
+          "budget": 0.96
         },
         "staffing_vacancies": {
           "value": 0,
@@ -657,18 +657,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 32,
-        "tours": 15,
-        "applications": 3,
-        "tours_over_traffic": 0.46875,
-        "conversions": 0.2,
-        "period": "06/24-06/30/2026",
+        "traffic": 35,
+        "tours": 13,
+        "applications": 2,
+        "tours_over_traffic": 0.37142857142857144,
+        "conversions": 0.15384615384615385,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.14093959731543623,
-          "tours": 0.1111111111111111,
-          "applications": 0.0,
-          "tours_over_traffic": 0.2675025823482152,
-          "conversions": -0.0351758793969848
+          "traffic": -0.06666666666666667,
+          "tours": -0.05454545454545454,
+          "applications": -0.38461538461538464,
+          "tours_over_traffic": -0.04644136865031963,
+          "conversions": -0.3452237662763978
         },
         "benchmark_weeks": 4
       },
@@ -693,7 +693,7 @@
         "portfolio_occupancy": {
           "value": 0.9537,
           "prior_week": 0.9583,
-          "budget": 0.95
+          "budget": 0.96
         },
         "leased_occupancy": {
           "value": 0.9676,
@@ -711,7 +711,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9074037037037037,
-          "budget": 0.95
+          "budget": 0.96
         },
         "staffing_vacancies": {
           "value": 0,
@@ -754,18 +754,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 11,
-        "tours": 7,
-        "applications": 3,
-        "tours_over_traffic": 0.6363636363636364,
-        "conversions": 0.42857142857142855,
-        "period": "06/24-06/30/2026",
+        "traffic": 12,
+        "tours": 4,
+        "applications": 2,
+        "tours_over_traffic": 0.3333333333333333,
+        "conversions": 0.5,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.45,
-          "tours": 0.6470588235294118,
-          "applications": 1.4,
-          "tours_over_traffic": 1.9005405627607752,
-          "conversions": 0.5584415584415582
+          "traffic": -0.4,
+          "tours": -0.15789473684210525,
+          "applications": 0.6,
+          "tours_over_traffic": 0.40950691448615084,
+          "conversions": 1.1538461538461542
         },
         "benchmark_weeks": 4
       },
@@ -790,7 +790,7 @@
         "portfolio_occupancy": {
           "value": 0.9831,
           "prior_week": 0.9831,
-          "budget": 0.9606620477897252
+          "budget": 0.9674691995221028
         },
         "leased_occupancy": {
           "value": 0.9944,
@@ -808,7 +808,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9774820224719101,
-          "budget": 0.9606620477897252
+          "budget": 0.9674691995221028
         },
         "staffing_vacancies": {
           "value": 0,
@@ -851,18 +851,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 11,
-        "tours": 0,
-        "applications": 0,
-        "tours_over_traffic": 0.0,
-        "conversions": null,
-        "period": "06/24-06/30/2026",
+        "traffic": 15,
+        "tours": 2,
+        "applications": 1,
+        "tours_over_traffic": 0.13333333333333333,
+        "conversions": 0.5,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.4430379746835443,
-          "tours": -1.0,
-          "applications": -1.0,
-          "tours_over_traffic": -1.0,
-          "conversions": null
+          "traffic": -0.2682926829268293,
+          "tours": -0.6190476190476191,
+          "applications": -0.2,
+          "tours_over_traffic": -0.4595898673100121,
+          "conversions": 1.2941176470588236
         },
         "benchmark_weeks": 4
       },
@@ -948,18 +948,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 39,
-        "tours": 12,
+        "traffic": 42,
+        "tours": 14,
         "applications": 5,
-        "tours_over_traffic": 0.3076923076923077,
-        "conversions": 0.4166666666666667,
-        "period": "06/24-06/30/2026",
+        "tours_over_traffic": 0.3333333333333333,
+        "conversions": 0.35714285714285715,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.20812182741116753,
-          "tours": -0.323943661971831,
-          "applications": 0.0,
-          "tours_over_traffic": -0.1432234792856389,
-          "conversions": 0.2597480503899221
+          "traffic": -0.15577889447236182,
+          "tours": -0.2,
+          "applications": -0.047619047619047616,
+          "tours_over_traffic": -0.04703349467831329,
+          "conversions": 0.12504934426948566
         },
         "benchmark_weeks": 4
       },
@@ -984,7 +984,7 @@
         "portfolio_occupancy": {
           "value": 0.9743,
           "prior_week": 0.9779,
-          "budget": 0.9630149910130719
+          "budget": 0.9638523480392157
         },
         "leased_occupancy": {
           "value": 0.9853,
@@ -1002,7 +1002,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9522411764705884,
-          "budget": 0.9630149910130719
+          "budget": 0.9638523480392157
         },
         "staffing_vacancies": {
           "value": 1,
@@ -1046,16 +1046,16 @@
       },
       "marketing": {
         "traffic": 13,
-        "tours": 4,
+        "tours": 3,
         "applications": 0,
-        "tours_over_traffic": 0.3076923076923077,
+        "tours_over_traffic": 0.23076923076923078,
         "conversions": 0.0,
-        "period": "06/24-06/30/2026",
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.1746031746031746,
-          "tours": 0.45454545454545453,
+          "traffic": -0.16129032258064516,
+          "tours": 0.0,
           "applications": -1.0,
-          "tours_over_traffic": 0.712756467439786,
+          "tours_over_traffic": 0.24717948717948734,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -1081,7 +1081,7 @@
         "portfolio_occupancy": {
           "value": 0.9663,
           "prior_week": 0.9615,
-          "budget": 0.95
+          "budget": 0.9627301586538461
         },
         "leased_occupancy": {
           "value": 0.976,
@@ -1099,7 +1099,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9566846153846155,
-          "budget": 0.95
+          "budget": 0.9627301586538461
         },
         "staffing_vacancies": {
           "value": 0,
@@ -1142,18 +1142,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 27,
-        "tours": 9,
+        "traffic": 25,
+        "tours": 7,
         "applications": 4,
-        "tours_over_traffic": 0.3333333333333333,
-        "conversions": 0.4444444444444444,
-        "period": "06/24-06/30/2026",
+        "tours_over_traffic": 0.28,
+        "conversions": 0.5714285714285714,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.29411764705882354,
-          "tours": -0.14285714285714285,
+          "traffic": -0.3548387096774194,
+          "tours": -0.3488372093023256,
           "applications": 0.06666666666666667,
-          "tours_over_traffic": 0.24181780279341236,
-          "conversions": 0.1410048622366289
+          "tours_over_traffic": 0.018695337551425925,
+          "conversions": 0.5374909002669255
         },
         "benchmark_weeks": 4
       },
@@ -1178,7 +1178,7 @@
         "portfolio_occupancy": {
           "value": 0.9528,
           "prior_week": 0.9623,
-          "budget": 0.95
+          "budget": 0.96
         },
         "leased_occupancy": {
           "value": 0.9811,
@@ -1196,7 +1196,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9307874213836477,
-          "budget": 0.95
+          "budget": 0.96
         },
         "staffing_vacancies": {
           "value": 3,
@@ -1239,18 +1239,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 32,
-        "tours": 6,
+        "traffic": 29,
+        "tours": 8,
         "applications": 7,
-        "tours_over_traffic": 0.1875,
-        "conversions": 1.1666666666666667,
-        "period": "06/24-06/30/2026",
+        "tours_over_traffic": 0.27586206896551724,
+        "conversions": 0.875,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": 0.07563025210084033,
-          "tours": -0.2,
-          "applications": 1.0,
-          "tours_over_traffic": -0.2791706846673096,
-          "conversions": 1.6490825688073396
+          "traffic": -0.04918032786885246,
+          "tours": 0.06666666666666667,
+          "applications": 0.8666666666666667,
+          "tours_over_traffic": 0.04371856251136302,
+          "conversions": 0.75
         },
         "benchmark_weeks": 4
       },
@@ -1275,7 +1275,7 @@
         "portfolio_occupancy": {
           "value": 0.9671,
           "prior_week": 0.9671,
-          "budget": 0.955
+          "budget": 0.96
         },
         "leased_occupancy": {
           "value": 0.9704,
@@ -1293,7 +1293,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9572315789473684,
-          "budget": 0.955
+          "budget": 0.96
         },
         "staffing_vacancies": {
           "value": 0,
@@ -1336,18 +1336,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 35,
-        "tours": 2,
+        "traffic": 33,
+        "tours": 5,
         "applications": 4,
-        "tours_over_traffic": 0.05714285714285714,
-        "conversions": 2.0,
-        "period": "06/24-06/30/2026",
+        "tours_over_traffic": 0.15151515151515152,
+        "conversions": 0.8,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.13580246913580246,
-          "tours": -0.6,
+          "traffic": -0.18518518518518517,
+          "tours": 0.1111111111111111,
           "applications": 4.333333333333333,
-          "tours_over_traffic": -0.5636093644207874,
-          "conversions": 13.933333333333334
+          "tours_over_traffic": 0.24305241483609422,
+          "conversions": 2.7966101694915255
         },
         "benchmark_weeks": 4
       },
@@ -1372,7 +1372,7 @@
         "portfolio_occupancy": {
           "value": 0.9624,
           "prior_week": 0.9659,
-          "budget": 0.96
+          "budget": 0.965
         },
         "leased_occupancy": {
           "value": 0.9857,
@@ -1390,7 +1390,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9498551971326166,
-          "budget": 0.96
+          "budget": 0.965
         },
         "staffing_vacancies": {
           "value": 0,
@@ -1433,18 +1433,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 27,
-        "tours": 13,
+        "traffic": 23,
+        "tours": 14,
         "applications": 1,
-        "tours_over_traffic": 0.48148148148148145,
-        "conversions": 0.07692307692307693,
-        "period": "06/24-06/30/2026",
+        "tours_over_traffic": 0.6086956521739131,
+        "conversions": 0.07142857142857142,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.29411764705882354,
-          "tours": -0.08771929824561403,
-          "applications": -0.84,
-          "tours_over_traffic": 0.3406630566408481,
-          "conversions": -0.7982003060419789
+          "traffic": -0.4025974025974026,
+          "tours": 0.07692307692307693,
+          "applications": -0.8260869565217391,
+          "tours_over_traffic": 0.8463477045003622,
+          "conversions": -0.8139756737419508
         },
         "benchmark_weeks": 4
       },
@@ -1530,18 +1530,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 32,
-        "tours": 9,
-        "applications": 5,
-        "tours_over_traffic": 0.28125,
-        "conversions": 0.5555555555555556,
-        "period": "06/24-06/30/2026",
+        "traffic": 44,
+        "tours": 16,
+        "applications": 6,
+        "tours_over_traffic": 0.36363636363636365,
+        "conversions": 0.375,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.4260089686098655,
-          "tours": -0.32075471698113206,
-          "applications": 0.6666666666666666,
-          "tours_over_traffic": 0.19561972914577982,
-          "conversions": 1.6224450443501737
+          "traffic": -0.21076233183856502,
+          "tours": 0.20754716981132076,
+          "applications": 0.8461538461538461,
+          "tours_over_traffic": 0.5195440668235617,
+          "conversions": 0.658151416627961
         },
         "benchmark_weeks": 4
       },
@@ -1566,7 +1566,7 @@
         "portfolio_occupancy": {
           "value": 0.9518,
           "prior_week": 0.9578,
-          "budget": 0.95
+          "budget": 0.96
         },
         "leased_occupancy": {
           "value": 0.9578,
@@ -1584,7 +1584,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.915655421686747,
-          "budget": 0.95
+          "budget": 0.96
         },
         "staffing_vacancies": {
           "value": 0,
@@ -1627,17 +1627,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 19,
-        "tours": 8,
+        "traffic": 20,
+        "tours": 4,
         "applications": 0,
-        "tours_over_traffic": 0.42105263157894735,
+        "tours_over_traffic": 0.2,
         "conversions": 0.0,
-        "period": "06/24-06/30/2026",
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.5128205128205128,
-          "tours": -0.3191489361702128,
+          "traffic": -0.48717948717948717,
+          "tours": -0.6862745098039216,
           "applications": -1.0,
-          "tours_over_traffic": 0.2934081431431818,
+          "tours_over_traffic": -0.420966704596052,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -1663,7 +1663,7 @@
         "portfolio_occupancy": {
           "value": 0.9275,
           "prior_week": 0.9275,
-          "budget": 0.95
+          "budget": 0.96
         },
         "leased_occupancy": {
           "value": 0.9565,
@@ -1681,7 +1681,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.922669082125604,
-          "budget": 0.95
+          "budget": 0.96
         },
         "staffing_vacancies": {
           "value": 0,
@@ -1712,9 +1712,9 @@
           }
         },
         "net_income": {
-          "actual": 1063107.5299999996,
+          "actual": 1063107.5299999998,
           "budget": 1117805.0000000005,
-          "variance": -0.048932926583796665,
+          "variance": -0.048932926583796554,
           "dist": {
             "above": 0,
             "at": 1,
@@ -1724,18 +1724,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 38,
+        "traffic": 41,
         "tours": 6,
         "applications": 1,
-        "tours_over_traffic": 0.15789473684210525,
+        "tours_over_traffic": 0.14634146341463414,
         "conversions": 0.16666666666666666,
-        "period": "06/24-06/30/2026",
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": 0.013333333333333334,
-          "tours": -0.29411764705882354,
+          "traffic": 0.08609271523178808,
+          "tours": -0.2727272727272727,
           "applications": -0.6,
-          "tours_over_traffic": -0.32731236374961076,
-          "conversions": -0.40223192624939347
+          "tours_over_traffic": -0.35043962558762876,
+          "conversions": -0.4185303514376997
         },
         "benchmark_weeks": 4
       },
@@ -1821,18 +1821,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 99,
+        "traffic": 92,
         "tours": 20,
-        "applications": 13,
-        "tours_over_traffic": 0.20202020202020202,
-        "conversions": 0.65,
-        "period": "06/24-06/30/2026",
+        "applications": 12,
+        "tours_over_traffic": 0.21739130434782608,
+        "conversions": 0.6,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.18181818181818182,
-          "tours": -0.24528301886792453,
-          "applications": 0.15555555555555556,
-          "tours_over_traffic": -0.10946655182172996,
-          "conversions": 0.5708713653547755
+          "traffic": -0.2654690618762475,
+          "tours": -0.23076923076923078,
+          "applications": 0.09090909090909091,
+          "tours_over_traffic": 0.03474092225114831,
+          "conversions": 0.4093255620316403
         },
         "benchmark_weeks": 4
       },
@@ -1857,7 +1857,7 @@
         "portfolio_occupancy": {
           "value": 0.9303,
           "prior_week": 0.9207,
-          "budget": 0.95
+          "budget": 0.955
         },
         "leased_occupancy": {
           "value": 0.9543,
@@ -1875,7 +1875,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9182807692307692,
-          "budget": 0.95
+          "budget": 0.955
         },
         "staffing_vacancies": {
           "value": 0,
@@ -1918,18 +1918,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 62,
-        "tours": 18,
-        "applications": 3,
-        "tours_over_traffic": 0.2903225806451613,
-        "conversions": 0.16666666666666666,
-        "period": "06/24-06/30/2026",
+        "traffic": 68,
+        "tours": 21,
+        "applications": 5,
+        "tours_over_traffic": 0.3088235294117647,
+        "conversions": 0.23809523809523808,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.05343511450381679,
-          "tours": 0.02857142857142857,
-          "applications": -0.3684210526315789,
-          "tours_over_traffic": 0.10990000492270526,
-          "conversions": -0.33665008291873977
+          "traffic": 0.011152416356877323,
+          "tours": 0.21739130434782608,
+          "applications": 0.05263157894736842,
+          "tours_over_traffic": 0.2266922371813908,
+          "conversions": -0.04246337863877452
         },
         "benchmark_weeks": 4
       },
@@ -1954,7 +1954,7 @@
         "portfolio_occupancy": {
           "value": 0.9299,
           "prior_week": 0.9236,
-          "budget": 0.95
+          "budget": 0.955
         },
         "leased_occupancy": {
           "value": 0.949,
@@ -1972,7 +1972,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9235305732484075,
-          "budget": 0.95
+          "budget": 0.955
         },
         "staffing_vacancies": {
           "value": 1,
@@ -2015,18 +2015,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 48,
-        "tours": 10,
+        "traffic": 40,
+        "tours": 9,
         "applications": 2,
-        "tours_over_traffic": 0.20833333333333334,
-        "conversions": 0.2,
-        "period": "06/24-06/30/2026",
+        "tours_over_traffic": 0.225,
+        "conversions": 0.2222222222222222,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.1111111111111111,
-          "tours": 0.25,
-          "applications": -0.4666666666666667,
-          "tours_over_traffic": 0.4009693561988185,
-          "conversions": -0.5725190839694656
+          "traffic": -0.29515418502202645,
+          "tours": 0.058823529411764705,
+          "applications": -0.42857142857142855,
+          "tours_over_traffic": 0.49434985188857167,
+          "conversions": -0.4387755102040817
         },
         "benchmark_weeks": 4
       },
@@ -2112,16 +2112,16 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 19,
+        "traffic": 21,
         "tours": 0,
-        "applications": 1,
+        "applications": 0,
         "tours_over_traffic": 0.0,
         "conversions": null,
-        "period": "06/24-06/30/2026",
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": 0.7674418604651163,
+          "traffic": 0.9534883720930233,
           "tours": null,
-          "applications": 1.0,
+          "applications": -1.0,
           "tours_over_traffic": null,
           "conversions": null
         },
@@ -2148,7 +2148,7 @@
         "portfolio_occupancy": {
           "value": 0.962,
           "prior_week": 0.9578,
-          "budget": 0.95
+          "budget": 0.9547460267229254
         },
         "leased_occupancy": {
           "value": 0.9958,
@@ -2166,7 +2166,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.962,
-          "budget": 0.95
+          "budget": 0.9547460267229254
         },
         "staffing_vacancies": {
           "value": 0,
@@ -2209,18 +2209,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 20,
-        "tours": 4,
+        "traffic": 19,
+        "tours": 5,
         "applications": 3,
-        "tours_over_traffic": 0.2,
-        "conversions": 0.75,
-        "period": "06/24-06/30/2026",
+        "tours_over_traffic": 0.2631578947368421,
+        "conversions": 0.6,
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": -0.4405594405594406,
-          "tours": -0.7037037037037037,
-          "applications": -0.25,
-          "tours_over_traffic": -0.46580325584995225,
-          "conversions": 1.6351351351351353
+          "traffic": -0.47586206896551725,
+          "tours": -0.6296296296296297,
+          "applications": -0.2,
+          "tours_over_traffic": -0.2796148505933394,
+          "conversions": 1.2063538481988567
         },
         "benchmark_weeks": 4
       },
@@ -2245,7 +2245,7 @@
         "portfolio_occupancy": {
           "value": 0.988,
           "prior_week": 0.994,
-          "budget": 0.95
+          "budget": 0.96
         },
         "leased_occupancy": {
           "value": 0.988,
@@ -2263,7 +2263,7 @@
         },
         "trend_occupancy_30d": {
           "value": 0.9641904761904763,
-          "budget": 0.95
+          "budget": 0.96
         },
         "staffing_vacancies": {
           "value": 0,
@@ -2307,16 +2307,16 @@
       },
       "marketing": {
         "traffic": 18,
-        "tours": 5,
+        "tours": 4,
         "applications": 0,
-        "tours_over_traffic": 0.2777777777777778,
+        "tours_over_traffic": 0.2222222222222222,
         "conversions": 0.0,
-        "period": "06/24-06/30/2026",
+        "period": "06/25-07/01/2026",
         "benchmark_pct": {
-          "traffic": 0.2631578947368421,
-          "tours": 0.6666666666666666,
+          "traffic": 0.3090909090909091,
+          "tours": 0.23076923076923078,
           "applications": -1.0,
-          "tours_over_traffic": 0.37457044673539525,
+          "tours_over_traffic": -0.06912810676896028,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -2342,7 +2342,7 @@
     "portfolio_occupancy": {
       "value": 0.9600043478260869,
       "prior_week": 0.9607521739130435,
-      "budget": 0.9532503414240382
+      "budget": 0.959144948620656
     },
     "leased_occupancy": {
       "value": 0.9754304347826088,
@@ -2361,11 +2361,11 @@
     },
     "trend_occupancy_30d": {
       "value": 0.9490356003857002,
-      "budget": 0.9532503414240382
+      "budget": 0.959144948620656
     },
     "staffing_vacancies": {
       "value": 7,
-      "prior_month": null
+      "prior_month": 7
     },
     "noi_variance": {
       "value": -0.005143646160069237,
@@ -2381,18 +2381,18 @@
     }
   },
   "marketing": {
-    "traffic": 704,
-    "tours": 188,
-    "applications": 66,
-    "tours_over_traffic": 0.26704545454545453,
-    "conversions": 0.35106382978723405,
-    "period": "06/24-06/30/2026",
+    "traffic": 702,
+    "tours": 192,
+    "applications": 64,
+    "tours_over_traffic": 0.27350427350427353,
+    "conversions": 0.3333333333333333,
+    "period": "06/25-07/01/2026",
     "benchmark_pct": {
-      "traffic": -0.19772079772079773,
-      "tours": -0.1616499442586399,
-      "applications": -0.0896551724137931,
-      "tours_over_traffic": 0.04772048383462689,
-      "conversions": 0.09338941718495494
+      "traffic": -0.21079258010118043,
+      "tours": -0.14285714285714285,
+      "applications": -0.11724137931034483,
+      "tours_over_traffic": 0.08897512127038863,
+      "conversions": 0.036923370512364904
     },
     "benchmark_weeks": 4
   },
