@@ -1,27 +1,27 @@
 {
-  "generated_at": "2026-07-01T07:00:07.186195",
+  "generated_at": "2026-07-02T07:00:06.203186",
   "as_of": {
-    "occupancy": "06/30/2026",
-    "collections": "06/30/2026",
+    "occupancy": "07/01/2026",
+    "collections": "07/01/2026",
     "financials": "May 2026",
-    "boxscore": "06/25-07/01/2026"
+    "boxscore": "06/26-07/02/2026"
   },
   "views": {
     "PORTFOLIO": {
       "label": "Portfolio (23 properties)",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9600043478260869,
-          "prior_week": 0.9607521739130435,
+          "value": 0.9563869565217391,
+          "prior_week": 0.9609913043478262,
           "budget": 0.959144948620656
         },
         "leased_occupancy": {
-          "value": 0.9754304347826088,
+          "value": 0.9730521739130438,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9886103231738653,
-          "prior_month": 0.9873007130534452,
+          "value": 0.13412228689162908,
+          "prior_month": 0.9572152641140582,
           "budget": 0.987692536749083
         },
         "rent_growth": {
@@ -31,7 +31,7 @@
           "yoy_effective": 0.024159403128736656
         },
         "trend_occupancy_30d": {
-          "value": 0.9490356003857002,
+          "value": 0.9460378635680512,
           "budget": 0.959144948620656
         },
         "staffing_vacancies": {
@@ -75,18 +75,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 702,
-        "tours": 192,
-        "applications": 64,
-        "tours_over_traffic": 0.27350427350427353,
-        "conversions": 0.3333333333333333,
-        "period": "06/25-07/01/2026",
+        "traffic": 706,
+        "tours": 167,
+        "applications": 63,
+        "tours_over_traffic": 0.23654390934844194,
+        "conversions": 0.3772455089820359,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.21079258010118043,
-          "tours": -0.14285714285714285,
-          "applications": -0.11724137931034483,
-          "tours_over_traffic": 0.08897512127038863,
-          "conversions": 0.036923370512364904
+          "traffic": -0.20940649496080627,
+          "tours": -0.26593406593406593,
+          "applications": -0.13993174061433447,
+          "tours_over_traffic": -0.06906084248140043,
+          "conversions": 0.17965097615102332
         },
         "benchmark_weeks": 4
       },
@@ -109,8 +109,8 @@
       "label": "Steward's Crossing",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9542,
-          "prior_week": 0.9583,
+          "value": 0.95,
+          "prior_week": 0.95,
           "budget": 0.955
         },
         "leased_occupancy": {
@@ -118,8 +118,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9897345700196882,
-          "prior_month": 0.9715954072942417,
+          "value": 0.122321263514791,
+          "prior_month": 0.9589456377492896,
           "budget": 0.9906043326532531
         },
         "rent_growth": {
@@ -128,7 +128,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9708666666666667,
+          "value": 0.9666666666666667,
           "budget": 0.955
         },
         "staffing_vacancies": {
@@ -172,18 +172,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 21,
-        "tours": 8,
+        "traffic": 20,
+        "tours": 7,
         "applications": 1,
-        "tours_over_traffic": 0.38095238095238093,
-        "conversions": 0.125,
-        "period": "06/25-07/01/2026",
+        "tours_over_traffic": 0.35,
+        "conversions": 0.14285714285714285,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.46835443037974683,
-          "tours": -0.058823529411764705,
-          "applications": -0.6923076923076923,
-          "tours_over_traffic": 0.8386001566988768,
-          "conversions": -0.6851376146788991
+          "traffic": -0.4936708860759494,
+          "tours": -0.17647058823529413,
+          "applications": -0.6666666666666666,
+          "tours_over_traffic": 0.7095277970579674,
+          "conversions": -0.6188826331745345
         },
         "benchmark_weeks": 4
       },
@@ -215,8 +215,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9900761643971825,
-          "prior_month": 0.9988494114460925,
+          "value": 0.11663025670283811,
+          "prior_month": 0.9696482019736069,
           "budget": 0.9847686137488629
         },
         "rent_growth": {
@@ -269,14 +269,14 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 17,
+        "traffic": 20,
         "tours": 0,
         "applications": 0,
         "tours_over_traffic": 0.0,
         "conversions": null,
-        "period": "06/25-07/01/2026",
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": 0.15254237288135594,
+          "traffic": 0.3559322033898305,
           "tours": -1.0,
           "applications": -1.0,
           "tours_over_traffic": -1.0,
@@ -303,8 +303,8 @@
       "label": "Artisan at Lawrenceville",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9557,
-          "prior_week": 0.9541,
+          "value": 0.9604,
+          "prior_week": 0.9557,
           "budget": 0.9718579556962026
         },
         "leased_occupancy": {
@@ -312,8 +312,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9928328297176697,
-          "prior_month": 0.9895390438172494,
+          "value": 0.14590175008511785,
+          "prior_month": 0.980525277056309,
           "budget": 0.9937364399027843
         },
         "rent_growth": {
@@ -322,7 +322,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9382949367088607,
+          "value": 0.9414126582278481,
           "budget": 0.9718579556962026
         },
         "staffing_vacancies": {
@@ -366,18 +366,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 47,
-        "tours": 21,
-        "applications": 6,
-        "tours_over_traffic": 0.44680851063829785,
-        "conversions": 0.2857142857142857,
-        "period": "06/25-07/01/2026",
+        "traffic": 37,
+        "tours": 18,
+        "applications": 5,
+        "tours_over_traffic": 0.4864864864864865,
+        "conversions": 0.2777777777777778,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.12962962962962962,
-          "tours": 0.05,
-          "applications": 0.2,
-          "tours_over_traffic": 0.194923726536236,
-          "conversions": 0.1712677566336102
+          "traffic": -0.3333333333333333,
+          "tours": -0.1111111111111111,
+          "applications": -0.047619047619047616,
+          "tours_over_traffic": 0.3304049239622025,
+          "conversions": 0.08322488690586849
         },
         "benchmark_weeks": 4
       },
@@ -409,8 +409,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9736702035353311,
-          "prior_month": 0.9876450845521396,
+          "value": 0.05789339817860062,
+          "prior_month": 0.8647218378231014,
           "budget": 0.98
         },
         "rent_growth": {
@@ -419,7 +419,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9966684210526316,
+          "value": 0.9769315789473685,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -463,17 +463,17 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 12,
-        "tours": 2,
+        "traffic": 15,
+        "tours": 3,
         "applications": 0,
-        "tours_over_traffic": 0.16666666666666666,
+        "tours_over_traffic": 0.2,
         "conversions": 0.0,
-        "period": "06/25-07/01/2026",
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.6033057851239669,
-          "tours": -0.7037037037037037,
+          "traffic": -0.4957983193277311,
+          "tours": -0.5555555555555556,
           "applications": -1.0,
-          "tours_over_traffic": -0.2568837775074644,
+          "tours_over_traffic": -0.11648494008420597,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -498,7 +498,7 @@
       "kpis": {
         "portfolio_occupancy": {
           "value": 0.9481,
-          "prior_week": 0.9434,
+          "prior_week": 0.9481,
           "budget": 0.95
         },
         "leased_occupancy": {
@@ -506,8 +506,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9909444092606772,
-          "prior_month": 0.9765571821309769,
+          "value": 0.04303952289433899,
+          "prior_month": 0.9502811314108451,
           "budget": 0.9930170135331589
         },
         "rent_growth": {
@@ -516,7 +516,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9433830188679246,
+          "value": 0.9292320754716982,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -560,18 +560,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 15,
+        "traffic": 16,
         "tours": 6,
         "applications": 2,
-        "tours_over_traffic": 0.4,
+        "tours_over_traffic": 0.375,
         "conversions": 0.3333333333333333,
-        "period": "06/25-07/01/2026",
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.11764705882352941,
+          "traffic": -0.04477611940298507,
           "tours": 0.14285714285714285,
           "applications": 0.14285714285714285,
-          "tours_over_traffic": 0.40724316334072447,
-          "conversions": -0.045553145336225655
+          "tours_over_traffic": 0.21212121212121207,
+          "conversions": 0.02752293577981659
         },
         "benchmark_weeks": 4
       },
@@ -594,7 +594,7 @@
       "label": "Sycamore Canyons",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9514,
+          "value": 0.9444,
           "prior_week": 0.9514,
           "budget": 0.96
         },
@@ -603,8 +603,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.991946866539682,
-          "prior_month": 0.9928377499943869,
+          "value": 0.21608297388255004,
+          "prior_month": 0.975380320450258,
           "budget": 0.9896009208248725
         },
         "rent_growth": {
@@ -613,7 +613,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9270944444444444,
+          "value": 0.9235666666666668,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -658,17 +658,17 @@
       },
       "marketing": {
         "traffic": 35,
-        "tours": 13,
-        "applications": 2,
-        "tours_over_traffic": 0.37142857142857144,
-        "conversions": 0.15384615384615385,
-        "period": "06/25-07/01/2026",
+        "tours": 12,
+        "applications": 4,
+        "tours_over_traffic": 0.34285714285714286,
+        "conversions": 0.3333333333333333,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.06666666666666667,
-          "tours": -0.05454545454545454,
-          "applications": -0.38461538461538464,
-          "tours_over_traffic": -0.04644136865031963,
-          "conversions": -0.3452237662763978
+          "traffic": -0.09090909090909091,
+          "tours": -0.12727272727272726,
+          "applications": 0.23076923076923078,
+          "tours_over_traffic": -0.05053974017564964,
+          "conversions": 0.33033258314578634
         },
         "benchmark_weeks": 4
       },
@@ -691,17 +691,17 @@
       "label": "Trails at Canyon Crest",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9537,
-          "prior_week": 0.9583,
+          "value": 0.9491,
+          "prior_week": 0.9537,
           "budget": 0.96
         },
         "leased_occupancy": {
-          "value": 0.9676,
+          "value": 0.9583,
           "budget": null
         },
         "percent_collected": {
-          "value": 1.0000152363082815,
-          "prior_month": 0.9939136737209803,
+          "value": 0.18623521688704303,
+          "prior_month": 0.9840596291900773,
           "budget": 0.995
         },
         "rent_growth": {
@@ -710,7 +710,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9074037037037037,
+          "value": 0.9166925925925926,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -754,18 +754,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 12,
-        "tours": 4,
+        "traffic": 11,
+        "tours": 6,
         "applications": 2,
-        "tours_over_traffic": 0.3333333333333333,
-        "conversions": 0.5,
-        "period": "06/25-07/01/2026",
+        "tours_over_traffic": 0.5454545454545454,
+        "conversions": 0.3333333333333333,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.4,
-          "tours": -0.15789473684210525,
+          "traffic": -0.47619047619047616,
+          "tours": 0.2631578947368421,
           "applications": 0.6,
-          "tours_over_traffic": 0.40950691448615084,
-          "conversions": 1.1538461538461542
+          "tours_over_traffic": 1.5088228724592359,
+          "conversions": 0.21739130434782614
         },
         "benchmark_weeks": 4
       },
@@ -788,17 +788,17 @@
       "label": "Canyon Crest Views",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9831,
+          "value": 0.9663,
           "prior_week": 0.9831,
           "budget": 0.9674691995221028
         },
         "leased_occupancy": {
-          "value": 0.9944,
+          "value": 0.9888,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9884850506874447,
-          "prior_month": 0.9922931982881469,
+          "value": 0.22147541945816374,
+          "prior_month": 0.9603604560227927,
           "budget": 0.9879950652079224
         },
         "rent_growth": {
@@ -807,7 +807,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9774820224719101,
+          "value": 0.9831539325842698,
           "budget": 0.9674691995221028
         },
         "staffing_vacancies": {
@@ -856,13 +856,13 @@
         "applications": 1,
         "tours_over_traffic": 0.13333333333333333,
         "conversions": 0.5,
-        "period": "06/25-07/01/2026",
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.2682926829268293,
+          "traffic": -0.21052631578947367,
           "tours": -0.6190476190476191,
           "applications": -0.2,
-          "tours_over_traffic": -0.4595898673100121,
-          "conversions": 1.2941176470588236
+          "tours_over_traffic": -0.49008246044127485,
+          "conversions": 0.8333333333333335
         },
         "benchmark_weeks": 4
       },
@@ -885,17 +885,17 @@
       "label": "Hills of Corona",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9476,
-          "prior_week": 0.9476,
+          "value": 0.9395,
+          "prior_week": 0.9516,
           "budget": 0.955
         },
         "leased_occupancy": {
-          "value": 0.9597,
+          "value": 0.9556,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9909371045982277,
-          "prior_month": 0.9960423048958286,
+          "value": 0.19942714129375028,
+          "prior_month": 0.9736559151030372,
           "budget": 0.9893313436579318
         },
         "rent_growth": {
@@ -904,7 +904,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9476,
+          "value": 0.9435322580645161,
           "budget": 0.955
         },
         "staffing_vacancies": {
@@ -948,18 +948,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 42,
-        "tours": 14,
+        "traffic": 40,
+        "tours": 10,
         "applications": 5,
-        "tours_over_traffic": 0.3333333333333333,
-        "conversions": 0.35714285714285715,
-        "period": "06/25-07/01/2026",
+        "tours_over_traffic": 0.25,
+        "conversions": 0.5,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.15577889447236182,
-          "tours": -0.2,
+          "traffic": -0.21568627450980393,
+          "tours": -0.4520547945205479,
           "applications": -0.047619047619047616,
-          "tours_over_traffic": -0.04703349467831329,
-          "conversions": 0.12504934426948566
+          "tours_over_traffic": -0.2980105027386174,
+          "conversions": 0.760897712559344
         },
         "benchmark_weeks": 4
       },
@@ -987,12 +987,12 @@
           "budget": 0.9638523480392157
         },
         "leased_occupancy": {
-          "value": 0.9853,
+          "value": 0.9816,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9978846936331527,
-          "prior_month": 0.9944690223305316,
+          "value": 0.16770670635043805,
+          "prior_month": 0.9842480852817852,
           "budget": 0.995
         },
         "rent_growth": {
@@ -1001,7 +1001,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9522411764705884,
+          "value": 0.9559176470588236,
           "budget": 0.9638523480392157
         },
         "staffing_vacancies": {
@@ -1045,18 +1045,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 13,
-        "tours": 3,
-        "applications": 0,
-        "tours_over_traffic": 0.23076923076923078,
-        "conversions": 0.0,
-        "period": "06/25-07/01/2026",
+        "traffic": 14,
+        "tours": 4,
+        "applications": 1,
+        "tours_over_traffic": 0.2857142857142857,
+        "conversions": 0.25,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.16129032258064516,
-          "tours": 0.0,
-          "applications": -1.0,
-          "tours_over_traffic": 0.24717948717948734,
-          "conversions": -1.0
+          "traffic": -0.08196721311475409,
+          "tours": 0.6,
+          "applications": -0.3333333333333333,
+          "tours_over_traffic": 0.7959183673469387,
+          "conversions": -0.5
         },
         "benchmark_weeks": 4
       },
@@ -1079,17 +1079,17 @@
       "label": "Cassia Apartments",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9663,
-          "prior_week": 0.9615,
+          "value": 0.9567,
+          "prior_week": 0.9663,
           "budget": 0.9627301586538461
         },
         "leased_occupancy": {
-          "value": 0.976,
+          "value": 0.9712,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.962294448743175,
-          "prior_month": 0.9912829141424337,
+          "value": 0.12825481407182748,
+          "prior_month": 0.9223044232182596,
           "budget": 0.98
         },
         "rent_growth": {
@@ -1098,7 +1098,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9566846153846155,
+          "value": 0.9518923076923076,
           "budget": 0.9627301586538461
         },
         "staffing_vacancies": {
@@ -1142,18 +1142,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 25,
-        "tours": 7,
-        "applications": 4,
-        "tours_over_traffic": 0.28,
-        "conversions": 0.5714285714285714,
-        "period": "06/25-07/01/2026",
+        "traffic": 20,
+        "tours": 5,
+        "applications": 3,
+        "tours_over_traffic": 0.25,
+        "conversions": 0.6,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.3548387096774194,
-          "tours": -0.3488372093023256,
-          "applications": 0.06666666666666667,
-          "tours_over_traffic": 0.018695337551425925,
-          "conversions": 0.5374909002669255
+          "traffic": -0.49044585987261147,
+          "tours": -0.5454545454545454,
+          "applications": -0.25,
+          "tours_over_traffic": -0.1272432870058022,
+          "conversions": 0.5390766056229043
         },
         "benchmark_weeks": 4
       },
@@ -1176,17 +1176,17 @@
       "label": "Azure Apartments",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9528,
-          "prior_week": 0.9623,
+          "value": 0.9497,
+          "prior_week": 0.9591,
           "budget": 0.96
         },
         "leased_occupancy": {
-          "value": 0.9811,
+          "value": 0.9748,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9829495303463449,
-          "prior_month": 0.9839909436848696,
+          "value": 0.08509065423847195,
+          "prior_month": 0.9645630725875594,
           "budget": 0.9895134053335068
         },
         "rent_growth": {
@@ -1195,7 +1195,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9307874213836477,
+          "value": 0.9339767295597484,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -1239,18 +1239,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 29,
+        "traffic": 28,
         "tours": 8,
-        "applications": 7,
-        "tours_over_traffic": 0.27586206896551724,
-        "conversions": 0.875,
-        "period": "06/25-07/01/2026",
+        "applications": 9,
+        "tours_over_traffic": 0.2857142857142857,
+        "conversions": 1.125,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.04918032786885246,
+          "traffic": -0.104,
           "tours": 0.06666666666666667,
-          "applications": 0.8666666666666667,
-          "tours_over_traffic": 0.04371856251136302,
-          "conversions": 0.75
+          "applications": 1.4,
+          "tours_over_traffic": 0.1393616916279462,
+          "conversions": 1.0304386750223817
         },
         "benchmark_weeks": 4
       },
@@ -1273,7 +1273,7 @@
       "label": "Creekside Apartments",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9671,
+          "value": 0.9638,
           "prior_week": 0.9671,
           "budget": 0.96
         },
@@ -1282,8 +1282,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9942070821153745,
-          "prior_month": 0.9961380606427942,
+          "value": 0.12646546888404975,
+          "prior_month": 0.9199008624869782,
           "budget": 0.98
         },
         "rent_growth": {
@@ -1292,7 +1292,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9572315789473684,
+          "value": 0.957221052631579,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -1337,17 +1337,17 @@
       },
       "marketing": {
         "traffic": 33,
-        "tours": 5,
-        "applications": 4,
-        "tours_over_traffic": 0.15151515151515152,
-        "conversions": 0.8,
-        "period": "06/25-07/01/2026",
+        "tours": 4,
+        "applications": 3,
+        "tours_over_traffic": 0.12121212121212122,
+        "conversions": 0.75,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.18518518518518517,
-          "tours": 0.1111111111111111,
-          "applications": 4.333333333333333,
-          "tours_over_traffic": 0.24305241483609422,
-          "conversions": 2.7966101694915255
+          "traffic": -0.20958083832335328,
+          "tours": -0.15789473684210525,
+          "applications": 2.0,
+          "tours_over_traffic": -0.0481689466012124,
+          "conversions": 1.7692307692307694
         },
         "benchmark_weeks": 4
       },
@@ -1370,17 +1370,17 @@
       "label": "Parkview Terrace",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9624,
-          "prior_week": 0.9659,
+          "value": 0.9588,
+          "prior_week": 0.9642,
           "budget": 0.965
         },
         "leased_occupancy": {
-          "value": 0.9857,
+          "value": 0.9803,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9991664198560767,
-          "prior_month": 0.9931377537341903,
+          "value": 0.13019279473331957,
+          "prior_month": 0.9724139710911004,
           "budget": 0.995
         },
         "rent_growth": {
@@ -1389,7 +1389,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9498551971326166,
+          "value": 0.9462551971326165,
           "budget": 0.965
         },
         "staffing_vacancies": {
@@ -1434,17 +1434,17 @@
       },
       "marketing": {
         "traffic": 23,
-        "tours": 14,
+        "tours": 8,
         "applications": 1,
-        "tours_over_traffic": 0.6086956521739131,
-        "conversions": 0.07142857142857142,
-        "period": "06/25-07/01/2026",
+        "tours_over_traffic": 0.34782608695652173,
+        "conversions": 0.125,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.4025974025974026,
-          "tours": 0.07692307692307693,
-          "applications": -0.8260869565217391,
-          "tours_over_traffic": 0.8463477045003622,
-          "conversions": -0.8139756737419508
+          "traffic": -0.4064516129032258,
+          "tours": -0.41818181818181815,
+          "applications": -0.8181818181818182,
+          "tours_over_traffic": -0.0035562563173594927,
+          "conversions": -0.6833333333333333
         },
         "benchmark_weeks": 4
       },
@@ -1467,17 +1467,17 @@
       "label": "Redlands Lawn and Tennis",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9617,
-          "prior_week": 0.9698,
+          "value": 0.9637,
+          "prior_week": 0.9718,
           "budget": 0.95
         },
         "leased_occupancy": {
-          "value": 0.9839,
+          "value": 0.9859,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9969684689273689,
-          "prior_month": 0.9974403856046896,
+          "value": 0.18145540634822,
+          "prior_month": 0.9756128215052935,
           "budget": 0.995
         },
         "rent_growth": {
@@ -1486,7 +1486,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9435548387096774,
+          "value": 0.9395064516129032,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -1530,18 +1530,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 44,
-        "tours": 16,
+        "traffic": 48,
+        "tours": 14,
         "applications": 6,
-        "tours_over_traffic": 0.36363636363636365,
-        "conversions": 0.375,
-        "period": "06/25-07/01/2026",
+        "tours_over_traffic": 0.2916666666666667,
+        "conversions": 0.42857142857142855,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.21076233183856502,
-          "tours": 0.20754716981132076,
-          "applications": 0.8461538461538461,
-          "tours_over_traffic": 0.5195440668235617,
-          "conversions": 0.658151416627961
+          "traffic": -0.13513513513513514,
+          "tours": 0.0,
+          "applications": 0.7142857142857143,
+          "tours_over_traffic": 0.14237133641845487,
+          "conversions": 0.7381615598885792
         },
         "benchmark_weeks": 4
       },
@@ -1565,7 +1565,7 @@
       "kpis": {
         "portfolio_occupancy": {
           "value": 0.9518,
-          "prior_week": 0.9578,
+          "prior_week": 0.9518,
           "budget": 0.96
         },
         "leased_occupancy": {
@@ -1573,8 +1573,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.993358084158115,
-          "prior_month": 0.99394591845835,
+          "value": 0.1320553214987883,
+          "prior_month": 0.9902464487857626,
           "budget": 0.995
         },
         "rent_growth": {
@@ -1583,7 +1583,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.915655421686747,
+          "value": 0.9216795180722891,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -1628,16 +1628,16 @@
       },
       "marketing": {
         "traffic": 20,
-        "tours": 4,
+        "tours": 3,
         "applications": 0,
-        "tours_over_traffic": 0.2,
+        "tours_over_traffic": 0.15,
         "conversions": 0.0,
-        "period": "06/25-07/01/2026",
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.48717948717948717,
-          "tours": -0.6862745098039216,
+          "traffic": -0.477124183006536,
+          "tours": -0.76,
           "applications": -1.0,
-          "tours_over_traffic": -0.420966704596052,
+          "tours_over_traffic": -0.5645860573945358,
           "conversions": -1.0
         },
         "benchmark_weeks": 4
@@ -1661,17 +1661,17 @@
       "label": "Dylan Apartments",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9275,
+          "value": 0.9227,
           "prior_week": 0.9275,
           "budget": 0.96
         },
         "leased_occupancy": {
-          "value": 0.9565,
+          "value": 0.9469,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.999538165469454,
-          "prior_month": 0.973748028534742,
+          "value": 0.09891729694043572,
+          "prior_month": 0.9838642142597629,
           "budget": 0.9859450770901557
         },
         "rent_growth": {
@@ -1680,7 +1680,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.922669082125604,
+          "value": 0.9130381642512077,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -1724,18 +1724,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 41,
-        "tours": 6,
-        "applications": 1,
-        "tours_over_traffic": 0.14634146341463414,
-        "conversions": 0.16666666666666666,
-        "period": "06/25-07/01/2026",
+        "traffic": 47,
+        "tours": 5,
+        "applications": 2,
+        "tours_over_traffic": 0.10638297872340426,
+        "conversions": 0.4,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": 0.08609271523178808,
-          "tours": -0.2727272727272727,
-          "applications": -0.6,
-          "tours_over_traffic": -0.35043962558762876,
-          "conversions": -0.4185303514376997
+          "traffic": 0.3055555555555556,
+          "tours": -0.3939393939393939,
+          "applications": -0.2,
+          "tours_over_traffic": -0.5430727619777579,
+          "conversions": 0.29464650592562314
         },
         "benchmark_weeks": 4
       },
@@ -1758,7 +1758,7 @@
       "label": "Sunset Ridge",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9613,
+          "value": 0.96,
           "prior_week": 0.96,
           "budget": 0.95
         },
@@ -1767,8 +1767,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9706662562744639,
-          "prior_month": 0.9719086704118216,
+          "value": 0.11012932217790361,
+          "prior_month": 0.9127234973691709,
           "budget": 0.9775
         },
         "rent_growth": {
@@ -1777,7 +1777,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9638000000000001,
+          "value": 0.9625,
           "budget": 0.95
         },
         "staffing_vacancies": {
@@ -1821,18 +1821,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 92,
-        "tours": 20,
-        "applications": 12,
-        "tours_over_traffic": 0.21739130434782608,
-        "conversions": 0.6,
-        "period": "06/25-07/01/2026",
+        "traffic": 93,
+        "tours": 17,
+        "applications": 10,
+        "tours_over_traffic": 0.1827956989247312,
+        "conversions": 0.5882352941176471,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.2654690618762475,
-          "tours": -0.23076923076923078,
-          "applications": 0.09090909090909091,
-          "tours_over_traffic": 0.03474092225114831,
-          "conversions": 0.4093255620316403
+          "traffic": -0.2619047619047619,
+          "tours": -0.3761467889908257,
+          "applications": -0.16666666666666666,
+          "tours_over_traffic": -0.15409160529480223,
+          "conversions": 0.3375098487614583
         },
         "benchmark_weeks": 4
       },
@@ -1855,17 +1855,17 @@
       "label": "Cordova Park",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9303,
-          "prior_week": 0.9207,
+          "value": 0.9207,
+          "prior_week": 0.9255,
           "budget": 0.955
         },
         "leased_occupancy": {
-          "value": 0.9543,
+          "value": 0.9495,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9840048582576578,
-          "prior_month": 0.9757741505386954,
+          "value": 0.13396377165798168,
+          "prior_month": 0.9419496752357143,
           "budget": 0.9795607803066336
         },
         "rent_growth": {
@@ -1874,7 +1874,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9182807692307692,
+          "value": 0.9110846153846153,
           "budget": 0.955
         },
         "staffing_vacancies": {
@@ -1918,18 +1918,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 68,
-        "tours": 21,
-        "applications": 5,
-        "tours_over_traffic": 0.3088235294117647,
-        "conversions": 0.23809523809523808,
-        "period": "06/25-07/01/2026",
+        "traffic": 66,
+        "tours": 19,
+        "applications": 6,
+        "tours_over_traffic": 0.2878787878787879,
+        "conversions": 0.3157894736842105,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": 0.011152416356877323,
-          "tours": 0.21739130434782608,
-          "applications": 0.05263157894736842,
-          "tours_over_traffic": 0.2266922371813908,
-          "conversions": -0.04246337863877452
+          "traffic": -0.03296703296703297,
+          "tours": 0.0410958904109589,
+          "applications": 0.2631578947368421,
+          "tours_over_traffic": 0.08391687489074674,
+          "conversions": 0.29186602870813394
         },
         "benchmark_weeks": 4
       },
@@ -1952,17 +1952,17 @@
       "label": "Sienna Heights",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9299,
-          "prior_week": 0.9236,
+          "value": 0.9236,
+          "prior_week": 0.9268,
           "budget": 0.955
         },
         "leased_occupancy": {
-          "value": 0.949,
+          "value": 0.9459,
           "budget": null
         },
         "percent_collected": {
-          "value": 0.996036800647491,
-          "prior_month": 0.9887863835973617,
+          "value": 0.13904322874023112,
+          "prior_month": 0.9614557333105882,
           "budget": 0.9867877080498475
         },
         "rent_growth": {
@@ -1971,7 +1971,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9235305732484075,
+          "value": 0.9236,
           "budget": 0.955
         },
         "staffing_vacancies": {
@@ -2015,18 +2015,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 40,
-        "tours": 9,
-        "applications": 2,
-        "tours_over_traffic": 0.225,
-        "conversions": 0.2222222222222222,
-        "period": "06/25-07/01/2026",
+        "traffic": 47,
+        "tours": 8,
+        "applications": 0,
+        "tours_over_traffic": 0.1702127659574468,
+        "conversions": 0.0,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.29515418502202645,
-          "tours": 0.058823529411764705,
-          "applications": -0.42857142857142855,
-          "tours_over_traffic": 0.49434985188857167,
-          "conversions": -0.4387755102040817
+          "traffic": -0.1493212669683258,
+          "tours": 0.0,
+          "applications": -1.0,
+          "tours_over_traffic": 0.17730030045007714,
+          "conversions": -1.0
         },
         "benchmark_weeks": 4
       },
@@ -2049,7 +2049,7 @@
       "label": "Lancaster Village",
       "kpis": {
         "portfolio_occupancy": {
-          "value": 0.9697,
+          "value": 0.9621,
           "prior_week": 0.9773,
           "budget": 0.97
         },
@@ -2058,8 +2058,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9660997736758381,
-          "prior_month": 0.986175164058588,
+          "value": 0.01992399736349071,
+          "prior_month": 0.965521561987662,
           "budget": 0.99
         },
         "rent_growth": {
@@ -2068,7 +2068,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9697000000000001,
+          "value": 0.9621,
           "budget": 0.97
         },
         "staffing_vacancies": {
@@ -2112,14 +2112,14 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 21,
+        "traffic": 18,
         "tours": 0,
         "applications": 0,
         "tours_over_traffic": 0.0,
         "conversions": null,
-        "period": "06/25-07/01/2026",
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": 0.9534883720930233,
+          "traffic": 0.6,
           "tours": null,
           "applications": -1.0,
           "tours_over_traffic": null,
@@ -2147,7 +2147,7 @@
       "kpis": {
         "portfolio_occupancy": {
           "value": 0.962,
-          "prior_week": 0.9578,
+          "prior_week": 0.962,
           "budget": 0.9547460267229254
         },
         "leased_occupancy": {
@@ -2155,8 +2155,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 0.9652655985252452,
-          "prior_month": 0.9660542419525618,
+          "value": 0.11663859708099322,
+          "prior_month": 0.9156231446286527,
           "budget": 0.9791679013729963
         },
         "rent_growth": {
@@ -2165,7 +2165,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.962,
+          "value": 0.9577805907172996,
           "budget": 0.9547460267229254
         },
         "staffing_vacancies": {
@@ -2209,18 +2209,18 @@
         "as_of": "May 2026"
       },
       "marketing": {
-        "traffic": 19,
+        "traffic": 22,
         "tours": 5,
-        "applications": 3,
-        "tours_over_traffic": 0.2631578947368421,
-        "conversions": 0.6,
-        "period": "06/25-07/01/2026",
+        "applications": 1,
+        "tours_over_traffic": 0.22727272727272727,
+        "conversions": 0.2,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": -0.47586206896551725,
-          "tours": -0.6296296296296297,
-          "applications": -0.2,
-          "tours_over_traffic": -0.2796148505933394,
-          "conversions": 1.2063538481988567
+          "traffic": -0.3931034482758621,
+          "tours": -0.6078431372549019,
+          "applications": -0.75,
+          "tours_over_traffic": -0.347526067109055,
+          "conversions": -0.37049180327868847
         },
         "benchmark_weeks": 4
       },
@@ -2252,8 +2252,8 @@
           "budget": null
         },
         "percent_collected": {
-          "value": 1.0000848344031052,
-          "prior_month": 1.0,
+          "value": 0.12783920759475742,
+          "prior_month": 0.9854573582147093,
           "budget": 0.9935521253140442
         },
         "rent_growth": {
@@ -2262,7 +2262,7 @@
           "as_of": "May 2026"
         },
         "trend_occupancy_30d": {
-          "value": 0.9641904761904763,
+          "value": 0.9522857142857143,
           "budget": 0.96
         },
         "staffing_vacancies": {
@@ -2307,17 +2307,17 @@
       },
       "marketing": {
         "traffic": 18,
-        "tours": 4,
-        "applications": 0,
-        "tours_over_traffic": 0.2222222222222222,
-        "conversions": 0.0,
-        "period": "06/25-07/01/2026",
+        "tours": 3,
+        "applications": 1,
+        "tours_over_traffic": 0.16666666666666666,
+        "conversions": 0.3333333333333333,
+        "period": "06/26-07/02/2026",
         "benchmark_pct": {
-          "traffic": 0.3090909090909091,
-          "tours": 0.23076923076923078,
-          "applications": -1.0,
-          "tours_over_traffic": -0.06912810676896028,
-          "conversions": -1.0
+          "traffic": 0.2631578947368421,
+          "tours": -0.14285714285714285,
+          "applications": 0.0,
+          "tours_over_traffic": -0.33388591666038736,
+          "conversions": 0.14285714285714293
         },
         "benchmark_weeks": 4
       },
@@ -2340,17 +2340,17 @@
   "default_view": "PORTFOLIO",
   "kpis": {
     "portfolio_occupancy": {
-      "value": 0.9600043478260869,
-      "prior_week": 0.9607521739130435,
+      "value": 0.9563869565217391,
+      "prior_week": 0.9609913043478262,
       "budget": 0.959144948620656
     },
     "leased_occupancy": {
-      "value": 0.9754304347826088,
+      "value": 0.9730521739130438,
       "budget": null
     },
     "percent_collected": {
-      "value": 0.9886103231738653,
-      "prior_month": 0.9873007130534452,
+      "value": 0.13412228689162908,
+      "prior_month": 0.9572152641140582,
       "budget": 0.987692536749083
     },
     "rent_growth": {
@@ -2360,7 +2360,7 @@
       "yoy_effective": 0.024159403128736656
     },
     "trend_occupancy_30d": {
-      "value": 0.9490356003857002,
+      "value": 0.9460378635680512,
       "budget": 0.959144948620656
     },
     "staffing_vacancies": {
@@ -2381,43 +2381,43 @@
     }
   },
   "marketing": {
-    "traffic": 702,
-    "tours": 192,
-    "applications": 64,
-    "tours_over_traffic": 0.27350427350427353,
-    "conversions": 0.3333333333333333,
-    "period": "06/25-07/01/2026",
+    "traffic": 706,
+    "tours": 167,
+    "applications": 63,
+    "tours_over_traffic": 0.23654390934844194,
+    "conversions": 0.3772455089820359,
+    "period": "06/26-07/02/2026",
     "benchmark_pct": {
-      "traffic": -0.21079258010118043,
-      "tours": -0.14285714285714285,
-      "applications": -0.11724137931034483,
-      "tours_over_traffic": 0.08897512127038863,
-      "conversions": 0.036923370512364904
+      "traffic": -0.20940649496080627,
+      "tours": -0.26593406593406593,
+      "applications": -0.13993174061433447,
+      "tours_over_traffic": -0.06906084248140043,
+      "conversions": 0.17965097615102332
     },
     "benchmark_weeks": 4
   },
   "bottom_performers": [
     {
-      "name": "Dylan Apartments",
-      "occupancy": 0.9275,
-      "eff_growth": -0.007175918755154664,
-      "collected": 0.999538165469454,
-      "noi_variance": -0.024904066379169976,
-      "concern": "occupancy"
-    },
-    {
       "name": "Cordova Park",
-      "occupancy": 0.9303,
+      "occupancy": 0.9207,
       "eff_growth": -0.008365622705601483,
-      "collected": 0.9840048582576578,
+      "collected": 0.13396377165798168,
       "noi_variance": -0.04260050822925254,
       "concern": "noi_variance"
     },
     {
+      "name": "Dylan Apartments",
+      "occupancy": 0.9227,
+      "eff_growth": -0.007175918755154664,
+      "collected": 0.09891729694043572,
+      "noi_variance": -0.024904066379169976,
+      "concern": "collected"
+    },
+    {
       "name": "Steward's Crossing",
-      "occupancy": 0.9542,
+      "occupancy": 0.95,
       "eff_growth": -0.028527562706929355,
-      "collected": 0.9897345700196882,
+      "collected": 0.122321263514791,
       "noi_variance": -0.05043800146585864,
       "concern": "eff_growth"
     }
